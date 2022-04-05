@@ -1,0 +1,66 @@
+.logo{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+}
+
+.rowButton{
+    position: absolute;
+    left:0;
+    right:0;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /*Poner debajo imágenes que no caben*/
+    justify-content: center;
+
+    margin-left: auto;
+    margin-right: auto;
+    top: 100px;
+    text-align: center;
+}
+
+.carta{
+    width: 30%;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    border-radius: 10px;
+    padding: 40px;
+    box-shadow: -6px 6px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+}
+
+.subir{
+    background: #F25C29;
+}
+
+.consultar{
+    background: #FAAD42;
+}
+  
+.carta .thumb{
+    width: 100%;
+    margin-bottom: 10px;
+}
+  
+.carta .thumb img{
+    width: 100%;
+    vertical-align: top;
+    border-radius: 3px;
+}
+
+.carta .contenido{
+    text-align: center;
+}
+  
+.carta .contenido .nombre{
+    font-weight: 700;
+    color: white;
+    margin-bottom: 20px;
+  }
+  
+.carta .contenido .descripcion{
+    font-size: 14px;
+    color: white;
+}
+  

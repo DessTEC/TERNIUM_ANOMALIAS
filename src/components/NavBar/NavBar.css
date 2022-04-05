@@ -1,0 +1,54 @@
+.dark-ternium{
+    background: #1D2533;
+}
+
+.img-nav{
+    width: 100px;
+    margin-left: 20px;
+}
+
+.nav{
+    margin-right: 30px;
+}
+
+.img-btn{
+    width: 10%;
+    margin-right: 10px;
+}
+
+a{
+    text-align: center;
+}
+
+
+.btn-nav{
+    background: #1D2533;
+    border-width: 1px;
+    border-style: solid;
+    border-color: white;
+    border-radius: 20px;
+    margin-right: 10px;
+    padding: 5px;
+    text-decoration: none;
+    color: white;
+    width: 20%;
+}
+
+.active-nav{
+    background: #FF3502;
+    border: none;
+    color: white;
+}
+
+.btn-nav:hover{
+    background: #FAAD42;
+    border: none;
+    color: white;
+}
+
+.active-nav:hover{
+    background: #c62901;
+    border: none;
+    color: white;
+}
+

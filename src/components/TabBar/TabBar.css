@@ -1,0 +1,29 @@
+.tabBar{
+    margin-top: 20px;
+}
+
+.btn-tab{
+    background: white;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: rgba(102, 112, 128, 0.3);
+    padding: 5px;
+    text-decoration: none;
+    margin-right: 5px;
+    color: rgba(102, 112, 128, 0.3);
+}
+
+.active-tab{
+    border-bottom-color: #F25C29;
+    color: #F25C29;
+}
+
+.btn-tab:hover{
+    color: #FAAD42;
+    border-bottom-color: #FAAD42;
+}
+
+.active-tab:hover{
+    color: #c62901;
+    border-bottom-color: #c62901;
+}
