@@ -2,6 +2,8 @@
     position: absolute;
     top: 30px;
     left: 30px;
+    width: 7%;
+    min-width: 80px;
 }
 
 .rowButton{

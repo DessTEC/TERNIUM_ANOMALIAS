@@ -1,0 +1,38 @@
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.button-check-col{
+    width: 5%;
+}
+
+.chart-col{
+    width: 90%;
+}
+
+.button-control-col{
+    width: 5%;
+}
+
+.btn-panel{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.btn-control {
+    background: #F5F5F5;
+    margin-bottom: 5px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    box-shadow: -1px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.btn-control-icon{
+    color: black;
+}

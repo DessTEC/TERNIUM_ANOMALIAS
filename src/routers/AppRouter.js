@@ -1,18 +1,15 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter  } from "react-router-dom";
-import {HomeScreen} from '../components/HomeScreen/HomeScreen';
-import {DashboardRoutes} from './DashboardRoutes';
+import { useRoutes  } from "react-router-dom";
+
+import { RoutesApp } from '../data/RoutesApp';
 
 export const AppRouter = () => {
+
+    let element= useRoutes(RoutesApp);
+
     return (
-        <BrowserRouter>
-
-          <Routes>
-
-            <Route path="/" element={<HomeScreen />} />
-            <Route path="/*" element={<DashboardRoutes/>} />
-
-          </Routes>
-        </BrowserRouter>
+          <div>
+            {element}
+          </div>
     );
 };
