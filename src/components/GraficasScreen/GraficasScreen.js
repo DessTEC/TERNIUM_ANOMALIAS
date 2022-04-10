@@ -1,5 +1,4 @@
 import { ChartWrapper } from "../charts/ChartWrapper";
-import { BarChart } from "../charts/BarChart";
 import { UserData } from "../../data/Data";
 
 export const GraficasScreen = () => {
@@ -12,7 +11,7 @@ export const GraficasScreen = () => {
         },
       },
       responsive: true,
-      
+      maintainAspectRatio: true, //Se puede cambiar a false para la vista en pantallas pequeñas
       scales: {
         x: {
           stacked: true,

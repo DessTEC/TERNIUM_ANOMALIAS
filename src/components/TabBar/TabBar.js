@@ -4,7 +4,7 @@ import { NavLink } from '../NavLink/NavLink';
 export const TabBar = () => {
 
     return (
-            <div className="mt-3 ml-10 text-sm font-medium text-center mr-10">
+            <div className="mt-3 ml-5 text-sm font-medium text-center mr-10">
                 <ul className="flex flex-wrap -mb-px">
                     <li className="mr-2">
                         <NavLink 
