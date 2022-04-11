@@ -1,0 +1,15 @@
+td {
+    text-align: center !important;
+}
+
+th {
+    text-align: center !important;
+}
+
+.table {
+    margin-top: 20px !important;
+}
+
+.header {
+    display: inline;
+}
