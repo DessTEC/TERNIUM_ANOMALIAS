@@ -7,13 +7,17 @@
 .btn-primary {
     background-color: #F25C29 !important;
     border-color: #F25C29 !important;
-    width: 100px;
+    width: 120px;
     height: 40px;
 }
 
 .btn-outline-primary {
     border-color: #F25C29 !important;
     color: #F25C29 !important;
-    width: 100px;
+    width: 140px;
     height: 40px;
+}
+
+.buttonIcon{
+    margin-right: 10px;
 }
