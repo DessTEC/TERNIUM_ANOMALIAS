@@ -3,7 +3,7 @@ import { BarChart } from "./BarChart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
-import ChartFilterPopMenu from "../chartFilterMenu/chartFilterPopMenu";
+import ChartFilterPopMenu from "../chartFilterMenu/ChartFilterPopMenu";
 
 import "./Wrapper.css";
 
@@ -12,7 +12,6 @@ export const ChartWrapper = ({ chartData, options }) => {
     const [isOpen, setIsOpen] = React.useState(false);
 
     function toggle(){
-        //console.log(isOpen);
         setIsOpen(isOpen => !isOpen);
     }
     return(
@@ -29,7 +28,7 @@ export const ChartWrapper = ({ chartData, options }) => {
                         <FontAwesomeIcon icon={faEllipsisVertical} className="btn-control-icon" />
                     </button>
                     <div>
-                        {isOpen && (<ChartFilterPopMenu/>)}
+                        {isOpen && (<ChartFilterPopMenu closeClick={toggle}/>)}
                     </div>
                     <button className="btn-control">
                         <FontAwesomeIcon icon={faMagnifyingGlass} className="btn-control-icon" />
