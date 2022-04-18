@@ -3,7 +3,7 @@ import { BarChart } from "./BarChart";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
-import ChartFilterPopMenu from "../chartFilterMenu/ChartFilterPopMenu";
+import ChartFilterPopMenu from "../chartFilterMenu/chartFilterPopMenu";
 
 import "./Wrapper.css";
 

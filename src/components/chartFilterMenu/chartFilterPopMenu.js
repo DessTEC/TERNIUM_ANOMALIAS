@@ -1,12 +1,12 @@
 import React from "react";
-import "./ChartFilterPopMenu.css";
+import "./chartFilterPopMenu.css";
 import { faSort } from '@fortawesome/free-solid-svg-icons'
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
 import { faCog } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import DropDownMenuOption from "./DropdownMenuOption";
+import DropDownMenuOption from "./DropDownMenuOption";
 import AxisFilterDropdown from "./AxisFilterDropdown";
 import VariableFilterDropdown from "./VariableFilterDropdown";
 
