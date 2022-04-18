@@ -5,7 +5,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import barchart1 from "../../assets/bar-chart1.png";
 import barchart2 from "../../assets/bar-chart3.png";
 import chart1 from "../../assets/chart1.png";
-import Divider from "./Divider"
+import Divider from "./Divider";
 import CorButton from "./CorButton";
 import GraphForm from "./GraphForm";
 import RangeSlider from "./RangeSlider";
@@ -60,9 +60,8 @@ export default function AddGraph(props) {
             tabindex="-1"
           >
             <div class="py-1" role="none">
-
-              <h2 className="text-lg font-bold pl-5">Tipo de gráfica</h2>
-              <Divider/>
+              <h4 className="text-lg font-bold pl-5">Tipo de gráfica</h4>
+              <Divider />
               <div className="flex justify-center py-3 px-3">
                 <GraphButton
                   graphImg={barchart1}
@@ -81,35 +80,35 @@ export default function AddGraph(props) {
                 />
               </div>
 
-              <h2 className="text-lg font-bold pl-5">Comparativa</h2>
-              <Divider/>
+              <h4 className="text-lg font-bold pl-5 pt-2">Comparativa</h4>
+              <Divider />
               <div className="flex justify-start items-center py-3 px-3">
-                <CorButton text="Anomalías"/>
-                <CorButton text="Correlación"/>
+                <CorButton text="Anomalías" />
+                <CorButton text="Correlación" />
               </div>
 
-              <h2 className="text-lg font-bold pl-5">Variable (s)</h2>
-              <Divider/>
-              <div className="pt-3 px-3">
-                <GraphForm text="Eje X"/>
-                <GraphForm text="Eje Y"/>
+              <h4 className="text-lg font-bold pl-5 pt-2">Variable (s)</h4>
+              <Divider />
+              <div className="grid grid-cols-2 pt-3 px-3">
+                <GraphForm text="Eje X" />
+                <GraphForm text="Valor" />
+                <GraphForm text="Eje Y" />
               </div>
 
-              <h2 className="text-lg font-bold pl-5">Rango de anomalía</h2>
-              <Divider/>
-              <div className="flex items-center justify-center">
-                <RangeSlider
-                  initialMin={-0.5}
-                  initialMax={0.5}
-                  min={-1}
-                  max={1}
-                  step={0.1}
-                  cap={1}
+              <h4 className="text-lg font-bold pl-5 pt-2">Rango de anomalía</h4>
+              <Divider />
+              <div className="flex items-center justify-center pb-4">
+                <RangeSlider 
+                  min={-100}
+                  max={100}
+                  onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
                 />
               </div>
-              
+
               <div className="flex justify-center py-2">
-                <buton className=" font-medium rounded-full text-sm text-white px-24 py-2.5 text-center inline-flex items-center mr-2text-white bg-[#FF5C00] border-b-4 border-gray-300 hover:bg-[#D35124]">Agregar</buton>
+                <buton className=" font-medium rounded-full text-sm text-white px-24 py-2.5 text-center inline-flex items-center mr-2text-white bg-[#FF5C00] border-b-4 border-gray-300 hover:bg-[#D35124]">
+                  Agregar
+                </buton>
               </div>
             </div>
           </div>
