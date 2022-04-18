@@ -19,7 +19,7 @@ export const Historial = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-1 relative gap-y-10 px-4 pt-20 justify-items-center'>
                     <div className='w-full'>
                         <button className="btn btn-primary bg-[#F25C29] border-0 hover:bg-[#D15226]">
-                            <FontAwesomeIcon icon={faFilter} className="buttonIcon pr-2"/>
+                            <FontAwesomeIcon icon={faFilter} className="buttonIcon"/>
                             Filtros
                         </button>
                         <p className='text-black font-bold text-center text-xl'>CONSULTAR</p>
