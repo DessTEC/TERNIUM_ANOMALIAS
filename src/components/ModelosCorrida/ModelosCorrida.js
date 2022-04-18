@@ -22,7 +22,7 @@ export const ModelosCorrida = () => {
                 <div className='grid grid-cols-1 lg:grid-cols-1 relative gap-y-3 px-4 pt-20 justify-items-center'>
                     <div className='w-full'>
                         <button className="btn btn-primary bg-[#F25C29] border-0 hover:bg-[#D15226]">
-                            <FontAwesomeIcon icon={faFilter} className="buttonIcon pr-2"/>
+                            <FontAwesomeIcon icon={faFilter} className="buttonIcon"/>
                             Filtros
                         </button>
                         <p className='text-black font-bold text-center text-xl'>CONSULTAR</p>
@@ -30,12 +30,12 @@ export const ModelosCorrida = () => {
                         <SearchBar />
                     </div>
                     <div className='w-2/3 d-flex justify-content-between'>
-                        <Link to={'/dashboard/consultar'} className="btn btn-primary bg-[#FFFFFF] text-black border-0 hover:bg-[#FFFFFF] text-xl font-bold">
+                        <Link to={'/dashboard/consultar'} className="bg-[#FFFFFF] text-black border-0 hover:bg-[#FFFFFF] text-xl font-bold">
                             <FontAwesomeIcon icon={faArrowLeft} className="buttonIcon pr-5"/>
                             {params.nombre}
                         </Link>
-                        <button className="btn btn-primary bg-[#F25C29] border-0 hover:bg-[#D15226]">
-                            <FontAwesomeIcon icon={faPlus} className="buttonIcon pr-2"/>
+                        <button className="btn text-white bg-[#F25C29] border-0 hover:bg-[#D15226]">
+                            <FontAwesomeIcon icon={faPlus} className="buttonIcon"/>
                             Nuevo modelo
                         </button>
                     </div>
