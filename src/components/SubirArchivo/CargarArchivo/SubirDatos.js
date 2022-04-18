@@ -5,11 +5,10 @@ import "../SubirDatos.css"
 const SubirDatos = () =>{
     return (
         <div>
-            <Steps/>
             <h2 className="text">SUBIR ARCHIVO</h2>
             <h3 className="text">Sube el archivo que deseas analizar</h3>
             <ContenedorArchivos/>
-            <BotonesInferior primerBoton="Cancelar" segundoBoton="Configurar parametros"/>
+            <BotonesInferior primerBoton="Cancelar" segundoBoton="Configurar parametros" linkPrimero='/' linkSegundo='/dashboard/subir/parametros'/>
         </div>
     )
 }

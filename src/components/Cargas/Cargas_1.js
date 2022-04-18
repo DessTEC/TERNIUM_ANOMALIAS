@@ -1,32 +1,30 @@
-import Cargas from "./Cargas"
 import lupa from '../../assets/lupa.png'
+import './Cargas.css'
 
-const Cargas_1 = () => {
+export const Cargas_1 = () => {
 
     return(
-    <><div class="">
-            <h2 class="titulo"> CARGAR DATOS</h2>
-            <p class="titulo"> Confirmar la configuración del archivo</p>
-        </div><div class="divrec">
-                <div class="divfon">
+    <><div className="">
+            <h2 className="titulo"> CARGAR DATOS</h2>
+            <p className="titulo"> Confirmar la configuración del archivo</p>
+        </div><div className="divrec">
+                <div className="divfon">
                     <p> Archivo a cargar</p>
                 </div>
 
-                <div class="divfon2">
+                <div className="divfon2">
                     Parametros de analisis
                 </div>
 
-                <h2 class="positionlabeltable">Nombre de Archivo:
+                <h2 className="positionlabeltable">Nombre de Archivo:
 
                 </h2>
-                <div class="ingresanombre">
+                <div className="ingresanombre">
                 </div>
-            </div><div class="circlecarga">
+            </div><div className="circlecarga">
                 <img src={lupa} alt="sample"/>
                 </div>
                 </> 
 
     )
 }
-
-export default Cargas_1

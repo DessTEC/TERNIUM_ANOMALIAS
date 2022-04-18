@@ -7,6 +7,10 @@ import {TablaScreen} from "../components/TablaScreen/TablaScreen";
 import {GraficasScreen} from "../components/GraficasScreen/GraficasScreen";
 import {TabBar} from "../components/TabBar/TabBar";
 import { NuevoModeloScreen } from '../components/nuevoModeloScreen/NuevoModeloScreen';
+import SubirDatos from '../components/SubirArchivo/CargarArchivo/SubirDatos';
+import RelacionarColumnas from '../components/SubirArchivo/Relacionar/RelacionarColumnas';
+import Steps from '../components/SubirArchivo/Pasos/Steps';
+import {Cargas_1} from '../components/Cargas/Cargas_1';
 
 export const RoutesApp = [
     {path: "/", element: <HomeScreen />},
@@ -16,14 +20,14 @@ export const RoutesApp = [
       children: [
         {
           path: "/dashboard/subir",
-          element: <SubirArchivo/>,
+          element: <Steps/>,
           children: [
-            { path: "/dashboard/subir", element: <p>Paso 1</p> },
+            { path: "/dashboard/subir", element: <SubirDatos/> },
             {
               path: "/dashboard/subir/parametros",
-              element: <p>Paso 2</p>,
+              element: <RelacionarColumnas/>,
             },
-            { path: "/dashboard/subir/cargar", element: <p>Paso 3</p> },
+            { path: "/dashboard/subir/cargar", element: <Cargas_1/> },
           ],
         },
         { 
