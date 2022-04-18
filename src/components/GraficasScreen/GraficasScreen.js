@@ -8,11 +8,11 @@ export const GraficasScreen = () => {
     plugins: {
       title: {
         display: true,
-        text: "Anomalías 2019",
+        text: 'Anomalías 2019',
       },
     },
     responsive: true,
-
+    maintainAspectRatio: true, //Se puede cambiar a false para la vista en pantallas pequeñas
     scales: {
       x: {
         stacked: true,
@@ -41,7 +41,7 @@ export const GraficasScreen = () => {
 
   return (
     <div>
-      <div className="flex justify-end">
+      <div className="flex justify-end mt-2">
         <DownloadButton />
         <AddGraph text="Agregar gráfica"/>
       </div>
