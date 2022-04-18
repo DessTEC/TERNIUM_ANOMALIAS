@@ -6,6 +6,7 @@ import { ModelosCorrida } from "../components/ModelosCorrida/ModelosCorrida";
 import {TablaScreen} from "../components/TablaScreen/TablaScreen";
 import {GraficasScreen} from "../components/GraficasScreen/GraficasScreen";
 import {TabBar} from "../components/TabBar/TabBar";
+import { NuevoModeloScreen } from '../components/nuevoModeloScreen/NuevoModeloScreen';
 
 export const RoutesApp = [
     {path: "/", element: <HomeScreen />},
@@ -32,6 +33,10 @@ export const RoutesApp = [
         {
           path: "/dashboard/consultar/:nombre", 
           element: <ModelosCorrida/>,
+        },
+        {
+          path: "/dashboard/consultar/:nombre/nuevoModelo", 
+          element: <NuevoModeloScreen/>,
         },
         {
           path: "/dashboard/consultar/:nombre/:modelo", 
