@@ -2,7 +2,7 @@ import React from "react";
 import { faSortAlphaAsc } from '@fortawesome/free-solid-svg-icons'
 import { faSortAlphaDesc } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import DropDownMenuOption from "./DropdownMenuOption";
+import DropDownMenuOption from "./DropDownMenuOption";
 
 
 export default function AxisFilterDropdown(){

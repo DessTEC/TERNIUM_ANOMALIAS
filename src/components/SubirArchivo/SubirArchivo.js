@@ -1,8 +1,10 @@
+import SubirDatos from "./CargarArchivo/SubirDatos"
+import RelacionarColumnas from "./Relacionar/RelacionarColumnas";
+
 export const SubirArchivo = () => {
 
     return(
-        <>
-           <h1>Subir</h1>
-        </>
+        <SubirDatos/>
+        // <RelacionarColumnas/>
     );
 }
