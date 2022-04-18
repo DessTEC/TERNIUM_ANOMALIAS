@@ -1,0 +1,88 @@
+.masterMenu{
+    white-space: nowrap;
+    position: absolute;
+    place-items: start;
+}
+
+.filterMenu{
+    position: relative;
+    z-index: 2;
+    display: inline-table;
+    width: 180px;
+    max-width: 200px;
+    min-width: 180px;
+    margin: 0; 
+    padding: 0;
+    border-width: 0px;
+    background: #FFFFFF;
+    box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+.filterMenu--list{
+    text-indent: 3px;
+    margin: 0; padding: 0;
+}
+
+.filterMenu--list > li{
+    text-align: left;
+    margin: 0;
+    padding: 5px 10px 5px 10px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    color: #000000;
+}
+.filterMenu--list > li:hover {
+    background-color: rgba(0, 0, 0, 0.14);
+    cursor: pointer;
+  }
+
+.subMenu{
+    position: relative;
+    z-index: 2;
+    display: inline-table;
+    width: 180px;
+    max-width: 200px;
+    min-width: 180px;
+    margin: 0; 
+    padding: 0;
+    border-width: 0px;
+    background: #FFFFFF;
+    box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+}
+
+.subMenu--list{
+    text-indent: 3px;
+    margin: 0; padding: 0;
+}
+
+.subMenu--list > li{
+    text-align: left;
+    margin: 0;
+    padding: 5px 10px 5px 10px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 20px;
+    letter-spacing: -0.02em;
+    color: #000000;
+}
+
+.axisVariableSection{
+    color: #667080;
+}
+
+.axisVariablePicker{
+    background: #FFFFFF;
+    border: 1px solid #667080;
+    box-sizing: border-box;
+    border-radius: 6px;
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+    padding: 5px;
+    margin: 0px;
+}
