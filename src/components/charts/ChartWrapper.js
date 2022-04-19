@@ -6,8 +6,9 @@ import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import ChartFilterPopMenu from "../chartFilterMenu/chartFilterPopMenu";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
+import { BubbleChart } from "./BubbleChart";
 
-export const ChartWrapper = ({ chartData, options }) => {
+export const ChartWrapper = ({ chartData, options, type }) => {
 
     const [isOpen, setIsOpen] = React.useState(false);
 
@@ -20,13 +21,20 @@ export const ChartWrapper = ({ chartData, options }) => {
 
     const handleClose =()=> setModal(!modal)
 
+    console.log(type)
+
     return(
         <div className="w-full p-4 flex flex-row">
             <div className="form-check">
                 <input className="accent-[#1D2533] bg-gray-50 border-gray-300 focus:ring-3 focus:ring-[#1D2533] h-4 w-4 rounded" type="checkbox"/>
             </div>
             <div className="w-full">
-                <BarChart options = {options} chartData={chartData} />
+                {
+                    type === 'burbuja' ? 
+                    <BubbleChart options = {options} chartData={chartData} />
+                    :
+                    <BarChart options = {options} chartData={chartData} />
+                }
             </div>
                     
             <div className="w-8">
