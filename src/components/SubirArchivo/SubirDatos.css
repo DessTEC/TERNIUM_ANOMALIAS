@@ -109,6 +109,10 @@
     margin-bottom: 2vw;
 }
 
+.iconoSubida:hover{
+    color: #F25C29 !important;
+}
+
 h1{
     font-size: 2.5em !important;
     font-weight: 600 !important;

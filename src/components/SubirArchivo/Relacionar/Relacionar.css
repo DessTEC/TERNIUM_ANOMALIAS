@@ -1,5 +1,12 @@
 .columna{
     width: 30vw;
+    height: 55vw;
+}
+
+.columnaMedia{
+    margin-top: 1vw;
+    width: 30vw;
+    height: 45vw;
 }
 
 .containerRelacionar{
@@ -23,6 +30,7 @@
 }
 
 .containerSubido{
+    margin: auto;
     margin-top: 2vw !important;
     margin-bottom: 2vw !important;
     background-color: #F9F9F9 !important;
@@ -56,4 +64,22 @@ h5{
 
 .containerColumnas{
     margin: 3vw;
+}
+
+.buscar{
+    height: 3vw !important;
+    width: 25vw !important;
+    margin: auto;
+    margin-top: 1vw;
+}
+
+.columnaMedia::-webkit-scrollbar {
+    width: .3vw;               /* width of the entire scrollbar */
+}
+.columnaMedia::-webkit-scrollbar-track {
+background: #F3F6FF;        /* color of the tracking area */
+}
+.columnaMedia::-webkit-scrollbar-thumb {
+background-color: #1D2533;    /* color of the scroll thumb */
+border-radius: 20px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
 }
