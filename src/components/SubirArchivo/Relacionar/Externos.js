@@ -3,7 +3,7 @@ import BloqueAtributo from "./BloqueAtributo"
 
 const Externos = () => {
     return (
-        <div className="columa">
+        <div className="columna">
             <h5>Actores externos</h5>
             <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro"/>
             <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro"/>

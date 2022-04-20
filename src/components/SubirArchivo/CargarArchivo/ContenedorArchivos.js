@@ -5,7 +5,9 @@ const ContenedorArchivos = () =>{
     return(
         <div className="rounded containerArchivos">
             <div id="containerIcono">
-                <FontAwesomeIcon icon={faUpload} className="iconoSubida"/>
+                <button>
+                    <FontAwesomeIcon icon={faUpload} className="iconoSubida"/>
+                </button>
             </div>
             <h5 className="text">Arrastra los archivos aqui</h5>
             <h5 className="text">O</h5>

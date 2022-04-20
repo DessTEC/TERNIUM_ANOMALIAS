@@ -1,10 +1,14 @@
 import BloqueSubido from "./BloqueSubido"
+import { Buscar } from "./Buscar"
+import './Relacionar.css'
 
 
 const ArtibutosColumnas = () => {
     return (
-        <div className="columa">
+        <div>
             <h5 className="centrarTexto">Columnas del archivo subido</h5>
+            <Buscar/>
+            <div className="columnaMedia overflow-auto">
             <BloqueSubido/>
             <BloqueSubido/>
             <BloqueSubido/>
@@ -15,6 +19,17 @@ const ArtibutosColumnas = () => {
             <BloqueSubido/>
             <BloqueSubido/>
             <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            <BloqueSubido/>
+            </div>
         </div>
     )
 }
