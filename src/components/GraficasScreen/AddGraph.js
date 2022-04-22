@@ -9,6 +9,8 @@ import {ButtonGroupCharts} from "./ButtonGroupCharts";
 import { ButtonGroupCor } from "./ButtonGroupCor";
 
 import { UserData } from "../../data/Data";
+import _uniqueId from 'lodash/uniqueId';
+
 
 export default function AddGraph(props) {
   const ref = useRef();
@@ -92,10 +94,12 @@ export default function AddGraph(props) {
   }, [isMenuOpen]);
 
   const handleCreateChart = () => {
-    console.log(`Gráfica: ${chartType}, Tipo: ${analysisType}, Rango: ${minValAnomalias}-${maxValAnomalias}`)
     setIsMenuOpen(false);
+    const id = _uniqueId('id-');
+    console.log(id);
+
     props.setCharts(prevCharts => [...prevCharts, {
-      id: props.charts.length,
+      id: id,
       type: chartType,
       data: {
         labels: UserData.map((data) => data.planta),
