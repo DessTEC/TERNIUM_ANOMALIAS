@@ -19,9 +19,6 @@ export const NavLink = ({
     let location = useLocation();
     let resolvedLocation = useResolvedPath(to);
     let routeMatches = matchRoutes(RoutesApp, location);
-
-    console.log(location);
-    console.log(resolvedLocation.pathname);
   
     let isActive;
     if (exact) {

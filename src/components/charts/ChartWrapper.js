@@ -5,30 +5,49 @@ import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import ChartFilterPopMenu from "../chartFilterMenu/chartFilterPopMenu";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { BubbleChart } from "./BubbleChart";
 
-export const ChartWrapper = ({ chartData, options, type }) => {
+export const ChartWrapper = ({ chartId, chartData, options, type, setSelectCharts }) => {
 
     const [isOpen, setIsOpen] = React.useState(false);
+
+    const [isChecked, setIsChecked] = useState(false);
 
     function toggle(){
         setIsOpen(isOpen => !isOpen);
     }
 
     const [modal, setModal] = useState(false)
+
     const handleZoom = () => setModal(!modal)
 
     const handleClose =()=> setModal(!modal)
 
-    console.log(type)
+    const handleCheck = () => {
+        setIsChecked(!isChecked);
+    }
+
+    useEffect(() => {
+        if(isChecked){
+            setSelectCharts(prevIds => [...prevIds, chartId]);
+        }else{
+            setSelectCharts(prevIds => prevIds.filter( (id) => {
+                return id !== chartId;
+            }));
+        }
+    }, [isChecked]);
 
     return(
         <div className="w-full p-4 flex flex-row">
             <div className="form-check">
-                <input className="accent-[#1D2533] bg-gray-50 border-gray-300 focus:ring-3 focus:ring-[#1D2533] h-4 w-4 rounded" type="checkbox"/>
+                <input 
+                    className="accent-[#1D2533] bg-gray-50 border-gray-300 focus:ring-3 focus:ring-[#1D2533] h-4 w-4 rounded" 
+                    type="checkbox"
+                    onClick={handleCheck}
+                />
             </div>
-            <div className="w-full">
+            <div className="w-full" id={chartId}>
                 {
                     type === 'burbuja' ? 
                     <BubbleChart options = {options} chartData={chartData} />
