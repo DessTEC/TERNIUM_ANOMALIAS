@@ -1,0 +1,85 @@
+.columna{
+    width: 30vw;
+    height: 55vw;
+}
+
+.columnaMedia{
+    margin-top: 1vw;
+    width: 30vw;
+    height: 45vw;
+}
+
+.containerRelacionar{
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    height: 8vw;
+    width: 30vw;
+}
+
+.containerDotted{
+    background-color: white;
+    border: dotted;
+    height: 3vw;
+    width: 22vw;
+}
+
+.tituloAtributo{
+    margin: 1vw !important;
+    padding-top: 1vw;
+    color: #771500;
+}
+
+.containerSubido{
+    margin: auto;
+    margin-top: 2vw !important;
+    margin-bottom: 2vw !important;
+    background-color: #F9F9F9 !important;
+    padding-top: 2px;
+    height: 3vw;
+    width: 25vw;
+}
+
+.centrarTexto{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alinearDerecha{
+    text-align: right;
+}
+
+h5{
+    font-size: 1.1em !important;
+    font-weight: 500 !important;
+}
+
+.backgroundNaranjaClaro{
+    background-color: #FFE5DA;
+}
+
+.backgroundAmarilloClaro{
+    background-color: #FFFBD3;
+}
+
+.containerColumnas{
+    margin: 3vw;
+}
+
+.buscar{
+    height: 3vw !important;
+    width: 25vw !important;
+    margin: auto;
+    margin-top: 1vw;
+}
+
+.columnaMedia::-webkit-scrollbar {
+    width: .3vw;               /* width of the entire scrollbar */
+}
+.columnaMedia::-webkit-scrollbar-track {
+background: #F3F6FF;        /* color of the tracking area */
+}
+.columnaMedia::-webkit-scrollbar-thumb {
+background-color: #1D2533;    /* color of the scroll thumb */
+border-radius: 20px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
+}
