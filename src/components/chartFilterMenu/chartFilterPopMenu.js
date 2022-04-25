@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DropDownMenuOption from "./DropDownMenuOption";
 import AxisFilterDropdown from "./AxisFilterDropdown";
 import VariableFilterDropdown from "./VariableFilterDropdown";
+import CalendarFilterDropdown from "./CalendarFilterDropdown";
 
 export default function ChartFilterPopMenu(props){
 
@@ -20,6 +21,11 @@ export default function ChartFilterPopMenu(props){
     const [isOpenVariables, setIsOpenVariables] = React.useState(false);
     function toggleVariablesFilter(){
         setIsOpenVariables(isOpenVariables => !isOpenVariables);
+    }
+
+    const [isOpenCalendar, setIsOpenCalendar] = React.useState(false);
+    function toggleCalendarFilter(){
+        setIsOpenCalendar(isOpenCalendar => !isOpenCalendar);
     }
 
     return(
@@ -39,9 +45,10 @@ export default function ChartFilterPopMenu(props){
                         {isOpenVariables && <VariableFilterDropdown/>}
                     </li>
                     <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option">
-                            <DropDownMenuOption iconLeft={faCalendarDays} textDisplay="Fecha" expandable={true}/>
+                        <div className ="filterMenu--option" onClick={toggleCalendarFilter}>
+                            <DropDownMenuOption iconLeft={faCalendarDays} textDisplay="Fecha" expandable={true} isOpen={isOpenCalendar}/>
                         </div>
+                        {isOpenCalendar && <CalendarFilterDropdown/>}
                     </li>
                     <li className="filterMenu--listItem">
                         <div className ="filterMenu--option">

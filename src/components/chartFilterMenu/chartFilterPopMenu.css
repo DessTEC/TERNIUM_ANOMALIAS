@@ -46,9 +46,8 @@ position: absolute;
     list-style: none;
     left: 100%;
     top: 0%;
-    display: block;
-    width: 180px;
-    max-width: 200px;
+    display: inline-block;
+    max-width: 350px;
     min-width: 180px;
     margin: 0; 
     padding: 0;
@@ -59,6 +58,7 @@ position: absolute;
 }
 
 .subMenu--list{
+    display: inline-block;
     text-indent: 3px;
     margin: 0; padding: 0;
 }
@@ -86,4 +86,23 @@ position: absolute;
     border-radius: 6px;
     padding: 5px;
     margin: 0px;
+}
+
+.calendar--label{
+    text-align: left;
+    place-self: start;
+    font-size: 10px;
+    color: #667080;
+}
+.dateSelector >input{
+    width:110px;
+    padding: 3px;
+    border: 2px solid #ECF0F1;
+    border-radius: 5px;
+    color: #667080;
+    font-size: 11px;
+    text-indent: 3px;
+}
+.dateSelector > input::-webkit-calendar-picker-indicator{
+	display: none;
 }
