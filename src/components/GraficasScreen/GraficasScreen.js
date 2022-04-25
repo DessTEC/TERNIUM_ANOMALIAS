@@ -1,57 +1,51 @@
 import { ChartWrapper } from "../charts/ChartWrapper";
-import { UserData } from "../../data/Data";
 import AddGraph from "./AddGraph";
 import DownloadButton from "./DownloadButton";
+import {useState} from 'react';
+
+import { exportMultipleChartsToPdf } from "../utils/exportPdf";
 
 export const GraficasScreen = () => {
-  const options = {
-    plugins: {
-      title: {
-        display: true,
-        text: 'Anomalías 2019',
-      },
-    },
-    responsive: true,
-    maintainAspectRatio: true, //Se puede cambiar a false para la vista en pantallas pequeñas
-    scales: {
-      x: {
-        stacked: true,
-      },
-      y: {
-        stacked: true,
-      },
-    },
-  };
 
-  const userData = {
-    labels: UserData.map((data) => data.planta),
-    datasets: [
-      {
-        label: "Relaciones Normales",
-        data: UserData.map((data) => data.normales),
-        backgroundColor: ["#FAAD42"],
-      },
-      {
-        label: "Relaciones Anómalas",
-        data: UserData.map((data) => data.anomalias),
-        backgroundColor: ["#F25C29"],
-      },
-    ],
-  };
+  const [charts, setCharts] = useState([]);
+  const [selectCharts, setSelectCharts] = useState([]);
 
   return (
     <div>
       <div className="flex justify-end mt-2">
-        <DownloadButton />
-        <AddGraph text="Agregar gráfica"/>
+        <DownloadButton 
+          selectCharts={selectCharts}
+          exportMultipleChartsToPdf={exportMultipleChartsToPdf}
+        />
+        <AddGraph 
+          text="Agregar gráfica"
+          setCharts = {setCharts}
+          charts = {charts}
+        />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 justify-evenly justify-items-center">
-        <ChartWrapper options={options} chartData={userData} />
-        <ChartWrapper options={options} chartData={userData} />
-        <ChartWrapper options={options} chartData={userData} />
-        <ChartWrapper options={options} chartData={userData} />
-      </div>
+      {charts.length > 0 ? 
+        <div className="grid grid-cols-1 lg:grid-cols-2 justify-evenly justify-items-center" id="reporte">
+          {
+            charts.map( chart => {
+                return(
+                        <ChartWrapper 
+                        key = {chart.id}
+                        chartData = {chart.data}
+                        options = {chart.options}
+                        type = {chart.type}
+                        setSelectCharts = {setSelectCharts}
+                        chartId = {chart.id}
+                      />
+                );
+            })
+          }
+        </div> 
+        :
+        <div>
+          <h2>Agrega una gráfica</h2>
+        </div>
+      }
     </div>
   );
 };

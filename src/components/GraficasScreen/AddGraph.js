@@ -1,19 +1,80 @@
 import { useEffect, useRef, useState } from "react";
-import GraphButton from "./GraphButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import barchart1 from "../../assets/bar-chart1.png";
-import barchart2 from "../../assets/bar-chart3.png";
-import chart1 from "../../assets/chart1.png";
+
 import Divider from "./Divider";
-import CorButton from "./CorButton";
 import GraphForm from "./GraphForm";
 import RangeSlider from "./RangeSlider";
+import {ButtonGroupCharts} from "./ButtonGroupCharts";
+import { ButtonGroupCor } from "./ButtonGroupCor";
+
+import { UserData } from "../../data/Data";
+import { UserData2 } from "../../data/Data2";
+import _uniqueId from 'lodash/uniqueId';
+
 
 export default function AddGraph(props) {
   const ref = useRef();
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  //Selección de gráficas
+
+  //Variables de configuración
+  const [chartType, setChartType] = useState("barrasV");
+  const [analysisType, setAnalysisType] = useState('Anomalías');
+  const [minValAnomalias, setMinValAnomalias] = useState(-100);
+  const [maxValAnomalias, setMaxValAnomalias] = useState(100);
+
+  const optionsCharts = {
+    barrasV: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Anomalías 2019',
+        },
+      },
+      responsive: true,
+      maintainAspectRatio: true,
+      scales: {
+        x: {
+          stacked: true,
+        },
+        y: {
+          stacked: true,
+        },
+      },
+    },
+    barrasH: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Anomalías 2019',
+        },
+      },
+      responsive: true,
+      indexAxis: 'y',
+      maintainAspectRatio: true,
+      scales: {
+        x: {
+          stacked: true,
+        },
+        y: {
+          stacked: true,
+        },
+      },
+    },
+    burbuja: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Anomalías 2019',
+        },
+      },
+      responsive: true,
+      maintainAspectRatio: true,
+    }
+  }
 
   const handleClick = () => {
     setIsMenuOpen(true);
@@ -32,6 +93,54 @@ export default function AddGraph(props) {
       document.removeEventListener("click", checkClickOutside);
     };
   }, [isMenuOpen]);
+
+  const handleCreateChart = () => {
+    setIsMenuOpen(false);
+    const id = _uniqueId('id-');
+    console.log(id);
+
+    props.setCharts(prevCharts => [...prevCharts, {
+      id: id,
+      type: chartType,
+      data: {
+        labels: UserData2.map((data) => data.planta),
+        datasets: [
+          {
+            label: "Relaciones Normales",
+            data: UserData2.map((data) => data.normales),
+            backgroundColor: ["#FAAD42"],
+          },
+          {
+            label: "Relaciones Anómalas",
+            data: UserData2.map((data) => data.anomalias),
+            backgroundColor: ["#F25C29"],
+          },
+        ],
+      },
+      options: optionsCharts[chartType]
+    }])
+
+    {/*props.setCharts(prevCharts => [...prevCharts, {
+      id: id,
+      type: chartType,
+      data: {
+        labels: UserData.map((data) => data.planta),
+        datasets: [
+          {
+            label: "Relaciones Normales",
+            data: UserData.map((data) => data.normales),
+            backgroundColor: ["#FAAD42"],
+          },
+          {
+            label: "Relaciones Anómalas",
+            data: UserData.map((data) => data.anomalias),
+            backgroundColor: ["#F25C29"],
+          },
+        ],
+      },
+      options: optionsCharts[chartType]
+    }])*/}
+  }
 
   return (
     <div>
@@ -63,37 +172,34 @@ export default function AddGraph(props) {
               <h4 className="text-lg font-bold pl-5">Tipo de gráfica</h4>
               <Divider />
               <div className="flex justify-center py-3 px-3">
-                <GraphButton
-                  graphImg={barchart1}
-                  alt="barchart1"
-                  graphTxt="Columnas verticales"
-                />
-                <GraphButton
-                  graphImg={barchart2}
-                  alt="barchart2"
-                  graphTxt="Columnas horizontales"
-                />
-                <GraphButton
-                  graphImg={chart1}
-                  alt="barchart2"
-                  graphTxt="Burbuja"
+                <ButtonGroupCharts
+                  setChartType={setChartType}
+                  chartType = {chartType}
                 />
               </div>
 
               <h4 className="text-lg font-bold pl-5 pt-2">Comparativa</h4>
               <Divider />
               <div className="flex justify-start items-center py-3 px-3">
-                <CorButton text="Anomalías" />
-                <CorButton text="Correlación" />
+                <ButtonGroupCor
+                  setAnalysisType={setAnalysisType}
+                  analysisType={analysisType}
+                />
               </div>
 
               <h4 className="text-lg font-bold pl-5 pt-2">Variable (s)</h4>
               <Divider />
-              <div className="grid grid-cols-2 pt-3 px-3">
-                <GraphForm text="Eje X" />
-                <GraphForm text="Valor" />
-                <GraphForm text="Eje Y" />
-              </div>
+              {analysisType === "Anomalías" ?
+                <div className="grid grid-cols-2 pt-3 px-3">
+                  <GraphForm text="Eje X" />
+                </div>
+                :
+                <div className="grid grid-cols-2 pt-3 px-3">
+                  <GraphForm text="Eje X" />
+                  <GraphForm text="Valor" />
+                  <GraphForm text="Eje Y" />
+                </div>
+              }
 
               <h4 className="text-lg font-bold pl-5 pt-2">Rango de anomalía</h4>
               <Divider />
@@ -101,12 +207,18 @@ export default function AddGraph(props) {
                 <RangeSlider 
                   min={-100}
                   max={100}
-                  onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
+                  onChange={({ min, max }) => {
+                    setMinValAnomalias(min)
+                    setMaxValAnomalias(max)
+                  }}
                 />
               </div>
 
               <div className="flex justify-center py-2">
-                <buton className=" font-medium rounded-full text-sm text-white px-24 py-2.5 text-center inline-flex items-center mr-2text-white bg-[#FF5C00] border-b-4 border-gray-300 hover:bg-[#D35124]">
+                <buton 
+                  className=" font-medium rounded-full text-sm text-white px-24 py-2.5 text-center inline-flex items-center mr-2text-white bg-[#FF5C00] border-b-4 border-gray-300 hover:bg-[#D35124]"
+                  onClick = {handleCreateChart}
+                >
                   Agregar
                 </buton>
               </div>

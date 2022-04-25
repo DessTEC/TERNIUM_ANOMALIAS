@@ -7,11 +7,26 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import axios from "axios";
+
+import { useState, useEffect } from "react";
 
 export const Historial = () => {
 
-    const name1 = 'Primer Trimestre';
-    const name2 = 'semestre2020';
+    useEffect(() => {
+        fetchReportes();
+    }, []);
+
+    const [reportes, setReportes] = useState([]);
+
+    const fetchReportes = async () => {
+        console.log("Consultando");
+        const result = await axios.get(
+          "http://localhost:4000/reportes"
+        );
+
+        setReportes(result.data);
+    };
 
     return (
           <div>
@@ -26,24 +41,18 @@ export const Historial = () => {
                         <p className='text-black font-normal text-center text-xl pb-3'>Navega por los reportes generados anteriormente</p>
                         <SearchBar />
                     </div>
-                    <Link to={name1} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Datos primer trimestre 2022</p>
-                            <p className='text-black font-normal text-left text-l'>5 modelos</p>
-                        </div>
-                    </Link>
-                    <Link to={name2} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Datos segundo trimestre 2021</p>
-                            <p className='text-black font-normal text-left text-l'>3 modelos</p>
-                        </div>
-                    </Link>
-                    <Link to={name2} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Datos primer trimestre 2021</p>
-                            <p className='text-black font-normal text-left text-l'>3 modelos</p>
-                        </div>
-                    </Link>
+                     {
+                        reportes.map( reporte => {
+                            return(
+                                <Link key={reporte.id} to={reporte.name} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
+                                    <div className='p-4 w-full'>
+                                        <p className='text-black font-bold text-left text-xl'>{reporte.titulo}</p>
+                                        <p className='text-black font-normal text-left text-l'>{`${reporte.modelos} modelos`}</p>
+                                    </div>
+                                </Link>
+                            );
+                        })
+                    }
                 </div>
             </div>
           </div>
