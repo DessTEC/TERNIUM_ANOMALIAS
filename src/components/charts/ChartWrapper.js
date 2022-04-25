@@ -1,8 +1,8 @@
 import React from "react";
 import { BarChart } from "./BarChart";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons'
-import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import ChartFilterPopMenu from "../chartFilterMenu/chartFilterPopMenu";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
