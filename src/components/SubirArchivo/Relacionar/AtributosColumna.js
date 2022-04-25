@@ -59,6 +59,14 @@ const ArtibutosColumnas = () => {
     ]
 
 
+    const reorder = (list, startIndex, endIndex) => {
+        const result = [...list];
+        const [removed] = result.splice(startIndex,1);
+        result.splice(endIndex,0,removed);
+        return result
+    }
+
+
     const [atributos, setAtributos] = useState(atributosIniciales)
 
     return (
@@ -66,50 +74,39 @@ const ArtibutosColumnas = () => {
 
             <h5 className="centrarTexto">Columnas del archivo subido</h5>
             <Buscar/>
-            {/* <div className="columnaMedia overflow-auto">
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            <BloqueSubido/>
-            </div> */}
-            <DragDropContext onDragEnd={(result) => console.log(result)}>
+            <DragDropContext onDragEnd={(result) => {
+                const {source,destination} = result;
+                if(!destination){
+                    return;
+                }
+                if(source.index == destination.index && source.droppableId == destination.droppableId){
+                    return;
+                }
+
+                setAtributos((prevAtributos) => reorder(prevAtributos, source.index,destination.index))
+            }}>
                 <Droppable droppableId="subidos">
                     { (droppableProvided) => (
-                    <div className="columnaMedia overflow-auto"
+                    <ul className="columnaMedia overflow-auto"
                         {...droppableProvided.droppableProps}
                         ref={droppableProvided.innerRef}
                     >
                          {atributos.map((atributo, index) => (
                             <Draggable key={atributo.id} draggableId={atributo.id} index={index}>
                                  {(draggableProvided) => (
-                                    <BloqueSubido {...draggableProvided.draggableProps}
+                                    <li 
+                                    {...draggableProvided.draggableProps}
                                     ref={draggableProvided.innerRef}
                                     {...draggableProvided.dragHandleProps}
-                                    nombreAtributo={atributo.text}/>
+                                    ><BloqueSubido nombreAtributo={atributo.text}/></li>
                                  )}
                             </Draggable>
                         ))}
                         {droppableProvided.placeholder}
-                    </div>
+                    </ul>
                     )}
                 </Droppable>
-            </DragDropContext>
+                </DragDropContext>
         </div>
     )
 }
