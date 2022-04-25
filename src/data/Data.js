@@ -9,7 +9,7 @@ export const UserData = [
       id: 2,
       planta: "Planta 2",
       anomalias: 45677,
-      normales: 20555,
+      normales: 20555, 
     },
     {
       id: 3,

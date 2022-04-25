@@ -9,6 +9,7 @@ import {ButtonGroupCharts} from "./ButtonGroupCharts";
 import { ButtonGroupCor } from "./ButtonGroupCor";
 
 import { UserData } from "../../data/Data";
+import { UserData2 } from "../../data/Data2";
 import _uniqueId from 'lodash/uniqueId';
 
 
@@ -102,6 +103,27 @@ export default function AddGraph(props) {
       id: id,
       type: chartType,
       data: {
+        labels: UserData2.map((data) => data.planta),
+        datasets: [
+          {
+            label: "Relaciones Normales",
+            data: UserData2.map((data) => data.normales),
+            backgroundColor: ["#FAAD42"],
+          },
+          {
+            label: "Relaciones Anómalas",
+            data: UserData2.map((data) => data.anomalias),
+            backgroundColor: ["#F25C29"],
+          },
+        ],
+      },
+      options: optionsCharts[chartType]
+    }])
+
+    {/*props.setCharts(prevCharts => [...prevCharts, {
+      id: id,
+      type: chartType,
+      data: {
         labels: UserData.map((data) => data.planta),
         datasets: [
           {
@@ -117,7 +139,7 @@ export default function AddGraph(props) {
         ],
       },
       options: optionsCharts[chartType]
-    }])
+    }])*/}
   }
 
   return (
