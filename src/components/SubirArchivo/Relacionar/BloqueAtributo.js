@@ -1,4 +1,4 @@
-
+import { Droppable} from "react-beautiful-dnd"
 
 const BloqueAtributo = (props) =>{
 
@@ -8,7 +8,9 @@ const BloqueAtributo = (props) =>{
         <div className={classes}>
             <p className="tituloAtributo">{props.titulo}</p>
             <div className="container">
-                <div className="rounded containerDotted"></div>
+                {/* <Droppable droppableId={props.id}> */}
+                    <div className="rounded containerDotted"></div>
+                {/* </Droppable> */}
             </div>
         </div>
     )
