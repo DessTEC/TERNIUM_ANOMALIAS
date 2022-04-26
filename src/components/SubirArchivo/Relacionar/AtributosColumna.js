@@ -74,17 +74,6 @@ const ArtibutosColumnas = () => {
 
             <h5 className="centrarTexto">Columnas del archivo subido</h5>
             <Buscar/>
-            <DragDropContext onDragEnd={(result) => {
-                const {source,destination} = result;
-                if(!destination){
-                    return;
-                }
-                if(source.index == destination.index && source.droppableId == destination.droppableId){
-                    return;
-                }
-
-                setAtributos((prevAtributos) => reorder(prevAtributos, source.index,destination.index))
-            }}>
                 <Droppable droppableId="subidos">
                     { (droppableProvided) => (
                     <ul className="columnaMedia overflow-auto"
@@ -106,7 +95,6 @@ const ArtibutosColumnas = () => {
                     </ul>
                     )}
                 </Droppable>
-                </DragDropContext>
         </div>
     )
 }

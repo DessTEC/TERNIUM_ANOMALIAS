@@ -12,15 +12,16 @@
 .containerRelacionar{
     margin-top: 2vw;
     margin-bottom: 2vw;
-    height: 8vw;
+    height: 50vw;
     width: 30vw;
 }
 
 .containerDotted{
     background-color: white;
     border: dotted;
-    height: 3vw;
+    height: 20vw;
     width: 22vw;
+    margin:auto;
 }
 
 .tituloAtributo{
@@ -36,7 +37,7 @@
     background-color: #F9F9F9 !important;
     padding-top: 2px;
     height: 3vw;
-    width: 25vw;
+    width: 22vw;
 }
 
 .centrarTexto{
