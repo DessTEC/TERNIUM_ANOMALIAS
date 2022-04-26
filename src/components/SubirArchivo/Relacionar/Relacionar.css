@@ -4,7 +4,7 @@
 }
 
 .columnaMedia{
-    margin-top: 1vw;
+    margin-top: .8vw;
     width: 30vw;
     height: 45vw;
 }
@@ -12,15 +12,16 @@
 .containerRelacionar{
     margin-top: 2vw;
     margin-bottom: 2vw;
-    height: 8vw;
+    height: 50vw;
     width: 30vw;
 }
 
 .containerDotted{
     background-color: white;
     border: dotted;
-    height: 3vw;
+    height: 20vw;
     width: 22vw;
+    margin:auto;
 }
 
 .tituloAtributo{
@@ -36,7 +37,7 @@
     background-color: #F9F9F9 !important;
     padding-top: 2px;
     height: 3vw;
-    width: 25vw;
+    width: 22vw;
 }
 
 .centrarTexto{
@@ -82,4 +83,8 @@ background: #F3F6FF;        /* color of the tracking area */
 .columnaMedia::-webkit-scrollbar-thumb {
 background-color: #1D2533;    /* color of the scroll thumb */
 border-radius: 20px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
+}
+
+ul{
+    list-style-type: none;
 }
