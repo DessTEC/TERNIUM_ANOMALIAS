@@ -13,3 +13,11 @@ th {
 .header {
     display: inline;
 }
+
+.filterIcon {
+    margin-left: 10px;
+}
+
+.filterApplied {
+    color: #F25C29;
+}
