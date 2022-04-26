@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default function VariableFilterDropdown(){
     return(
-        <div className ="filterMenu">
+        <div className ="subMenu">
             <ul className ="subMenu--list">
                 <li>
                     <div className="axisVariableSection">
