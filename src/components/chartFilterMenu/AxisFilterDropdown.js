@@ -7,10 +7,13 @@ import DropDownMenuOption from "./DropDownMenuOption";
 
 export default function AxisFilterDropdown(){
     return(
-        <div className ="filterMenu">
-            <ul className ="filterMenu--list">
-                <li><DropDownMenuOption iconLeft={faSortAlphaAsc} textDisplay="Ordenar ascendente" expandable={false}/></li>
-                <li><DropDownMenuOption iconLeft={faSortAlphaDesc} textDisplay="Ordenar descendente" expandable={false}/></li>
+        <div className ="subMenu">
+            <ul className ="subMenu--list">
+                <li>
+                    <div className ="filterMenu--option">
+                    <DropDownMenuOption iconLeft={faSortAlphaAsc} textDisplay="Ordenar ascendente" expandable={false}/></div></li>
+                <li><div className ="filterMenu--option">
+                    <DropDownMenuOption iconLeft={faSortAlphaDesc} textDisplay="Ordenar descendente" expandable={false}/></div></li>
             </ul>
         </div>
     )

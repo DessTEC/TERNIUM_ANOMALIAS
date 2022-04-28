@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import DropDownMenuOption from "./DropDownMenuOption";
 import AxisFilterDropdown from "./AxisFilterDropdown";
 import VariableFilterDropdown from "./VariableFilterDropdown";
+import CalendarFilterDropdown from "./CalendarFilterDropdown";
 
 export default function ChartFilterPopMenu(props){
 
@@ -22,19 +23,46 @@ export default function ChartFilterPopMenu(props){
         setIsOpenVariables(isOpenVariables => !isOpenVariables);
     }
 
+    const [isOpenCalendar, setIsOpenCalendar] = React.useState(false);
+    function toggleCalendarFilter(){
+        setIsOpenCalendar(isOpenCalendar => !isOpenCalendar);
+    }
+
     return(
         <ul className="masterMenu">
             <li className ="filterMenu">
                 <ul className ="filterMenu--list">
-                    <li onClick={toggleAxisFilter}><DropDownMenuOption iconLeft={faSort} textDisplay="Ordenar eje" expandable={true} isOpen={isOpenAxis}/></li>
-                    <li onClick={toggleVariablesFilter}><DropDownMenuOption iconLeft={faArrowsRotate} textDisplay="Cambiar variables" expandable={true} isOpen={isOpenVariables}/></li>
-                    <li><DropDownMenuOption iconLeft={faCalendarDays} textDisplay="Fecha" expandable={true}/></li>
-                    <li><DropDownMenuOption iconLeft={faCog} textDisplay="Rango de anomalia" expandable={true}/></li>
-                    <li onClick={props.closeClick}><DropDownMenuOption iconLeft={faXmark} textDisplay="Quitar" expandable={false}/></li>
+                    <li className="filterMenu--listItem">
+                        <div className ="filterMenu--option" onClick={toggleAxisFilter}>
+                            <DropDownMenuOption iconLeft={faSort} textDisplay="Ordenar eje" expandable={true} isOpen={isOpenAxis}/>
+                        </div>
+                        {isOpenAxis && <AxisFilterDropdown/>}
+                    </li>
+                    <li className="filterMenu--listItem">
+                        <div className ="filterMenu--option" onClick={toggleVariablesFilter}>
+                            <DropDownMenuOption iconLeft={faArrowsRotate} textDisplay="Cambiar variables" expandable={true} isOpen={isOpenVariables}/>
+                        </div>
+                        {isOpenVariables && <VariableFilterDropdown/>}
+                    </li>
+                    <li className="filterMenu--listItem">
+                        <div className ="filterMenu--option" onClick={toggleCalendarFilter}>
+                            <DropDownMenuOption iconLeft={faCalendarDays} textDisplay="Fecha" expandable={true} isOpen={isOpenCalendar}/>
+                        </div>
+                        {isOpenCalendar && <CalendarFilterDropdown/>}
+                    </li>
+                    <li className="filterMenu--listItem">
+                        <div className ="filterMenu--option">
+                            <DropDownMenuOption iconLeft={faCog} textDisplay="Rango de anomalia" expandable={true}/>
+                        </div>
+                    </li>
+                    <li className="filterMenu--listItem" onClick={props.closeClick}>
+                        <div className ="filterMenu--option">
+                            <DropDownMenuOption iconLeft={faXmark} textDisplay="Quitar" expandable={false}/>
+                        </div>
+                    </li>
                 </ul>
             </li>
-            {isOpenAxis && <AxisFilterDropdown/>}
-            {isOpenVariables && <VariableFilterDropdown/>}
+            
         </ul>
     );
 }
