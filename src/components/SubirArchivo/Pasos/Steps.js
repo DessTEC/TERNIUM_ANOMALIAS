@@ -3,7 +3,16 @@ import LineaPunteada from "./LineaPunteada"
 import StepText from "./StepsText"
 import { Outlet } from "react-router-dom"
 
+import { useState } from 'react';
+
 const Steps = () =>{
+
+    const [file, setFile] = useState();
+    const [dataCsv, setDataCsv] = useState([]);
+    const [columnas, setColumnas] = useState([]);
+    const [actInt, setActInt] = useState([]);
+    const [actExt, setActExt] = useState([]);
+
     return(
             <div>
                 <div className="d-flex justify-content-between containerDatos">
@@ -17,7 +26,7 @@ const Steps = () =>{
                     <StepText text={"Cargar Datos"}/>
                 </div>
 
-                <Outlet/>
+                <Outlet context={[file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt]}/>
             </div>
     )
 }
