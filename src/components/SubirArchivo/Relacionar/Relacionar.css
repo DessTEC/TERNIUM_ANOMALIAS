@@ -12,15 +12,15 @@
 .containerRelacionar{
     margin-top: 2vw;
     margin-bottom: 2vw;
-    height: 50vw;
+    height: 10vw;
     width: 30vw;
 }
 
 .containerDotted{
     background-color: white;
     border: dotted;
-    height: 20vw;
-    width: 22vw;
+    height: 3.2vw;
+    width: 22.2vw;
     margin:auto;
 }
 
@@ -35,7 +35,15 @@
     margin-top: 2vw !important;
     margin-bottom: 2vw !important;
     background-color: #F9F9F9 !important;
-    padding-top: 2px;
+    padding-top: 2px !important;
+    height: 3vw;
+    width: 22vw;
+}
+
+.containerSeleccionado{
+    margin:auto;
+    margin-top: 0vw !important;
+    margin-bottom: 0vw !important;
     height: 3vw;
     width: 22vw;
 }
