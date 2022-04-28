@@ -10,6 +10,7 @@ import DropDownMenuOption from "./DropDownMenuOption";
 import AxisFilterDropdown from "./AxisFilterDropdown";
 import VariableFilterDropdown from "./VariableFilterDropdown";
 import CalendarFilterDropdown from "./CalendarFilterDropdown";
+import RangeFilterDropdown from "./RangeFilterDropdown";
 
 export default function ChartFilterPopMenu(props){
 
@@ -26,6 +27,11 @@ export default function ChartFilterPopMenu(props){
     const [isOpenCalendar, setIsOpenCalendar] = React.useState(false);
     function toggleCalendarFilter(){
         setIsOpenCalendar(isOpenCalendar => !isOpenCalendar);
+    }
+
+    const [isOpenSlider, setIsOpenSlider] = React.useState(false);
+    function toggleSliderFilter(){
+        setIsOpenSlider(isOpenSlider => !isOpenSlider);
     }
 
     return(
@@ -51,9 +57,10 @@ export default function ChartFilterPopMenu(props){
                         {isOpenCalendar && <CalendarFilterDropdown/>}
                     </li>
                     <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option">
-                            <DropDownMenuOption iconLeft={faCog} textDisplay="Rango de anomalia" expandable={true}/>
+                        <div className ="filterMenu--option" onClick={toggleSliderFilter}>
+                            <DropDownMenuOption iconLeft={faCog} textDisplay="Rango de anomalia" expandable={true} isOpen={isOpenSlider}/>
                         </div>
+                        {isOpenSlider && <RangeFilterDropdown/>}
                     </li>
                     <li className="filterMenu--listItem" onClick={props.closeClick}>
                         <div className ="filterMenu--option">
