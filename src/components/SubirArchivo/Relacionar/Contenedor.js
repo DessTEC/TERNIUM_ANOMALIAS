@@ -7,7 +7,7 @@ import { faReorder } from "@fortawesome/free-solid-svg-icons"
 const ContenedorRelacionar = () => {
     return (
         
-            <div class="d-flex justify-content-between containerColumnas">
+            <div className="d-flex justify-content-between containerColumnas">
                 <Externos/>
                 <ArtibutosColumnas/>
                 <Internos/>
