@@ -6,8 +6,8 @@
   }
   
   .slider {
-    position: relative;
-    width: 400px;
+    position: absolute;
+    width: 80%;
   }
   
   .slider__track,
@@ -59,7 +59,7 @@
     pointer-events: none;
     position: absolute;
     height: 0;
-    width: 400px;
+    width: 80%;
     outline: none;
   }
   

@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useRef, useState } from "react";
 import "./chartFilterPopMenu.css";
 import { faSort } from '@fortawesome/free-solid-svg-icons'
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
@@ -10,59 +11,57 @@ import DropDownMenuOption from "./DropDownMenuOption";
 import AxisFilterDropdown from "./AxisFilterDropdown";
 import VariableFilterDropdown from "./VariableFilterDropdown";
 import CalendarFilterDropdown from "./CalendarFilterDropdown";
+import RangeFilterDropdown from "./RangeFilterDropdown";
+
+import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons';
+
 
 export default function ChartFilterPopMenu(props){
 
-    const [isOpenAxis, setIsOpenAxis] = React.useState(false);
-    function toggleAxisFilter(){
-        setIsOpenAxis(isOpenAxis => !isOpenAxis);
-    }
+    const ref = useRef();
 
-    const [isOpenVariables, setIsOpenVariables] = React.useState(false);
-    function toggleVariablesFilter(){
-        setIsOpenVariables(isOpenVariables => !isOpenVariables);
-    }
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+    const handleClick = () => {
+      setIsMenuOpen(true);
+    };
+  
+    useEffect(() => {
+      const checkClickOutside = (e) => {
+        if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+          setIsMenuOpen(false);
+        }
+      };
 
-    const [isOpenCalendar, setIsOpenCalendar] = React.useState(false);
-    function toggleCalendarFilter(){
-        setIsOpenCalendar(isOpenCalendar => !isOpenCalendar);
-    }
+      document.addEventListener("click", checkClickOutside);
+  
+      return () => {
+        document.removeEventListener("click", checkClickOutside);
+      };
+    }, [isMenuOpen]);
+
+
+    const options = [
+        <>
+            <DropDownMenuOption iconLeft={faSort} subMenu={<AxisFilterDropdown/>} textDisplay="Ordenar eje" expandable={true}/>
+            <DropDownMenuOption iconLeft={faArrowsRotate} subMenu={<VariableFilterDropdown/>} textDisplay="Cambiar variables" expandable={true}/>
+            <DropDownMenuOption iconLeft={faCalendarDays} subMenu={<CalendarFilterDropdown/>} textDisplay="Fecha" expandable={true}/>
+            <DropDownMenuOption iconLeft={faCog} subMenu={<RangeFilterDropdown/>} textDisplay="Rango de anomalía" expandable={true}/>
+            <DropDownMenuOption iconLeft={faXmark} subMenu={<></>} textDisplay="Quitar" expandable={false}/>
+        </>
+        ]
 
     return(
-        <ul className="masterMenu">
+        <div>
+        <button type="button" id="menu-button" className="w-full mb-2 rounded-t-md rounded-b-md border border-gray-200 shadow-md bg-[#F5F5F5]" onClick={handleClick}><FontAwesomeIcon icon={faEllipsisVertical} className="color-black"  aria-expanded="true" aria-haspopup="true"/></button>
+        {isMenuOpen && (            
+        <ul className="masterMenu" ref={ref}>
             <li className ="filterMenu">
                 <ul className ="filterMenu--list">
-                    <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option" onClick={toggleAxisFilter}>
-                            <DropDownMenuOption iconLeft={faSort} textDisplay="Ordenar eje" expandable={true} isOpen={isOpenAxis}/>
-                        </div>
-                        {isOpenAxis && <AxisFilterDropdown/>}
-                    </li>
-                    <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option" onClick={toggleVariablesFilter}>
-                            <DropDownMenuOption iconLeft={faArrowsRotate} textDisplay="Cambiar variables" expandable={true} isOpen={isOpenVariables}/>
-                        </div>
-                        {isOpenVariables && <VariableFilterDropdown/>}
-                    </li>
-                    <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option" onClick={toggleCalendarFilter}>
-                            <DropDownMenuOption iconLeft={faCalendarDays} textDisplay="Fecha" expandable={true} isOpen={isOpenCalendar}/>
-                        </div>
-                        {isOpenCalendar && <CalendarFilterDropdown/>}
-                    </li>
-                    <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option">
-                            <DropDownMenuOption iconLeft={faCog} textDisplay="Rango de anomalia" expandable={true}/>
-                        </div>
-                    </li>
-                    <li className="filterMenu--listItem" onClick={props.closeClick}>
-                        <div className ="filterMenu--option">
-                            <DropDownMenuOption iconLeft={faXmark} textDisplay="Quitar" expandable={false}/>
-                        </div>
-                    </li>
+                   {options}
                 </ul>
             </li>
-            
-        </ul>
+        </ul>)}
+        </div>
     );
 }

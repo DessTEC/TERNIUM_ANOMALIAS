@@ -58,10 +58,7 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                     
             <div className="w-8">
                 <div className="flex flex-column justify-content-start">
-                    <button className="w-full mb-2 rounded-t-md rounded-b-md border border-gray-200 shadow-md bg-[#F5F5F5]" onClick={toggle}><FontAwesomeIcon icon={faEllipsisVertical} className="color-black" /></button>
-                    <div>
-                        {isOpen && (<ChartFilterPopMenu closeClick={toggle}/>)}
-                    </div>
+                    <ChartFilterPopMenu/>
                     <button className="w-full mb-2 rounded-t-md rounded-b-md border border-gray-200 shadow-md bg-[#F5F5F5]" onClick={handleZoom}><FontAwesomeIcon icon={faMagnifyingGlass} className="color-black w-4/6"/></button>
                 </div>
             </div>
