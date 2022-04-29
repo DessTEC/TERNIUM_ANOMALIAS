@@ -23,6 +23,7 @@ position: absolute;
 }
 .filterMenu--listItem{
     position: relative;
+        
 }
 .filterMenu--option{
     position: relative;
@@ -34,6 +35,11 @@ position: absolute;
     line-height: 20px;
     letter-spacing: -0.02em;
     color: #000000;
+
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 .filterMenu--option:hover {
     background-color: rgba(0, 0, 0, 0.14);
@@ -41,7 +47,7 @@ position: absolute;
   }
 
 .subMenu{
-    float: right;
+    /*float: right;*/
     position: absolute;
     list-style: none;
     left: 100%;

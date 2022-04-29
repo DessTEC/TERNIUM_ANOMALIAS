@@ -17,10 +17,6 @@ import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons';
 
 
 export default function ChartFilterPopMenu(props){
-    //const [isOpen, setIsOpen] = React.useState(false);
-    /*function toggle(){
-        setIsOpen(isOpen => !isOpen);
-    }*/
 
     const ref = useRef();
 
@@ -36,34 +32,24 @@ export default function ChartFilterPopMenu(props){
           setIsMenuOpen(false);
         }
       };
-  
+
       document.addEventListener("click", checkClickOutside);
   
       return () => {
         document.removeEventListener("click", checkClickOutside);
       };
     }, [isMenuOpen]);
-  
 
-    const [isOpenAxis, setIsOpenAxis] = React.useState(false);
-    function toggleAxisFilter(){
-        setIsOpenAxis(isOpenAxis => !isOpenAxis);
-    }
 
-    const [isOpenVariables, setIsOpenVariables] = React.useState(false);
-    function toggleVariablesFilter(){
-        setIsOpenVariables(isOpenVariables => !isOpenVariables);
-    }
-
-    const [isOpenCalendar, setIsOpenCalendar] = React.useState(false);
-    function toggleCalendarFilter(){
-        setIsOpenCalendar(isOpenCalendar => !isOpenCalendar);
-    }
-
-    const [isOpenSlider, setIsOpenSlider] = React.useState(false);
-    function toggleSliderFilter(){
-        setIsOpenSlider(isOpenSlider => !isOpenSlider);
-    }
+    const options = [
+        <>
+            <DropDownMenuOption iconLeft={faSort} subMenu={<AxisFilterDropdown/>} textDisplay="Ordenar eje" expandable={true}/>
+            <DropDownMenuOption iconLeft={faArrowsRotate} subMenu={<VariableFilterDropdown/>} textDisplay="Cambiar variables" expandable={true}/>
+            <DropDownMenuOption iconLeft={faCalendarDays} subMenu={<CalendarFilterDropdown/>} textDisplay="Fecha" expandable={true}/>
+            <DropDownMenuOption iconLeft={faCog} subMenu={<RangeFilterDropdown/>} textDisplay="Rango de anomalía" expandable={true}/>
+            <DropDownMenuOption iconLeft={faXmark} subMenu={<></>} textDisplay="Quitar" expandable={false}/>
+        </>
+        ]
 
     return(
         <div>
@@ -72,38 +58,9 @@ export default function ChartFilterPopMenu(props){
         <ul className="masterMenu" ref={ref}>
             <li className ="filterMenu">
                 <ul className ="filterMenu--list">
-                    <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option" onClick={toggleAxisFilter}>
-                            <DropDownMenuOption iconLeft={faSort} textDisplay="Ordenar eje" expandable={true} isOpen={isOpenAxis}/>
-                        </div>
-                        {isOpenAxis && <AxisFilterDropdown/>}
-                    </li>
-                    <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option" onClick={toggleVariablesFilter}>
-                            <DropDownMenuOption iconLeft={faArrowsRotate} textDisplay="Cambiar variables" expandable={true} isOpen={isOpenVariables}/>
-                        </div>
-                        {isOpenVariables && <VariableFilterDropdown/>}
-                    </li>
-                    <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option" onClick={toggleCalendarFilter}>
-                            <DropDownMenuOption iconLeft={faCalendarDays} textDisplay="Fecha" expandable={true} isOpen={isOpenCalendar}/>
-                        </div>
-                        {isOpenCalendar && <CalendarFilterDropdown/>}
-                    </li>
-                    <li className="filterMenu--listItem">
-                        <div className ="filterMenu--option" onClick={toggleSliderFilter}>
-                            <DropDownMenuOption iconLeft={faCog} textDisplay="Rango de anomalia" expandable={true} isOpen={isOpenSlider}/>
-                        </div>
-                        {isOpenSlider && <RangeFilterDropdown/>}
-                    </li>
-                    <li className="filterMenu--listItem" onClick={props.closeClick}>
-                        <div className ="filterMenu--option">
-                            <DropDownMenuOption iconLeft={faXmark} textDisplay="Quitar" expandable={false}/>
-                        </div>
-                    </li>
+                   {options}
                 </ul>
             </li>
-            
         </ul>)}
         </div>
     );

@@ -1,29 +1,17 @@
 import React from "react";
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import GraphForm from "../GraficasScreen/GraphForm";
 
 export default function VariableFilterDropdown(){
     return(
         <div className ="subMenu">
             <ul className ="subMenu--list">
                 <li>
-                    <div className="axisVariableSection">
-                        Eje x 
-                        <div className="axisVariablePicker"> 
-                        Planta Transportista
-                        <FontAwesomeIcon icon={faAngleDown} className="w-4 h-4 mr-2 -ml-1 mt-0.5 absolute right-2" />
-                        </div>
-                    </div>
-                    
+                  <GraphForm text="Eje X" />
                 </li>
                 <li>
-                    <div className="axisVariableSection">
-                        Eje y 
-                        <div className="axisVariablePicker"> 
-                        Planta Transportista
-                        <FontAwesomeIcon icon={faAngleDown} className="w-4 h-4 mr-2 -ml-1 mt-0.5 absolute right-2" />
-                        </div>
-                    </div>
+                  <GraphForm text="Eje Y" />
                 </li>
             </ul>
         </div>
