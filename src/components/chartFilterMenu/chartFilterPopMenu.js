@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect, useRef, useState } from "react";
 import "./chartFilterPopMenu.css";
 import { faSort } from '@fortawesome/free-solid-svg-icons'
 import { faArrowsRotate } from '@fortawesome/free-solid-svg-icons'
@@ -12,7 +13,37 @@ import VariableFilterDropdown from "./VariableFilterDropdown";
 import CalendarFilterDropdown from "./CalendarFilterDropdown";
 import RangeFilterDropdown from "./RangeFilterDropdown";
 
+import { faEllipsisVertical} from '@fortawesome/free-solid-svg-icons';
+
+
 export default function ChartFilterPopMenu(props){
+    //const [isOpen, setIsOpen] = React.useState(false);
+    /*function toggle(){
+        setIsOpen(isOpen => !isOpen);
+    }*/
+
+    const ref = useRef();
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+    const handleClick = () => {
+      setIsMenuOpen(true);
+    };
+  
+    useEffect(() => {
+      const checkClickOutside = (e) => {
+        if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+          setIsMenuOpen(false);
+        }
+      };
+  
+      document.addEventListener("click", checkClickOutside);
+  
+      return () => {
+        document.removeEventListener("click", checkClickOutside);
+      };
+    }, [isMenuOpen]);
+  
 
     const [isOpenAxis, setIsOpenAxis] = React.useState(false);
     function toggleAxisFilter(){
@@ -35,7 +66,10 @@ export default function ChartFilterPopMenu(props){
     }
 
     return(
-        <ul className="masterMenu">
+        <div>
+        <button type="button" id="menu-button" className="w-full mb-2 rounded-t-md rounded-b-md border border-gray-200 shadow-md bg-[#F5F5F5]" onClick={handleClick}><FontAwesomeIcon icon={faEllipsisVertical} className="color-black"  aria-expanded="true" aria-haspopup="true"/></button>
+        {isMenuOpen && (            
+        <ul className="masterMenu" ref={ref}>
             <li className ="filterMenu">
                 <ul className ="filterMenu--list">
                     <li className="filterMenu--listItem">
@@ -70,6 +104,7 @@ export default function ChartFilterPopMenu(props){
                 </ul>
             </li>
             
-        </ul>
+        </ul>)}
+        </div>
     );
 }
