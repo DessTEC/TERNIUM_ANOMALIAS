@@ -12,16 +12,17 @@
 .containerRelacionar{
     margin-top: 2vw;
     margin-bottom: 2vw;
-    height: 10vw;
+    height: 50vw;
     width: 30vw;
 }
 
 .containerDotted{
     background-color: white;
     border: dotted;
-    height: 3.2vw;
-    width: 22.2vw;
+    height: 44vw;
+    width: 23vw;
     margin:auto;
+    margin-top: 3vw;
 }
 
 .tituloAtributo{
@@ -43,7 +44,7 @@
 .containerSeleccionado{
     margin:auto;
     margin-top: 0vw !important;
-    margin-bottom: 0vw !important;
+    margin-bottom: 1vw !important;
     height: 3vw;
     width: 22vw;
 }
@@ -83,7 +84,7 @@ h5{
 }
 
 .columnaMedia::-webkit-scrollbar {
-    width: .3vw;               /* width of the entire scrollbar */
+    width: .2vw;               /* width of the entire scrollbar */
 }
 .columnaMedia::-webkit-scrollbar-track {
 background: #F3F6FF;        /* color of the tracking area */
@@ -91,6 +92,17 @@ background: #F3F6FF;        /* color of the tracking area */
 .columnaMedia::-webkit-scrollbar-thumb {
 background-color: #1D2533;    /* color of the scroll thumb */
 border-radius: 20px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
+}
+
+.containerDotted::-webkit-scrollbar {
+    width: .2vw;               /* width of the entire scrollbar */
+}
+.containerDotted::-webkit-scrollbar-track {
+background: #F3F6FF;        /* color of the tracking area */
+}
+.containerDotted::-webkit-scrollbar-thumb {
+background-color: #DFDFDE;    /* color of the scroll thumb */
+border-radius: 10px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
 }
 
 ul{
