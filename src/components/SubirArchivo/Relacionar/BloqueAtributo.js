@@ -7,11 +7,10 @@ const BloqueAtributo = (props) =>{
 
     return(
         <div className={classes}>
-                        <p className="tituloAtributo">Planta Porteria</p>
                         <div className="container">
                             <Droppable droppableId={props.id}>
                                 { (droppableProvided) => (
-                                <ul className="rounded containerDotted"
+                                <ul className="rounded containerDotted overflow-auto"
                                     {...droppableProvided.droppableProps}
                                     ref={droppableProvided.innerRef}
                                 >

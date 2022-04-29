@@ -1,44 +1,18 @@
-import Externos from "./Externos"
-import Internos from "./Internos"
-import ArtibutosColumnas from "./AtributosColumna"
 import { DragDropContext, Droppable, Draggable} from "react-beautiful-dnd"
 import BloqueAtributo from "./BloqueAtributo"
-import {useState, useEffect} from "react"
+import {useState} from "react"
 import BloqueSubido from "./BloqueSubido"
 import { Buscar } from "./Buscar"
+import { useOutletContext } from "react-router-dom";
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { Link } from "react-router-dom";
 
-const Contenedor = (props) => {
+const Contenedor = () => {
+
+    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
   
-    const [externo1, setExterno1] = useState([])
-    const [externo2, setExterno2] = useState([])
-    const [externo3, setExterno3] = useState([])
-    const [externo4, setExterno4] = useState([])
-    const [externo5, setExterno5] = useState([])
-    const [interno1, setInterno1] = useState([])
-    const [interno2, setInterno2] = useState([])
-    const [interno3, setInterno3] = useState([])
-    const [interno4, setInterno4] = useState([])
-    const [interno5, setInterno5] = useState([])
-
-    const [atributos, setAtributos] = useState(props.columnas);
-    const [showModal, setShowModal] = useState(false);
-
-
-    useEffect(() => {
-
-        console.log(props.columnas);
-
-        if(props.columnas.length === 0){
-            setShowModal(true);
-        }else{
-            setAtributos(props.columnas)
-        }
-    }, []);
-
+    const [externos, setExternos] = useState([])
+    const [internos, setInternos] = useState([])
+    const [atributos, setAtributos] = useState(columnas);
 
     const onDragEnd = (result) => {
 
@@ -48,9 +22,7 @@ const Contenedor = (props) => {
 
         if(destination.droppableId === source.droppableId && source.index === destination.index) return
     
-        let add, arregloExterno1 = externo1, arregloExterno2 = externo2, arregloExterno3 = externo3,arregloExterno4 = externo4,arregloExterno5 = externo5;
-        let arregloInterno1 = interno1, arregloInterno2 = interno2, arregloInterno3 = interno3, arregloInterno4 = interno4, arregloInterno5 = interno5; 
-        let subidos = atributos;
+        let add, arregloExternos = externos, subidos = atributos, arregloInternos = internos;
         
 
         //-------------SOURCE LOGIC------------------------
@@ -63,69 +35,19 @@ const Contenedor = (props) => {
         }
 
         //---------EXTERNOS------------
-        //Para externos 1
-        else if(source.droppableId === "externo1"){
-            add = arregloExterno1[source.index]
-            arregloExterno1.splice(source.index,1)
-            console.log("el bloque sale de externos 1")
+        else if(source.droppableId === "externos"){
+                add = arregloExternos[source.index]
+                arregloExternos.splice(source.index,1)
+                console.log("el bloque sale de externos 1")
         }
-        //Para externos 2
-        else if(source.droppableId === "externo2"){
-            add = arregloExterno2[source.index]
-            arregloExterno2.splice(source.index,1)
-            console.log("el bloque sale de externos 2")
-        }
-        //Para externos 3
-        else if(source.droppableId === "externo3"){
-            add = arregloExterno3[source.index]
-            arregloExterno3.splice(source.index,1)
-            console.log("el bloque sale de externos 3")
-        }
-        //Para externos 4
-        else if(source.droppableId === "externo4"){
-            add = arregloExterno4[source.index]
-            arregloExterno4.splice(source.index,1)
-            console.log("el bloque sale de externos 4")
-        }
-        //Para externos 5
-        else if(source.droppableId === "externo5"){
-            add = arregloExterno5[source.index]
-            arregloExterno5.splice(source.index,1)
-            console.log("el bloque sale de externos 5")
-        }
+
 
         //---------INTERNOS------------
-        //Para internos 1
-        else if(source.droppableId === "interno1"){
-            add = arregloInterno1[source.index]
-            arregloInterno1.splice(source.index,1)
-            console.log("el bloque sale de interno 1")
+        else if(source.droppableId === "internos"){
+            add = arregloInternos[source.index]
+            arregloInternos.splice(source.index,1)
+            console.log("el bloque sale de internos 1")
         }
-        //Para interno 2
-        else if(source.droppableId === "interno2"){
-            add = arregloInterno2[source.index]
-            arregloInterno2.splice(source.index,1)
-            console.log("el bloque sale de internos 2")
-        }
-        //Para externos 3
-        else if(source.droppableId === "interno3"){
-            add = arregloInterno3[source.index]
-            arregloInterno3.splice(source.index,1)
-            console.log("el bloque sale de internos 3")
-        }
-        //Para internos 4
-        else if(source.droppableId === "interno4"){
-            add = arregloInterno4[source.index]
-            arregloInterno4.splice(source.index,1)
-            console.log("el bloque sale de internos 4")
-        }
-        //Para internos 5
-        else if(source.droppableId === "interno5"){
-            add = arregloInterno5[source.index]
-            arregloInterno5.splice(source.index,1)
-            console.log("el bloque sale de internos 5")
-        }
-
 
 
 
@@ -134,89 +56,28 @@ const Contenedor = (props) => {
             subidos.splice(destination.index,0,add)
             console.log("el bloque llega a subidos")
         }
-        // Para externo 1
-        else if(destination.droppableId === "externo1" && externo1.length <= 0 ){
-            arregloExterno1.splice(destination.index,0,add)
-            console.log("el bloque llega a externo 1 y el tamaño del arreglo ahora es de 1")
-        }
-        //Para externo 2
-        else if(destination.droppableId === "externo2" && externo2.length <= 0){
-            arregloExterno2.splice(destination.index,0,add)
-            console.log("el bloque llega a externo 2 y el tamaño del arreglo ahora es de 1")
-        }
-        //Para externo 3
-        else if(destination.droppableId === "externo3" && externo3.length <= 0){
-            arregloExterno3.splice(destination.index,0,add)
-            console.log("el bloque llega a externo 3 y el tamaño del arreglo ahora es de 1")
-        }
-        //Para externo 4
-        else if(destination.droppableId === "externo4" && externo4.length <= 0){
-            arregloExterno4.splice(destination.index,0,add)
-            console.log("el bloque llega a externo 4 y el tamaño del arreglo ahora es de 1")
-        }
-        //Para externo 5
-        else if(destination.droppableId === "externo5" && externo5.length <= 0){
-            arregloExterno5.splice(destination.index,0,add)
-            console.log("el bloque llega a externo 5 y el tamaño del arreglo ahora es de 1")
-        }
-        //en caso de que el externo que se desea relacionar ya esta ocupado
-        else if((destination.droppableId === "externo1" && externo1.length >= 1) || (destination.droppableId === "externo2" && externo2.length >= 1) || (destination.droppableId === "externo3" && externo3.length >= 1) || (destination.droppableId === "externo4" && externo4.length >= 1) || (destination.droppableId === "externo5" && externo5.length >= 1)){
-            subidos.splice(source.index,0,add)
-            console.log("el bloque llega a externo 1 pero el tamaño del arreglo es de 1 o más")
+        else if(destination.droppableId === "externos"){
+            arregloExternos.splice(destination.index,0,add)
+            console.log("el bloque llega a externos y el tamaño del arreglo ahora es de 1")
         }
 
         //-----------INTERNOS------------
-        // Para interno 1
-        else if(destination.droppableId === "interno1" && interno1.length <= 0 ){
-            arregloInterno1.splice(destination.index,0,add)
-            console.log("el bloque llega a interno 1 y el tamaño del arreglo ahora es de 1")
-        }
-        //Para externo 2
-        else if(destination.droppableId === "interno2" && interno2.length <= 0){
-            arregloInterno2.splice(destination.index,0,add)
-            console.log("el bloque llega a interno 2 y el tamaño del arreglo ahora es de 1")
-        }
-        //Para externo 3
-        else if(destination.droppableId === "interno3" && interno3.length <= 0){
-            arregloInterno3.splice(destination.index,0,add)
-            console.log("el bloque llega a interno 3 y el tamaño del arreglo ahora es de 1")
-        }
-        //Para externo 4
-        else if(destination.droppableId === "interno4" && interno4.length <= 0){
-            arregloInterno4.splice(destination.index,0,add)
-            console.log("el bloque llega a interno 4 y el tamaño del arreglo ahora es de 1")
-        }
-        //Para externo 5
-        else if(destination.droppableId === "interno5" && interno5.length <= 0){
-            arregloInterno5.splice(destination.index,0,add)
-            console.log("el bloque llega a interno 5 y el tamaño del arreglo ahora es de 1")
-        }
-        //en caso de que el interno que se desea relacionar ya esta ocupado
-        else if((destination.droppableId === "interno1" && interno1.length >= 1) || (destination.droppableId === "interno2" && interno2.length >= 1) || (destination.droppableId === "interno3" && interno3.length >= 1) || (destination.droppableId === "interno4" && interno4.length >= 1) || (destination.droppableId === "interno5" && interno5.length >= 1)){
-            subidos.splice(source.index,0,add)
-            console.log("el bloque llega a externo 1 pero el tamaño del arreglo es de 1 o más")
+
+        else if(destination.droppableId === "internos"){
+            arregloInternos.splice(destination.index,0,add)
+            console.log("el bloque llega a internos y el tamaño del arreglo ahora es de 1")
         }
 
 
 
         
         console.log("EXTERNOS:")
-        console.log(externo1)
+        console.log(externos)
         console.log("INTERNOS")
-        console.log(atributos)
-        console.log("EXTERNOS2")
-        console.log(externo2)
+        console.log(internos)
         setAtributos(subidos)
-        setExterno1(arregloExterno1)
-        setExterno2(arregloExterno2)
-        setExterno3(arregloExterno3)
-        setExterno4(arregloExterno4)
-        setExterno5(arregloExterno5)
-        setInterno1(arregloInterno1)
-        setInterno2(arregloInterno2)
-        setInterno3(arregloInterno3)
-        setInterno4(arregloInterno4)
-        setInterno5(arregloInterno5)
+        setExternos(arregloExternos)
+        setInternos(arregloInternos)
         
     }
 
@@ -227,12 +88,7 @@ const Contenedor = (props) => {
                 {/* Columna de actores externos */}
                 <div className="columna">
                     <h5>Actores externos</h5>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo1" arregloAtributos ={externo1}/>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo2" arregloAtributos ={externo2}/>
-                    {/* Falta conectar con drag and drop */}
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo3" arregloAtributos ={externo3}/>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo4" arregloAtributos ={externo4}/>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo5" arregloAtributos ={externo5}/>
+                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externos" arregloAtributos ={externos}/>
                 </div>
 
                 <div className="columna">
@@ -265,33 +121,7 @@ const Contenedor = (props) => {
 
                 <div className="columna">
                     <h5 className="alinearDerecha">Actores internos</h5>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="interno1" arregloAtributos={interno1}/>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="interno2" arregloAtributos={interno2}/>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="interno3" arregloAtributos={interno3}/>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="interno4" arregloAtributos={interno4}/>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="interno5" arregloAtributos={interno5}/>
-                </div>
-            </div>
-
-            <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
-                <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
-                    <div className="relative bg-white rounded-lg shadow h-64">
-                        <div className="flex flex-col center p-3 rounded-t w-full">
-                            <FontAwesomeIcon icon={faCircleExclamation} className='w-full h-1/3 text-[#F6A000]'/>
-                            <h3 className="text-center mt-4">
-                                Por favor sube un archivo válido
-                            </h3>
-                            <h5 className="text-center mt-4">
-                                El archivo subido está vacío
-                            </h5>
-                            <div className="flex flex-row justify-center mt-4">
-                                <Link to='/dashboard/subir'>
-                                    <button className="text-slate-50 font-medium rounded-3xl text-lg text-center hover:text-slate-50 bg-[#FF3502] border-none hover:bg-[#c62901] py-1.5 px-3 mb-4"
-                                    >Subir otro archivo</button>
-                                </Link>
-                            </div>
-                        </div>
-                    </div>
+                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="internos" arregloAtributos={internos}/>
                 </div>
             </div>
         </DragDropContext>

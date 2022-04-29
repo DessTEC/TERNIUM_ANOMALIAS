@@ -28,7 +28,7 @@ const RelacionarColumnas = () =>{
         <div>
             <h2 className="text">RELACIONAR COLUMNAS</h2>
             <h3 className="text">Seleccione la columna a utilizar para cada uno de los parámetros del modelo</h3>
-            <ContenedorRelacionar columnas = {columnas}/>
+            <ContenedorRelacionar/>
             <BotonesInferior primerBoton="Cambiar archivo" segundoBoton="Aplicar modelo" handlePrimero = {handlePrimero} handleSegundo={handleSegundo}/>
         </div>
     )

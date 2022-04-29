@@ -18,9 +18,7 @@ const SubirDatos = () =>{
 
     const navigate = useNavigate()
     const [showModal, setShowModal] = useState(false);
-
-    console.log(stepActual);
-
+    const [modalError, setModalError] = useState("");
 
     const handlePrimero = () => {
         navigate('/');
@@ -28,6 +26,7 @@ const SubirDatos = () =>{
 
     const handleSegundo = async (e) => {
         if(file === undefined || !file.type.includes("csv")){
+            setModalError("El formato del archivo no es válido");
             setShowModal(true);
         }else{
             const formData = new FormData();
@@ -47,8 +46,13 @@ const SubirDatos = () =>{
 
     useEffect(() => {
         if(columnas !== undefined){
-            setStepActual(2);
-            navigate('/dashboard/subir/parametros');
+            if(columnas.length === 0){
+                setModalError("Archivo vacío");
+                setShowModal(true);
+            }else{
+                setStepActual(2);
+                navigate('/dashboard/subir/parametros');
+            }
         } 
     }, [columnas])
 
@@ -68,8 +72,8 @@ const SubirDatos = () =>{
 
             <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
                 <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
-                    <div className="relative bg-white rounded-lg shadow">
-                        <div className="flex flex-col center p-3 rounded-t border-b w-full">
+                    <div className="relative bg-white rounded-lg shadow h-64">
+                        <div className="flex flex-col center p-3 rounded-t w-full">
                             <div className="flex flex-row justify-end">
                                 <button onClick={handleClose} className="bg-slate-50 hover:bg-slate-300 rounded-lg p-1.5 ml-auto inline-flex items-center text-gray-400 hover:text-gray-900">
                                     <FontAwesomeIcon icon={faXmark} className='w-5' />
@@ -79,6 +83,9 @@ const SubirDatos = () =>{
                             <h3 className="text-center mt-4">
                                 Por favor sube un archivo válido
                             </h3>
+                            <h5 className="text-center mt-4">
+                                {modalError}
+                            </h5>
                         </div>
                     </div>
                 </div>
