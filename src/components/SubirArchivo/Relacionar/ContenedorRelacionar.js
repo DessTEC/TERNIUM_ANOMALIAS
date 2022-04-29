@@ -3,67 +3,16 @@ import Internos from "./Internos"
 import ArtibutosColumnas from "./AtributosColumna"
 import { DragDropContext, Droppable, Draggable} from "react-beautiful-dnd"
 import BloqueAtributo from "./BloqueAtributo"
-import {useState} from "react"
+import {useState, useEffect} from "react"
 import BloqueSubido from "./BloqueSubido"
 import { Buscar } from "./Buscar"
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { Link } from "react-router-dom";
 
-const Contenedor = () => {
-
-    const atributosIniciales = [
-        {
-            id: "1",
-            text: "Planta Transportista 1"
-        },
-        {
-            id: "2",
-            text: "Planta Transportista 2"
-        },
-        {
-            id: "3",
-            text: "Planta Transportista 3"
-        },
-        {
-            id: "4",
-            text: "Planta Transportista 4"
-        },
-        {
-            id: "5",
-            text: "Planta Transportista 5"
-        },
-        {
-            id: "6",
-            text: "Planta Transportista 6"
-        },
-        {
-            id: "7",
-            text: "Planta Transportista 7"
-        },
-        {
-            id: "8",
-            text: "Planta Transportista 8"
-        },
-        {
-            id: "9",
-            text: "Planta Transportista 9"
-        },
-        {
-            id: "10",
-            text: "Planta Transportista 10"
-        },
-        {
-            id: "11",
-            text: "Planta Transportista 11"
-        },
-        {
-            id: "12",
-            text: "Planta Transportista 12"
-        },
-    ]
-
-
-    
-    const [atributos, setAtributos] = useState(atributosIniciales)
+const Contenedor = (props) => {
+  
     const [externo1, setExterno1] = useState([])
     const [externo2, setExterno2] = useState([])
     const [externo3, setExterno3] = useState([])
@@ -74,6 +23,21 @@ const Contenedor = () => {
     const [interno3, setInterno3] = useState([])
     const [interno4, setInterno4] = useState([])
     const [interno5, setInterno5] = useState([])
+
+    const [atributos, setAtributos] = useState(props.columnas);
+    const [showModal, setShowModal] = useState(false);
+
+
+    useEffect(() => {
+
+        console.log(props.columnas);
+
+        if(props.columnas.length === 0){
+            setShowModal(true);
+        }else{
+            setAtributos(props.columnas)
+        }
+    }, []);
 
 
     const onDragEnd = (result) => {
@@ -282,13 +246,13 @@ const Contenedor = () => {
                             ref={droppableProvided.innerRef}
                         >
                             {atributos.map((atributo, index) => (
-                                <Draggable key={atributo.id} draggableId={atributo.id} index={index}>
+                                <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
                                     {(draggableProvided) => (
                                         <li 
                                         {...draggableProvided.draggableProps}
                                         ref={draggableProvided.innerRef}
                                         {...draggableProvided.dragHandleProps}
-                                        ><BloqueSubido nombreAtributo={atributo.text} espacio=" containerSubido"/></li>
+                                        ><BloqueSubido nombreAtributo={atributo} espacio=" containerSubido"/></li>
                                     )}
                                 </Draggable>
                             ))}
@@ -306,6 +270,28 @@ const Contenedor = () => {
                     <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="interno3" arregloAtributos={interno3}/>
                     <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="interno4" arregloAtributos={interno4}/>
                     <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="interno5" arregloAtributos={interno5}/>
+                </div>
+            </div>
+
+            <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
+                <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
+                    <div className="relative bg-white rounded-lg shadow h-64">
+                        <div className="flex flex-col center p-3 rounded-t w-full">
+                            <FontAwesomeIcon icon={faCircleExclamation} className='w-full h-1/3 text-[#F6A000]'/>
+                            <h3 className="text-center mt-4">
+                                Por favor sube un archivo válido
+                            </h3>
+                            <h5 className="text-center mt-4">
+                                El archivo subido está vacío
+                            </h5>
+                            <div className="flex flex-row justify-center mt-4">
+                                <Link to='/dashboard/subir'>
+                                    <button className="text-slate-50 font-medium rounded-3xl text-lg text-center hover:text-slate-50 bg-[#FF3502] border-none hover:bg-[#c62901] py-1.5 px-3 mb-4"
+                                    >Subir otro archivo</button>
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </DragDropContext>

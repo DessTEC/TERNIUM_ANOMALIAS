@@ -5,14 +5,31 @@ import "./Relacionar.css"
 import ContenedorRelacionar from "./ContenedorRelacionar"
 import BotonesInferior from "../CargarArchivo/BotonesInferior"
 
+import { useOutletContext, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const RelacionarColumnas = () =>{
+
+    const navigate = useNavigate()
+
+    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
+
+    const handlePrimero = () => {
+        setDataCsv(undefined);
+        setColumnas(undefined);
+        setStepActual(1);
+        navigate('/dashboard/subir');
+    }
+
+    const handleSegundo = () => {
+        navigate('/dashboard/subir/cargar');
+    }
     return(
         <div>
             <h2 className="text">RELACIONAR COLUMNAS</h2>
             <h3 className="text">Seleccione la columna a utilizar para cada uno de los parámetros del modelo</h3>
-            <ContenedorRelacionar/>
-            <BotonesInferior primerBoton="Cambiar archivo" segundoBoton="Aplicar modelo" linkPrimero='/dashboard/subir' linkSegundo='/dashboard/subir/cargar'/>
+            <ContenedorRelacionar columnas = {columnas}/>
+            <BotonesInferior primerBoton="Cambiar archivo" segundoBoton="Aplicar modelo" handlePrimero = {handlePrimero} handleSegundo={handleSegundo}/>
         </div>
     )
 }
