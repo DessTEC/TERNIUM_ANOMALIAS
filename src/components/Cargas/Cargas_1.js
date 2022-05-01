@@ -14,6 +14,7 @@ export const Cargas_1 = () => {
     "Planta Portería 3",
     "Planta Portería 4",
   ];
+  
   const actoresExternos = [
     "Planta Portería 1",
     "Planta Portería 2",
