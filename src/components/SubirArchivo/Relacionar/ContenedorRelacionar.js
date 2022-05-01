@@ -10,8 +10,6 @@ const Contenedor = () => {
 
     const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
   
-    const [externos, setExternos] = useState([])
-    const [internos, setInternos] = useState([])
     const [atributos, setAtributos] = useState(columnas);
 
     const onDragEnd = (result) => {
@@ -22,7 +20,7 @@ const Contenedor = () => {
 
         if(destination.droppableId === source.droppableId && source.index === destination.index) return
     
-        let add, arregloExternos = externos, subidos = atributos, arregloInternos = internos;
+        let add, arregloExternos = actExt, subidos = atributos, arregloInternos = actInt;
         
 
         //-------------SOURCE LOGIC------------------------
@@ -72,12 +70,12 @@ const Contenedor = () => {
 
         
         console.log("EXTERNOS:")
-        console.log(externos)
+        console.log(actExt)
         console.log("INTERNOS")
-        console.log(internos)
+        console.log(actInt)
         setAtributos(subidos)
-        setExternos(arregloExternos)
-        setInternos(arregloInternos)
+        setActExt(arregloExternos)
+        setActInt(arregloInternos)
         
     }
 
@@ -88,7 +86,7 @@ const Contenedor = () => {
                 {/* Columna de actores externos */}
                 <div className="columna">
                     <h5>Actores externos</h5>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externos" arregloAtributos ={externos}/>
+                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externos" arregloAtributos ={actExt}/>
                 </div>
 
                 <div className="columna">
@@ -102,7 +100,7 @@ const Contenedor = () => {
                             ref={droppableProvided.innerRef}
                         >
                             {atributos.map((atributo, index) => (
-                                <Draggable key={index.toString()} draggableId={index.toString()} index={index}>
+                                <Draggable key={atributo} draggableId={atributo} index={index}>
                                     {(draggableProvided) => (
                                         <li 
                                         {...draggableProvided.draggableProps}
@@ -121,7 +119,7 @@ const Contenedor = () => {
 
                 <div className="columna">
                     <h5 className="alinearDerecha">Actores internos</h5>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="internos" arregloAtributos={internos}/>
+                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="internos" arregloAtributos={actInt}/>
                 </div>
             </div>
         </DragDropContext>

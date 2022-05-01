@@ -10,8 +10,8 @@ const Steps = () =>{
     const [file, setFile] = useState();
     const [dataCsv, setDataCsv] = useState(undefined);
     const [columnas, setColumnas] = useState(undefined);
-    const [actInt, setActInt] = useState(undefined);
-    const [actExt, setActExt] = useState(undefined);
+    const [actInt, setActInt] = useState([]);
+    const [actExt, setActExt] = useState([]);
 
     const [stepActual, setStepActual] = useState(1);
 
