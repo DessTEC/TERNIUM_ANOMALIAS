@@ -15,13 +15,13 @@ const BloqueAtributo = (props) =>{
                                     ref={droppableProvided.innerRef}
                                 >
                                     {props.arregloAtributos.map((atributo, index) => (
-                                        <Draggable key={atributo.id} draggableId={atributo.id} index={index}>
+                                        <Draggable key={atributo} draggableId={atributo} index={index}>
                                             {(draggableProvided) => (
                                                 <li 
                                                 {...draggableProvided.draggableProps}
                                                 ref={draggableProvided.innerRef}
                                                 {...draggableProvided.dragHandleProps}
-                                                ><BloqueSubido nombreAtributo={atributo.text} espacio=" containerSeleccionado"/></li>
+                                                ><BloqueSubido nombreAtributo={atributo} espacio=" containerSeleccionado"/></li>
                                             )}
                                         </Draggable>
                                     ))}
