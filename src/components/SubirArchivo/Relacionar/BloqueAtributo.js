@@ -17,7 +17,7 @@ const BloqueAtributo = (props) =>{
                                     {props.arregloAtributos.map((atributo, index) => (
                                         <Draggable key={atributo} draggableId={atributo} index={index}>
                                             {(draggableProvided) => (
-                                                <li 
+                                                <li
                                                 {...draggableProvided.draggableProps}
                                                 ref={draggableProvided.innerRef}
                                                 {...draggableProvided.dragHandleProps}
