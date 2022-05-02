@@ -1,36 +1,81 @@
-import { useState } from "react";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
 import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+
 import Divider from "../GraficasScreen/Divider";
 
+import { useOutletContext, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import axios from "axios";
+
 export const Cargas_1 = () => {
-  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
-  const nombreArchivo = "Reporte de plantas Enero-Febrero.xls";
-  const actoresInternos = [
-    "Planta Portería 1",
-    "Planta Portería 2",
-    "Planta Portería 3",
-    "Planta Portería 4",
-  ];
-  
-  const actoresExternos = [
-    "Planta Portería 1",
-    "Planta Portería 2",
-    "Planta Portería 3",
-    "Planta Portería 4",
-  ];
+  const navigate = useNavigate();
 
-  const handleClick = () => {
-    setIsButtonClicked(!isButtonClicked);
+  const [isDataUploaded, setIsDataUploaded] = useState(false);
+  const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
+
+  const [reporteId, setReporteId] = useState(undefined);
+
+  const handleClick = async() => {
+    if(inputValue === ""){
+      setShowModal(true);
+    }else{
+      //Se subieron los datos y puede navegar a crear un modelo
+      if(isDataUploaded){
+        console.log("Navega")
+        navigate(`/dashboard/consultar/${reporteId}/nuevoModelo`);
+      }else{
+        console.log("Sube archivo")
+        const result = await axios.post("http://localhost:4000/uploadFile", {
+          "name": inputValue, 
+          "dataCsv": dataCsv,
+          "actoresInternos": actInt,
+          "actoresExternos": actExt
+        });
+
+        setReporteId(result["data"]["id"]);
+      }
+    }
   };
+
+  useEffect(() => {
+    if(reporteId !== undefined){
+      setIsDataUploaded(true);
+    }
+  }, [reporteId])
+  
+
+  const handleCambio = () => {
+    const colOriginal = [...actInt, ...actExt]
+    setColumnas(colOriginal);
+    setActExt([]);
+    setActInt([]);
+    setStepActual(2);
+    navigate('/dashboard/subir/parametros');
+  }
+
+  const [inputValue, setInputValue] = useState('')
+
+  //Así se maneja el input para que sea modificable
+  const handleInputChange = (e) => {
+      setInputValue(e.target.value);
+  }
+
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClose = () => {
+    setShowModal(false);
+  }
 
   return (
     <div>
       <div className="">
         <h2 className="text-center">CARGAR DATOS</h2>
-        <p className="text-center">Confirmar la configuración del archivo</p>
+        <p className="text-center">Confirmar la configuración del reporte</p>
       </div>
 
       <div className="grid grid-rows-1 grid-cols-2 items-center px-36 my-4">
@@ -39,7 +84,7 @@ export const Cargas_1 = () => {
             <div className="bg-white rounded-lg w-5/6 mt-8">
               <p className="text-gray-400 pl-12 pt-3">Archivo a cargar</p>
               <Divider borColor="border-slate-400" />
-              <p className="font-semibold pl-12 pt-2 pb-3">{nombreArchivo}</p>
+              <p className="font-semibold pl-12 pt-2 pb-3">{file.name}</p>
             </div>
           </div>
 
@@ -53,12 +98,12 @@ export const Cargas_1 = () => {
               </div>
               <div className="grid grid-row-1 grid-cols-2 overflow-auto items-start h-48 pl-12 pb-3">
                 <div>
-                  {actoresInternos.map((actor) => {
+                  {actInt.map((actor) => {
                     return <p className="font-semibold py-2">{actor}</p>;
                   })}
                 </div>
                 <div>
-                  {actoresExternos.map((actor) => {
+                  {actExt.map((actor) => {
                     return <p className="font-semibold py-2">{actor}</p>;
                   })}
                 </div>
@@ -71,13 +116,18 @@ export const Cargas_1 = () => {
             <input
               className="rounded-lg w-2/6 py-1 px-3 text-center outline-0"
               placeholder="Reporte 1"
+              value={ inputValue }
+              onChange= {handleInputChange}
             ></input>
           </div>
         </div>
 
         <div className="flex justify-end">
-          <button className="flex flex-col items-center justify-center w-96 h-96 bg-[#F25C29] shadow-xl rounded-full text-sm font-medium text-white hover:bg-[#D35124]" onClick={handleClick}>
-            {isButtonClicked === false ?
+          <button 
+            className="flex flex-col items-center justify-center w-96 h-96 bg-[#F25C29] shadow-xl rounded-full text-sm font-medium text-white hover:bg-[#D35124]" 
+            onClick={handleClick}
+          >
+            {isDataUploaded === false ?
             <div>
               <FontAwesomeIcon
                 icon={faMagnifyingGlassChart}
@@ -97,6 +147,26 @@ export const Cargas_1 = () => {
           </button>
         </div>
       </div>
+      <div className="container">
+          <button className="btn btn-outline-danger botonInline" onClick={handleCambio}>Cambiar relaciones</button>
+      </div>
+      <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
+                <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
+                    <div className="relative bg-white rounded-lg shadow h-64">
+                        <div className="flex flex-col center p-3 rounded-t w-full">
+                            <div className="flex flex-row justify-end">
+                                <button onClick={handleClose} className="bg-slate-50 hover:bg-slate-300 rounded-lg p-1.5 ml-auto inline-flex items-center text-gray-400 hover:text-gray-900">
+                                    <FontAwesomeIcon icon={faXmark} className='w-5' />
+                                </button>
+                            </div>
+                            <FontAwesomeIcon icon={faCircleExclamation} className='w-full h-1/3 text-[#F6A000]'/>
+                            <h3 className="text-center mt-4">
+                                Por favor escribe un nombre para el reporte
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
   );
 };

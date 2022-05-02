@@ -44,7 +44,7 @@ export const Historial = () => {
                      {
                         reportes.map( reporte => {
                             return(
-                                <Link key={reporte.id} to={reporte.name} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
+                                <Link key={reporte.id} to={reporte.id} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
                                     <div className='p-4 w-full'>
                                         <p className='text-black font-bold text-left text-xl'>{reporte.name}</p>
                                         <p className='text-black font-normal text-left text-l'>{`${reporte.modelos} modelos`}</p>

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const RelacionarColumnas = () =>{
 
@@ -21,6 +21,8 @@ const RelacionarColumnas = () =>{
     const handlePrimero = () => {
         setDataCsv(undefined);
         setColumnas(undefined);
+        setActInt([]);
+        setActExt([]);
         setStepActual(1);
         navigate('/dashboard/subir');
     }
@@ -48,7 +50,7 @@ const RelacionarColumnas = () =>{
             <h2 className="text">RELACIONAR COLUMNAS</h2>
             <h3 className="text">Seleccione la columna a utilizar para cada uno de los parámetros del modelo</h3>
             <ContenedorRelacionar/>
-            <BotonesInferior primerBoton="Cambiar archivo" segundoBoton="Aplicar modelo" handlePrimero = {handlePrimero} handleSegundo={handleSegundo}/>
+            <BotonesInferior primerBoton="Cambiar archivo" segundoBoton="Cargar datos" handlePrimero = {handlePrimero} handleSegundo={handleSegundo}/>
 
             <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
                 <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
