@@ -4,12 +4,13 @@ import {useState} from "react"
 import BloqueSubido from "./BloqueSubido"
 import { Buscar } from "./Buscar"
 import { useOutletContext } from "react-router-dom";
+import { render } from "@testing-library/react"
 
 
 const Contenedor = () => {
 
     const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
-  
+    
     const [atributos, setAtributos] = useState(columnas);
 
     const onDragEnd = (result) => {
@@ -79,6 +80,7 @@ const Contenedor = () => {
         
     }
 
+
     //se necesita desplegar en draggables los componentes de externos1
     return (
         <DragDropContext onDragEnd={onDragEnd}>
@@ -125,5 +127,8 @@ const Contenedor = () => {
         </DragDropContext>
     )
 }
+
+
+
 
 export default Contenedor
