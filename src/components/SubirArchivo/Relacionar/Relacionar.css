@@ -104,12 +104,3 @@ background: #F3F6FF;        /* color of the tracking area */
 background-color: #DFDFDE;    /* color of the scroll thumb */
 border-radius: 10px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
 }
-
-ul{
-    list-style-type: none;
-}
-
-li{
-    margin: auto;
-    width: 100%;
-}
