@@ -32,7 +32,7 @@
 }
 
 .containerSubido{
-    margin: auto;
+    margin:auto;
     margin-top: 2vw !important;
     margin-bottom: 2vw !important;
     background-color: #F9F9F9 !important;
@@ -42,11 +42,11 @@
 }
 
 .containerSeleccionado{
-    margin:auto;
+    margin:auto !important;
     margin-top: 0vw !important;
     margin-bottom: 1vw !important;
-    height: 3vw;
-    width: 22vw;
+    height: 3vw !important;
+    width: 22vw !important;
 }
 
 .centrarTexto{
@@ -107,4 +107,9 @@ border-radius: 10px;       /* roundness of the scroll thumb */  /* creates paddi
 
 ul{
     list-style-type: none;
+}
+
+li{
+    margin: auto;
+    width: 100%;
 }
