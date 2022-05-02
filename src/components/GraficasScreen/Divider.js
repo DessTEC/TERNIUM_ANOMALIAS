@@ -1,7 +1,7 @@
-export default function Devider() {
+export default function Devider(props) {
   return (
-    <div class="py-3 flex items-center justify-center">
-      <div class="w-11/12 border-t border-black"></div>
+    <div class="py-2 flex items-center justify-center">
+      <div class={`w-11/12 border-t ${props.borColor}`}></div>
     </div>
   );
 }

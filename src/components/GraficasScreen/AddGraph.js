@@ -119,27 +119,6 @@ export default function AddGraph(props) {
       },
       options: optionsCharts[chartType]
     }])
-
-    {/*props.setCharts(prevCharts => [...prevCharts, {
-      id: id,
-      type: chartType,
-      data: {
-        labels: UserData.map((data) => data.planta),
-        datasets: [
-          {
-            label: "Relaciones Normales",
-            data: UserData.map((data) => data.normales),
-            backgroundColor: ["#FAAD42"],
-          },
-          {
-            label: "Relaciones Anómalas",
-            data: UserData.map((data) => data.anomalias),
-            backgroundColor: ["#F25C29"],
-          },
-        ],
-      },
-      options: optionsCharts[chartType]
-    }])*/}
   }
 
   return (
@@ -170,7 +149,7 @@ export default function AddGraph(props) {
           >
             <div class="py-1" role="none">
               <h4 className="text-lg font-bold pl-5">Tipo de gráfica</h4>
-              <Divider />
+              <Divider borColor="border-black"/>
               <div className="flex justify-center py-3 px-3">
                 <ButtonGroupCharts
                   setChartType={setChartType}
@@ -179,7 +158,7 @@ export default function AddGraph(props) {
               </div>
 
               <h4 className="text-lg font-bold pl-5 pt-2">Comparativa</h4>
-              <Divider />
+              <Divider borColor="border-black"/>
               <div className="flex justify-start items-center py-3 px-3">
                 <ButtonGroupCor
                   setAnalysisType={setAnalysisType}
@@ -188,7 +167,7 @@ export default function AddGraph(props) {
               </div>
 
               <h4 className="text-lg font-bold pl-5 pt-2">Variable (s)</h4>
-              <Divider />
+              <Divider borColor="border-black"/>
               {analysisType === "Anomalías" ?
                 <div className="grid grid-cols-2 pt-3 px-3">
                   <GraphForm text="Eje X" />
@@ -202,7 +181,7 @@ export default function AddGraph(props) {
               }
 
               <h4 className="text-lg font-bold pl-5 pt-2">Rango de anomalía</h4>
-              <Divider />
+              <Divider borColor="border-black"/>
               <div className="flex items-center justify-center pb-4">
                 <RangeSlider 
                   min={-100}

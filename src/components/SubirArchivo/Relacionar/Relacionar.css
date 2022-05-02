@@ -4,7 +4,7 @@
 }
 
 .columnaMedia{
-    margin-top: 1vw;
+    margin-top: .8vw;
     width: 30vw;
     height: 45vw;
 }
@@ -12,15 +12,17 @@
 .containerRelacionar{
     margin-top: 2vw;
     margin-bottom: 2vw;
-    height: 8vw;
+    height: 50vw;
     width: 30vw;
 }
 
 .containerDotted{
     background-color: white;
     border: dotted;
-    height: 3vw;
-    width: 22vw;
+    height: 44vw;
+    width: 23vw;
+    margin:auto;
+    margin-top: 3vw;
 }
 
 .tituloAtributo{
@@ -30,13 +32,21 @@
 }
 
 .containerSubido{
-    margin: auto;
+    margin:auto;
     margin-top: 2vw !important;
     margin-bottom: 2vw !important;
     background-color: #F9F9F9 !important;
-    padding-top: 2px;
+    padding-top: 2px !important;
     height: 3vw;
-    width: 25vw;
+    width: 22vw;
+}
+
+.containerSeleccionado{
+    margin:auto !important;
+    margin-top: 0vw !important;
+    margin-bottom: 1vw !important;
+    height: 3vw !important;
+    width: 22vw !important;
 }
 
 .centrarTexto{
@@ -74,7 +84,7 @@ h5{
 }
 
 .columnaMedia::-webkit-scrollbar {
-    width: .3vw;               /* width of the entire scrollbar */
+    width: .2vw;               /* width of the entire scrollbar */
 }
 .columnaMedia::-webkit-scrollbar-track {
 background: #F3F6FF;        /* color of the tracking area */
@@ -82,4 +92,24 @@ background: #F3F6FF;        /* color of the tracking area */
 .columnaMedia::-webkit-scrollbar-thumb {
 background-color: #1D2533;    /* color of the scroll thumb */
 border-radius: 20px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
+}
+
+.containerDotted::-webkit-scrollbar {
+    width: .2vw;               /* width of the entire scrollbar */
+}
+.containerDotted::-webkit-scrollbar-track {
+background: #F3F6FF;        /* color of the tracking area */
+}
+.containerDotted::-webkit-scrollbar-thumb {
+background-color: #DFDFDE;    /* color of the scroll thumb */
+border-radius: 10px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
+}
+
+ul{
+    list-style-type: none;
+}
+
+li{
+    margin: auto;
+    width: 100%;
 }
