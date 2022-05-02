@@ -5,7 +5,11 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";
 import { Filtro } from "./Filtro";
 
+import { useOutletContext } from "react-router-dom";
+
 export const TablaScreen = () => {
+
+    const [dataModelo, atributos] = useOutletContext();
 
     return(
         <div>
@@ -15,7 +19,8 @@ export const TablaScreen = () => {
                     Descargar
                 </button>
             </div>
-            <Tabla hasCheckboxes={false}/>
+
+            <Tabla hasCheckboxes={false} setSelectedVars={() => {}} data={dataModelo} atributos={atributos}/>
         </div>
     );
 }

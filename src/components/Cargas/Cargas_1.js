@@ -1,7 +1,6 @@
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";
-import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons";
 import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 import Divider from "../GraficasScreen/Divider";
@@ -15,7 +14,6 @@ export const Cargas_1 = () => {
 
   const navigate = useNavigate();
 
-  const [isDataUploaded, setIsDataUploaded] = useState(false);
   const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
 
   const [reporteId, setReporteId] = useState(undefined);
@@ -24,27 +22,21 @@ export const Cargas_1 = () => {
     if(inputValue === ""){
       setShowModal(true);
     }else{
-      //Se subieron los datos y puede navegar a crear un modelo
-      if(isDataUploaded){
-        console.log("Navega")
-        navigate(`/dashboard/consultar/${reporteId}/nuevoModelo`);
-      }else{
-        console.log("Sube archivo")
-        const result = await axios.post("http://localhost:4000/uploadFile", {
-          "name": inputValue, 
-          "dataCsv": dataCsv,
-          "actoresInternos": actInt,
-          "actoresExternos": actExt
-        });
+      const result = await axios.post("http://localhost:4000/uploadFile", {
+        "name": inputValue, 
+        "dataCsv": dataCsv,
+        "actoresInternos": actInt,
+        "actoresExternos": actExt
+      });
 
-        setReporteId(result["data"]["id"]);
-      }
+      setReporteId(result["data"]["id"]);
     }
   };
 
   useEffect(() => {
     if(reporteId !== undefined){
-      setIsDataUploaded(true);
+      console.log("Navega a nuevo modelo")
+      navigate(`/dashboard/consultar/${reporteId}/nuevoModelo`);
     }
   }, [reporteId])
   
@@ -127,7 +119,6 @@ export const Cargas_1 = () => {
             className="flex flex-col items-center justify-center w-96 h-96 bg-[#F25C29] shadow-xl rounded-full text-sm font-medium text-white hover:bg-[#D35124]" 
             onClick={handleClick}
           >
-            {isDataUploaded === false ?
             <div>
               <FontAwesomeIcon
                 icon={faMagnifyingGlassChart}
@@ -135,15 +126,6 @@ export const Cargas_1 = () => {
               />
               <p className="font-bold text-4xl">Cargar</p>
             </div>
-            :
-            <div>
-              <FontAwesomeIcon
-                icon={faClipboardCheck}
-                className="w-52 h-52 mr-2 ml-1"
-              />
-              <p className="font-bold text-4xl mt-4">Completado</p>
-            </div>
-            }
           </button>
         </div>
       </div>

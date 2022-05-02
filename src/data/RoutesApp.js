@@ -43,11 +43,11 @@ export const RoutesApp = [
           element: <NuevoModeloScreen/>,
         },
         {
-          path: "/dashboard/consultar/:reporteId/:modelo", 
+          path: "/dashboard/consultar/:reporteId/:modeloId", 
           element: <TabBar/>,
           children: [
-            {path: "/dashboard/consultar/:reporteId/:modelo", element: <TablaScreen/>},
-            {path: "/dashboard/consultar/:reporteId/:modelo/graficas", element: <GraficasScreen/>}
+            {path: "/dashboard/consultar/:reporteId/:modeloId", element: <TablaScreen/>},
+            {path: "/dashboard/consultar/:reporteId/:modeloId/graficas", element: <GraficasScreen/>}
           ]
         },
       ]
