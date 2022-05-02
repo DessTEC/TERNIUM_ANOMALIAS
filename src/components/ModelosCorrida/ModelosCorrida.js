@@ -9,9 +9,29 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const ModelosCorrida = () => {
-    let params = useParams();
+
+    const params = useParams();
+
+    useEffect(() => {
+        fetchModelos();
+    }, []);
+
+    const [modelos, setModelos] = useState([]);
+
+    const fetchModelos = async () => {
+        console.log(params.reporteId);
+        const result = await axios.get(
+            "http://localhost:4000/getAllModelosByReporteId", {params: {
+                reporteId: params.reporteId 
+            }});
+
+
+        setModelos(result.data);
+    };
 
     return (
           <div>
@@ -42,24 +62,18 @@ export const ModelosCorrida = () => {
                     <hr className="w-2/3 p-0"/>
                 </div>
                 <div className='grid grid-cols-1 lg:grid-cols-1 relative gap-y-10 px-4 pt-4 justify-items-center'>
-                    <Link to={"modelo"} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Modelo Planta Transportista</p>
-                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: 22 de marzo de 2022</p>
-                        </div>
-                    </Link>
-                    <Link to={"modelo"} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Modelo 3</p>
-                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: 29 de marzo de 2022</p>
-                        </div>
-                    </Link>
-                    <Link to={"modelo"} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Modelo Prueba</p>
-                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: 10 de abril de 2022</p>
-                        </div>
-                    </Link>
+                    {
+                        modelos.map( modelo => {
+                            return(
+                                <Link to={modelo.id} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
+                                    <div className='p-4 w-full'>
+                                        <p className='text-black font-bold text-left text-xl'>{modelo.name}</p>
+                                        <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {modelo.fecha}</p>
+                                    </div>
+                                </Link>
+                            );
+                        })
+                    }
                 </div>
             </div>
           </div>
