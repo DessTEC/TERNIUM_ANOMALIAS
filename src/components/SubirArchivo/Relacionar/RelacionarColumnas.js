@@ -21,6 +21,8 @@ const RelacionarColumnas = () =>{
     const handlePrimero = () => {
         setDataCsv(undefined);
         setColumnas(undefined);
+        setActInt([]);
+        setActExt([]);
         setStepActual(1);
         navigate('/dashboard/subir');
     }
