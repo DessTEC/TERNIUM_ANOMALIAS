@@ -35,19 +35,19 @@ export const RoutesApp = [
           element: <Historial/>,
         },
         {
-          path: "/dashboard/consultar/:nombre", 
+          path: "/dashboard/consultar/:reporteId", 
           element: <ModelosCorrida/>,
         },
         {
-          path: "/dashboard/consultar/:nombre/nuevoModelo", 
+          path: "/dashboard/consultar/:reporteId/nuevoModelo", 
           element: <NuevoModeloScreen/>,
         },
         {
-          path: "/dashboard/consultar/:nombre/:modelo", 
+          path: "/dashboard/consultar/:reporteId/:modelo", 
           element: <TabBar/>,
           children: [
-            {path: "/dashboard/consultar/:nombre/:modelo", element: <TablaScreen/>},
-            {path: "/dashboard/consultar/:nombre/:modelo/graficas", element: <GraficasScreen/>}
+            {path: "/dashboard/consultar/:reporteId/:modelo", element: <TablaScreen/>},
+            {path: "/dashboard/consultar/:reporteId/:modelo/graficas", element: <GraficasScreen/>}
           ]
         },
       ]
