@@ -24,7 +24,7 @@ const Tabla = (props) => {
             <table class="table">
             <thead>
                 {atributos.map((header,index) =>
-                    <Header hasCheckboxes={hasCheckboxes} header={header} index={index} filterFunction={setFilteredData} setSelectedVars={props.setSelectedVars} emptiedFilters={props.emptiedFilters} setEmptiedFilters={props.setEmptiedFilters}/>
+                    <Header hasCheckboxes={hasCheckboxes} header={header} index={index} filteredData={filteredData} filterFunction={setFilteredData} setSelectedVars={props.setSelectedVars} emptiedFilters={props.emptiedFilters} setEmptiedFilters={props.setEmptiedFilters}/>
                 )}
             </thead>
             <tbody>
@@ -81,7 +81,7 @@ const Header = (props) => {
                 <p>{header}</p>
                 {hasCheckboxes ? <input type="checkbox" onClick={handleCheck}/> : <></>}
                 <FontAwesomeIcon icon={faFilter} className={isFilterApplied ? "filterIcon filterApplied" : "filterIcon"} onClick={toggleFilter}/>
-                {isOpenFilter && !isFilterApplied && <Filtro atributo={header} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
+                {isOpenFilter && !isFilterApplied && <Filtro atributo={header} filteredData={props.filteredData} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
             </div>
         </th>
     );
