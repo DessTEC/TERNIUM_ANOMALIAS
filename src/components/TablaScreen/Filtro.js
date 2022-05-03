@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Data } from "../../data/Data";
+import React, { useState, useRef } from "react";
+import { useOutletContext } from "react-router-dom";
 import "./Filtro.css"
 
 
 export const Filtro = (props) => {
+    const [dataModelo] = useOutletContext();
+
     const atributo = props.atributo;
     const setFilteredData = props.filterFunction;
     var valuesChecked = useRef([]);   
@@ -19,7 +21,7 @@ export const Filtro = (props) => {
         props.filterAppliedFunction();
     }
 
-    var column = Data.map((value,index) => {return value[atributo]});
+    var column = dataModelo.map((value,index) => {return value[atributo]});
     column = column.filter(getUniqueData);
 
     const [checkedState, setCheckedState] = useState(
