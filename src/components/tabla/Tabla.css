@@ -1,9 +1,9 @@
-td {
+td, th {
     text-align: center !important;
-}
-
-th {
-    text-align: center !important;
+    margin-right: 10px !important;
+    padding-right: 30px !important;
+    /* border-right: 10px solid black;
+    border-right-color: transparent; */
 }
 
 .table {

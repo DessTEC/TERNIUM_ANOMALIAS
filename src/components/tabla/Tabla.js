@@ -8,7 +8,8 @@ import { Filtro } from "../TablaScreen/Filtro";
 const Tabla = (props) => {
 
     const hasCheckboxes = props.hasCheckboxes;
-    const [filteredData, setFilteredData] = useState(props.data);
+    const filteredData = props.filteredData;
+    const setFilteredData = props.setFilteredData;
 
 
     const atributos = props.atributos;
@@ -23,7 +24,7 @@ const Tabla = (props) => {
             <table class="table">
             <thead>
                 {atributos.map((header,index) =>
-                    <Header hasCheckboxes={hasCheckboxes} header={header} index={index} filterFunction={setFilteredData} setSelectedVars={props.setSelectedVars}/>
+                    <Header hasCheckboxes={hasCheckboxes} header={header} index={index} filterFunction={setFilteredData} setSelectedVars={props.setSelectedVars} emptiedFilters={props.emptiedFilters} setEmptiedFilters={props.setEmptiedFilters}/>
                 )}
             </thead>
             <tbody>
@@ -57,6 +58,13 @@ const Header = (props) => {
         }
     }, [isChecked]);
 
+    useEffect(() => {
+        if(props.emptiedFilters) {
+            setIsFilterApplied(false);
+            setIsOpenFilter(false);
+        }
+    }, [props.emptiedFilters])
+
     function toggleFilter(){
         setIsOpenFilter(isOpenFilter => !isOpenFilter);
     }
@@ -64,6 +72,7 @@ const Header = (props) => {
     function filterApplied(){
         toggleFilter();
         setIsFilterApplied(true);
+        props.setEmptiedFilters(false);
     }
 
     return(
@@ -72,7 +81,7 @@ const Header = (props) => {
                 <p>{header}</p>
                 {hasCheckboxes ? <input type="checkbox" onClick={handleCheck}/> : <></>}
                 <FontAwesomeIcon icon={faFilter} className={isFilterApplied ? "filterIcon filterApplied" : "filterIcon"} onClick={toggleFilter}/>
-                {isOpenFilter && <Filtro atributo={header} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
+                {isOpenFilter && !isFilterApplied && <Filtro atributo={header} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
             </div>
         </th>
     );
