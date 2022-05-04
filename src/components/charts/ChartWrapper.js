@@ -77,7 +77,12 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                         </div>
 
                         <div class="p-6 space-y-6">
+                        {
+                            type === 'burbuja' ? 
+                            <BubbleChart options = {options} chartData={chartData} />
+                            :
                             <BarChart options = {options} chartData={chartData} />
+                        }
                         </div>
                     </div>
                 </div>
