@@ -28,6 +28,13 @@ export const Historial = () => {
         setReportes(result.data);
     };
 
+    const [wordEntered, setWordEntered] = useState("");
+
+    const handleFilter = (event) => {
+        const searchWord = event.target.value;
+        setWordEntered(searchWord);
+    };
+
     return (
           <div>
             <div className='max-w-[1240px] mx-auto text-black relative mb-10'>
@@ -39,10 +46,22 @@ export const Historial = () => {
                         </button>
                         <p className='text-black font-bold text-center text-xl'>CONSULTAR</p>
                         <p className='text-black font-normal text-center text-xl pb-3'>Navega por los reportes generados anteriormente</p>
-                        <SearchBar />
+                        <form action="/" method="get" className='text-center'>
+                            <input
+                                type="text"
+                                id="header-search"
+                                placeholder="Buscar por nombre"
+                                name="s" 
+                                className='bg-[#F2F2F2] rounded-xl pt-2 pb-2 pl-3 w-1/3'
+                                value={wordEntered}
+                                onChange={handleFilter}
+                            />
+                        </form>
                     </div>
                      {
-                        reportes.map( reporte => {
+                        reportes.filter((value) => {
+                            return value.name.toLowerCase().includes(wordEntered.toLowerCase())
+                        }).map( reporte => {
                             return(
                                 <Link key={reporte.id} to={reporte.id} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
                                     <div className='p-4 w-full'>
