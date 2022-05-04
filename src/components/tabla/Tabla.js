@@ -82,6 +82,7 @@ const Header = (props) => {
 const Row = (props) => {
     var row = props.row;
     var headers = props.headers;
+    
     return(
         <tr> {headers.map(cell => <td>{row[cell]}</td>)} </tr>
     );

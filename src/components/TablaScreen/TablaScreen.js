@@ -11,6 +11,8 @@ export const TablaScreen = () => {
 
     const [dataModelo, atributos] = useOutletContext();
 
+    let atributosConAnom = [...atributos, "anomaly", "scores"];
+
     return(
         <div>
             <div className="container-buttons">
@@ -20,7 +22,7 @@ export const TablaScreen = () => {
                 </button>
             </div>
 
-            <Tabla hasCheckboxes={false} setSelectedVars={() => {}} data={dataModelo} atributos={atributos}/>
+            <Tabla hasCheckboxes={false} setSelectedVars={() => {}} data={dataModelo} atributos={atributosConAnom}/>
         </div>
     );
 }
