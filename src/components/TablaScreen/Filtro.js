@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
 import "./Filtro.css"
 
@@ -22,18 +22,19 @@ export const Filtro = (props) => {
     var column = props.filteredData.map((value, index) => { return value[atributo] });
     column = column.filter(getUniqueData);
 
+    var checkedStateTemp = {};
+    column.map((value) => checkedStateTemp[value] = false);
     const [checkedState, setCheckedState] = useState(
-        new Array(column.length).fill(false)
+        // column.map((value) => ({[value]: false}))
+        checkedStateTemp
     );
 
-    function handleCheckboxChange(position, value) {
-        const updatedCheckedState = checkedState.map((item, index) =>
-            index === position ? !item : item
-        );
-
+    function handleCheckboxChange(value) {
+        var updatedCheckedState = {...checkedState};
+        updatedCheckedState[value] = !updatedCheckedState[value];
         setCheckedState(updatedCheckedState);
 
-        if (updatedCheckedState[position]) {
+        if (updatedCheckedState[value]) {
             valuesChecked.current.push(value);
         }
         else {
@@ -47,6 +48,11 @@ export const Filtro = (props) => {
         const searchWord = event.target.value;
         setWordEntered(searchWord);
     };
+
+    useEffect(() => {
+        console.log(checkedState);
+      return;
+    }, [checkedState])
 
     return (
         <div className="filterBox">
@@ -62,9 +68,9 @@ export const Filtro = (props) => {
                 />
             </form>
             <ul>
-                {column.filter(value => value.toString().toLowerCase().includes(wordEntered.toLowerCase())).map((value, index) =>
+                {column.filter(value => value.toString().toLowerCase().includes(wordEntered.toLowerCase())).map((value) =>
                     <li>
-                        <input type="checkbox" checked={checkedState[index]} onChange={() => { handleCheckboxChange(index, value) }} />
+                        <input type="checkbox" checked={checkedState[value]} onChange={() => { handleCheckboxChange(value) }} />
                         {value}
                     </li>
                 )}
