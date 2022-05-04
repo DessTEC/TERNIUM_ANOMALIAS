@@ -33,6 +33,13 @@ export const ModelosCorrida = () => {
         setModelos(result.data);
     };
 
+    const [wordEntered, setWordEntered] = useState("");
+
+    const handleFilter = (event) => {
+        const searchWord = event.target.value;
+        setWordEntered(searchWord);
+    };
+
     return (
           <div>
             {/* <Link to="modelo">
@@ -47,7 +54,17 @@ export const ModelosCorrida = () => {
                         </button>
                         <p className='text-black font-bold text-center text-xl'>CONSULTAR</p>
                         <p className='text-black font-normal text-center text-xl pb-3'>Navega por los reportes generados anteriormente</p>
-                        <SearchBar />
+                        <form action="/" method="get" className='text-center'>
+                            <input
+                                type="text"
+                                id="header-search"
+                                placeholder="Buscar por nombre"
+                                name="s" 
+                                className='bg-[#F2F2F2] rounded-xl pt-2 pb-2 pl-3 w-1/3'
+                                value={wordEntered}
+                                onChange={handleFilter}
+                            />
+                        </form>
                     </div>
                     <div className='w-2/3 d-flex justify-content-between'>
                         <Link to={'/dashboard/consultar'} className="bg-[#FFFFFF] text-black border-0 hover:bg-[#FFFFFF] text-xl font-bold">
@@ -63,7 +80,9 @@ export const ModelosCorrida = () => {
                 </div>
                 <div className='grid grid-cols-1 lg:grid-cols-1 relative gap-y-10 px-4 pt-4 justify-items-center'>
                     {
-                        modelos.map( modelo => {
+                        modelos.filter((value) => {
+                            return value.name.toLowerCase().includes(wordEntered.toLowerCase())
+                        }).map( modelo => {
                             return(
                                 <Link to={modelo.id} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
                                     <div className='p-4 w-full'>
