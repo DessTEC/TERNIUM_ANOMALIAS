@@ -19,6 +19,8 @@ export const TablaScreen = () => {
         console.log(dataModelo);
     }
 
+    let atributosConAnom = [...atributos, "anomaly", "scores"];
+
     return(
         <div>
             <div className="container-buttons">
@@ -32,7 +34,7 @@ export const TablaScreen = () => {
                 </button>
             </div>
 
-            <Tabla hasCheckboxes={false} setSelectedVars={() => {}} filteredData={filteredData} setFilteredData={setFilteredData} atributos={atributos} emptiedFilters={emptiedFilters} setEmptiedFilters={setEmptiedFilters}/>
+            <Tabla hasCheckboxes={false} setSelectedVars={() => {}} filteredData={filteredData} data={dataModelo} setFilteredData={setFilteredData} atributos={atributosConAnom} emptiedFilters={emptiedFilters} setEmptiedFilters={setEmptiedFilters}/>
         </div>
     );
 }
