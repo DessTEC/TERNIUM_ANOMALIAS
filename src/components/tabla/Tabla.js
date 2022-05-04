@@ -8,22 +8,23 @@ import { Filtro } from "../TablaScreen/Filtro";
 const Tabla = (props) => {
 
     const hasCheckboxes = props.hasCheckboxes;
-    const [filteredData, setFilteredData] = useState(props.data);
+    const filteredData = props.filteredData;
+    const setFilteredData = props.setFilteredData;
 
 
     const atributos = props.atributos;
 
-    // useEffect(() => {
-    //     console.log(filteredData);
-    //   return;
-    // }, [filteredData])
+    useEffect(() => {
+        console.log(filteredData);
+      return;
+    }, [filteredData])
 
     return(
         <div class="table-responsive">
             <table class="table">
             <thead>
                 {atributos.map((header,index) =>
-                    <Header hasCheckboxes={hasCheckboxes} data={header} index={index} filterFunction={setFilteredData} setSelectedVars={props.setSelectedVars}/>
+                    <Header hasCheckboxes={hasCheckboxes} header={header} index={index} filteredData={filteredData} filterFunction={setFilteredData} setSelectedVars={props.setSelectedVars} emptiedFilters={props.emptiedFilters} setEmptiedFilters={props.setEmptiedFilters}/>
                 )}
             </thead>
             <tbody>
@@ -36,10 +37,10 @@ const Tabla = (props) => {
 
 const Header = (props) => {
     const hasCheckboxes = props.hasCheckboxes;
-    const data = props.data;
+    const header = props.header;
     const index = props.index;
 
-    const [isOpenFilter, setIsOpenFilter] = React.useState(false);
+    const [isOpenFilter, setIsOpenFilter] = useState(false);
     const [isFilterApplied, setIsFilterApplied] = useState(false);
     const [isChecked, setIsChecked] = useState(false);
 
@@ -49,13 +50,20 @@ const Header = (props) => {
 
     useEffect(() => {
         if(isChecked){
-            props.setSelectedVars(prevVars => [...prevVars, data]);
+            props.setSelectedVars(prevVars => [...prevVars, header]);
         }else{
             props.setSelectedVars(prevVars => prevVars.filter( (dataHeader) => {
-                return dataHeader !== data;
+                return dataHeader !== header;
             }));
         }
     }, [isChecked]);
+
+    useEffect(() => {
+        if(props.emptiedFilters) {
+            setIsFilterApplied(false);
+            setIsOpenFilter(false);
+        }
+    }, [props.emptiedFilters])
 
     function toggleFilter(){
         setIsOpenFilter(isOpenFilter => !isOpenFilter);
@@ -64,15 +72,16 @@ const Header = (props) => {
     function filterApplied(){
         toggleFilter();
         setIsFilterApplied(true);
+        props.setEmptiedFilters(false);
     }
 
     return(
         <th>
             <div className="header">
-                <p>{data}</p>
+                <p>{header}</p>
                 {hasCheckboxes ? <input type="checkbox" onClick={handleCheck}/> : <></>}
                 <FontAwesomeIcon icon={faFilter} className={isFilterApplied ? "filterIcon filterApplied" : "filterIcon"} onClick={toggleFilter}/>
-                {isOpenFilter && <Filtro atributo={index} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
+                {isOpenFilter && !isFilterApplied && <Filtro atributo={header} filteredData={props.filteredData} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
             </div>
         </th>
     );
