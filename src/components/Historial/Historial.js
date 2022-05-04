@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/terniumLogo.png';
 import industria from '../../assets/industria.png';
 import { SearchBar } from '../SearchBar/SearchBar';
+import CalendarFilterDropdown from "../chartFilterMenu/CalendarFilterDropdown";
+import DropDownMenuOption from '../chartFilterMenu/DropDownMenuOption';
+import FiltroFecha from '../FiltroFecha/FiltroFecha';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
@@ -40,10 +43,12 @@ export const Historial = () => {
             <div className='max-w-[1240px] mx-auto text-black relative mb-10'>
                 <div className='grid grid-cols-1 lg:grid-cols-1 relative gap-y-10 px-4 pt-20 justify-items-center'>
                     <div className='w-full'>
-                        <button className="btn btn-primary bg-[#F25C29] border-0 hover:bg-[#D15226]">
+                        {/* <DropDownMenuOption iconLeft={faFilter} subMenu={<CalendarFilterDropdown/>} textDisplay="Filtrar por fecha" expandable = {true}/> */}
+                        {/* <button className="btn btn-primary bg-[#F25C29] border-0 hover:bg-[#D15226]">
                             <FontAwesomeIcon icon={faFilter} className="buttonIcon"/>
                             Filtros
-                        </button>
+                        </button> */}
+                        <FiltroFecha icon={faFilter} subMenu={<CalendarFilterDropdown/>} text="Filtros" expandable={true}/>
                         <p className='text-black font-bold text-center text-xl'>CONSULTAR</p>
                         <p className='text-black font-normal text-center text-xl pb-3'>Navega por los reportes generados anteriormente</p>
                         <form action="/" method="get" className='text-center'>
