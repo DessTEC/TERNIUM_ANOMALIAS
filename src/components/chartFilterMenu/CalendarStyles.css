@@ -7,6 +7,7 @@
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.125em;
   }
+
   .react-calendar__navigation__label__labelText{
     text-transform: lowercase;
     font-weight: bold;
@@ -36,7 +37,6 @@
     background-color: #FF7A00;
     color: white;
     cursor: pointer;
-    border-radius: 100%;
   }
   .react-calendar__navigation__prev2-button, .react-calendar__navigation__next2-button{
     display: none;
@@ -103,4 +103,28 @@
     font-size: 0.7em;
     background: none;
   }
+
+  button.react-calendar__tile--now {
+    background: gainsboro;
+  }
+  button.react-calendar__tile--hasActive{
+    background: #F25C29;
+    color: white;
  
+  }
+
+  button.react-calendar__tile--active{
+    background: #f25b2981;
+    color: white;
+ 
+  }
+  button.react-calendar__tile--rangeStart{
+    background: #F25C29;
+    color: white;
+
+  }
+  button.react-calendar__tile--rangeEnd{
+    background: #F25C29;
+    color: white;
+
+  }
