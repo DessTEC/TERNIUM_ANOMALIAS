@@ -17,6 +17,7 @@ export const createArrayBurbuja = (data, varXInterest, varYInterest) => {
             if(!valuesOfVar.hasOwnProperty(llaveComb)){
                 valuesOfVar[llaveComb] = {
                     anomalias: 0,
+                    normales: 0,
                     valueX: valueX,
                     valueY: valueY
                 }
@@ -34,20 +35,32 @@ export const createArrayBurbuja = (data, varXInterest, varYInterest) => {
 
         if(objElem["anomaly"] === -1){
             valuesOfVar[llaveElem]["anomalias"]+=1;
+        }else{
+            valuesOfVar[llaveElem]["normales"]+=1;
         }
     }
 
-    let dataForChart = []
+    let dataAnomalias = []
+    let dataNormales = []
 
     Object.keys(valuesOfVar).map(function(key, index) {
-        dataForChart.push({
+        dataAnomalias.push({
             x: valuesOfVar[key]["valueX"],
             y: valuesOfVar[key]["valueY"],
             r: valuesOfVar[key]["anomalias"]
         })
+
+        dataNormales.push({
+            x: valuesOfVar[key]["valueX"],
+            y: valuesOfVar[key]["valueY"],
+            r: valuesOfVar[key]["normales"]
+        })
     });
 
-    console.log(dataForChart);
+    const dataForChart = {
+        "anomalias": dataAnomalias,
+        "normales": dataNormales
+    }
 
     return dataForChart;
 }

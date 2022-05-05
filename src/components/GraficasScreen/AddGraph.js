@@ -221,8 +221,13 @@ export default function AddGraph(props) {
         datasets: [
           {
             label: "Relaciones Anómalas",
-            data: arrayForChart,
-            backgroundColor: ["#F25C29"],
+            data: arrayForChart["anomalias"],
+            backgroundColor: 'rgba(242, 92, 41, 0.5)',
+          },
+          {
+            label: "Relaciones Normales",
+            data: arrayForChart["normales"],
+            backgroundColor: 'rgba(250, 173, 66, 0.5)',
           }
         ],
       };
