@@ -76,19 +76,21 @@ export const NuevoModeloScreen = () => {
                     <FontAwesomeIcon icon={faXmark} className="buttonIcon"/>
                     Eliminar Filtros
                 </button>
-                <h1>SELECCIONAR PARÁMETROS</h1>
+                <h1>NUEVO MODELO</h1>
                 <button className="btn btn-outline-primary aplicar-modelo" onClick={createModelo}>Aplicar Modelo</button>
+            </div>
+            <div className="nombre-modelo-row">
+            <h3 className="nombre-modelo">Nombre del modelo:</h3>
+            <input
+                className="rounded-lg w-2/6 py-1 px-3 text-center border-solid border-2"
+                value={ inputValue }
+                onChange= {handleInputChange}
+            />
             </div>
             {
                 atributos === undefined ? <></> :
                 <>
                     <Tabla hasCheckboxes={true} setSelectedVars={setSelectedVars} filteredData={dataCsv} setFilteredData={setDataCsv} atributos={atributos} emptiedFilters={emptiedFilters} setEmptiedFilters={setEmptiedFilters}/>
-                    <input
-                    className="rounded-lg w-2/6 py-1 px-3 text-center border-solid border-2"
-                    placeholder="Modelo 1"
-                    value={ inputValue }
-                    onChange= {handleInputChange}
-                    ></input>
                 </>     
             }
         </div>
