@@ -4,6 +4,8 @@ import "./NuevoModeloScreen.css"
 import axios from "axios";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
+
 
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -22,6 +24,11 @@ export const NuevoModeloScreen = () => {
     const [reporteId, setReporteId] = useState(params.reporteId);
     const [modeloId, setModeloId] = useState(undefined);
 
+
+    const [showModal, setShowModal] = useState(false);
+    const [modalError, setModalError] = useState("");
+    const [errorTittle, setErrorTitle] = useState("");
+
     useEffect(() => {
        getReporte();
     }, [])
@@ -35,17 +42,38 @@ export const NuevoModeloScreen = () => {
         setAtributos([...result["data"]["actoresInternos"], ...result["data"]["actoresExternos"]]);
     }
 
+    const [inputValue, setInputValue] = useState('')
+
+
     const createModelo = async() => {
-        const result = await axios.post(
-            "http://localhost:4000/addModelo", {
-                reporteId: params.reporteId,
-                name: inputValue,
-                variables: atributos,
-                data: dataCsv,
-                selectedVars: selectedVars
+
+        if(inputValue != "" && selectedVars.length >= 2){
+            const result = await axios.post(
+                "http://localhost:4000/addModelo", {
+                    reporteId: params.reporteId,
+                    name: inputValue,
+                    variables: atributos,
+                    data: dataCsv,
+                    selectedVars: selectedVars
+                }
+            );
+            setModeloId(result["data"]["id"]);
+        }
+        else{
+            if(inputValue == "" && selectedVars.length < 2){
+                setModalError("Modelo sin nombre y columnas no seleccionadas");
+                setErrorTitle("Ingrese el nombre del modelo y seleccione dos columnas o más")
             }
-        );
-        setModeloId(result["data"]["id"]);
+            else if(selectedVars.length < 2){
+                setModalError("No se han seleccionado columnas");
+                setErrorTitle("Seleccione al menos 2 columnas para aplicar el modelo")
+            }
+            else if(inputValue == ""){
+                setModalError("No se ha nombrado el nuevo modelo");
+                setErrorTitle("Ingrese el nombre del modelo")
+            }
+            setShowModal(true);
+        }
     }
 
     useEffect(() => {
@@ -56,7 +84,6 @@ export const NuevoModeloScreen = () => {
       }, [modeloId])
     
 
-    const [inputValue, setInputValue] = useState('')
 
     //Así se maneja el input para que sea modificable
     const handleInputChange = (e) => {
@@ -68,6 +95,10 @@ export const NuevoModeloScreen = () => {
         setEmptiedFilters(true);
     }
     
+
+    const handleClose = () => {
+        setShowModal(false);
+    }
 
     return(
         <div className='main'>
@@ -93,6 +124,27 @@ export const NuevoModeloScreen = () => {
                     <Tabla hasCheckboxes={true} setSelectedVars={setSelectedVars} filteredData={dataCsv} setFilteredData={setDataCsv} atributos={atributos} emptiedFilters={emptiedFilters} setEmptiedFilters={setEmptiedFilters}/>
                 </>     
             }
+
+            <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
+                <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
+                    <div className="relative bg-white rounded-lg shadow h-64">
+                        <div className="flex flex-col center p-3 rounded-t w-full">
+                            <div className="flex flex-row justify-end">
+                                <button onClick={handleClose} className="bg-slate-50 hover:bg-slate-300 rounded-lg p-1.5 ml-auto inline-flex items-center text-gray-400 hover:text-gray-900">
+                                    <FontAwesomeIcon icon={faXmark} className='w-5' />
+                                </button>
+                            </div>
+                            <FontAwesomeIcon icon={faCircleExclamation} className='w-full h-1/3 text-[#F6A000]'/>
+                            <h3 className="text-center mt-4">
+                                {modalError}
+                            </h3>
+                            <h5 className="text-center mt-4">
+                                {errorTittle}
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

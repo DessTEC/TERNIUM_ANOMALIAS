@@ -20,8 +20,8 @@ const Tabla = (props) => {
     }, [filteredData])
 
     return(
-        <div class="table-responsive">
-            <table class="table">
+        <div className="table-responsive">
+            <table className="table tableFixHead">
             <thead>
                 {atributos.map((header,index) =>
                     <Header hasCheckboxes={hasCheckboxes} header={header} index={index} filteredData={filteredData} filterFunction={setFilteredData} setSelectedVars={props.setSelectedVars} emptiedFilters={props.emptiedFilters} setEmptiedFilters={props.setEmptiedFilters}/>

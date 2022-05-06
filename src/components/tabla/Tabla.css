@@ -25,3 +25,5 @@ td, th {
 .table-responsive {
     position:relative;
 }
+
+.tableFixHead thead { position: sticky; top: 0; z-index: 1; }
