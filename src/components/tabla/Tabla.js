@@ -4,6 +4,7 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
 import "./Tabla.css"
 import { Filtro } from "../TablaScreen/Filtro";
+import { FiltroAnomalias } from "../TablaScreen/FiltroAnomalias";
 
 const Tabla = (props) => {
 
@@ -39,6 +40,7 @@ const Header = (props) => {
     const hasCheckboxes = props.hasCheckboxes;
     const header = props.header;
     const index = props.index;
+    const isHeaderAnomalies = header === "scores";
 
     const [isOpenFilter, setIsOpenFilter] = useState(false);
     const [isFilterApplied, setIsFilterApplied] = useState(false);
@@ -81,7 +83,8 @@ const Header = (props) => {
                 <p>{header}</p>
                 {hasCheckboxes ? <input type="checkbox" onClick={handleCheck}/> : <></>}
                 <FontAwesomeIcon icon={faFilter} className={isFilterApplied ? "filterIcon filterApplied" : "filterIcon"} onClick={toggleFilter}/>
-                {isOpenFilter && !isFilterApplied && <Filtro atributo={header} filteredData={props.filteredData} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
+                {isOpenFilter && !isFilterApplied && isHeaderAnomalies && <FiltroAnomalias atributo={header} filteredData={props.filteredData} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
+                {isOpenFilter && !isFilterApplied && !isHeaderAnomalies && <Filtro atributo={header} filteredData={props.filteredData} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}
             </div>
         </th>
     );

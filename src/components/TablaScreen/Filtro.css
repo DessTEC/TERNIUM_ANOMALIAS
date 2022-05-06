@@ -21,3 +21,9 @@
 .aplicar-filtro {
     margin: 10px;
 }
+
+.number-box {
+    background-color:rgba(150, 150, 150, 0.25);
+    width: 70px;
+    text-align: center;
+}
