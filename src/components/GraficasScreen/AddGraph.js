@@ -168,12 +168,12 @@ export default function AddGraph(props) {
 
     if(chartType !== "burbuja"){
       if(analysisType === 'Anomalías'){
-        arrayForChart = createArrayChart(props.dataModelo, varX);
+        arrayForChart = createArrayChart(props.dataModelo, varX, minValAnomalias, maxValAnomalias);
       }else{
-        arrayForChart = createArrayCorrelacion(props.dataModelo, varX, varY, valueY);
+        arrayForChart = createArrayCorrelacion(props.dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
       }
     }else{
-      arrayForChart = createArrayBurbuja(props.dataModelo, varX, varY);
+      arrayForChart = createArrayBurbuja(props.dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
     }
  
     let conf = {...optionsCharts[chartType]};
@@ -312,8 +312,8 @@ export default function AddGraph(props) {
                   min={-100}
                   max={100}
                   onChange={({ min, max }) => {
-                    setMinValAnomalias(min)
-                    setMaxValAnomalias(max)
+                    setMinValAnomalias(min/100)
+                    setMaxValAnomalias(max/100)
                   }}
                 />
               </div>

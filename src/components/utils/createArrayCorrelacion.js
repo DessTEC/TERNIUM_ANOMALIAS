@@ -1,5 +1,5 @@
 
-export const createArrayCorrelacion = (data, varXInterest, varYInterest, valueYInterest) => {
+export const createArrayCorrelacion = (data, varXInterest, varYInterest, valueYInterest, minVal, maxVal) => {
 
     let valuesOfVar = {};
 
@@ -11,13 +11,13 @@ export const createArrayCorrelacion = (data, varXInterest, varYInterest, valueYI
         if(objElem[varYInterest] === valueYInterestInt){
             // Sumar 1 a llave existente al campo correspondiente
             if(valuesOfVar.hasOwnProperty(objElem[varXInterest])){
-                if(objElem["anomaly"] === -1){
+                if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
                     valuesOfVar[objElem[varXInterest]]["anomalias"]++
                 }else{
                     valuesOfVar[objElem[varXInterest]]["normales"]++
                 }            
             }else{ // Instanciar nueva entrada del objeto con nuevo valor de la variable de interés 
-                if(objElem["anomaly"] === -1){
+                if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
                     valuesOfVar[objElem[varXInterest]] = {
                         anomalias: 1,
                         normales: 0

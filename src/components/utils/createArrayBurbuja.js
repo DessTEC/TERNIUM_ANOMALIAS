@@ -1,5 +1,5 @@
 
-export const createArrayBurbuja = (data, varXInterest, varYInterest) => {
+export const createArrayBurbuja = (data, varXInterest, varYInterest, minVal, maxVal) => {
 
     //Las llaves serán concatenación del valor de varX con valor de varY
     let valuesOfVar = {};
@@ -33,7 +33,7 @@ export const createArrayBurbuja = (data, varXInterest, varYInterest) => {
         
         const llaveElem = `${varXInterest}:${valueX.toString()},${varYInterest}:${valueY.toString()}`;
 
-        if(objElem["anomaly"] === -1){
+        if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
             valuesOfVar[llaveElem]["anomalias"]+=1;
         }else{
             valuesOfVar[llaveElem]["normales"]+=1;
