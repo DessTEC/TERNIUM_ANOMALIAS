@@ -16,11 +16,6 @@ const Tabla = (props) => {
 
     const atributos = props.atributos;
 
-    useEffect(() => {
-        console.log(filteredData);
-      return;
-    }, [filteredData])
-
     return(
         <div className="table-container">
             <table className="table">
