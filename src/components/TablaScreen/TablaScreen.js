@@ -40,6 +40,7 @@ export const TablaScreen = () => {
                     <FontAwesomeIcon icon={faXmark} className="buttonIcon"/>
                     Eliminar Filtros
                 </button>
+                <h1>{nombreModelo}</h1>
                 <CSVLink className="btn btn-outline-primary" data={filteredData} filename={csvFileName} asyncOnClick={true} onClick={getCsvFileName} >
                     <FontAwesomeIcon icon={faFileArrowDown} className="buttonIcon"/>
                     Descargar
