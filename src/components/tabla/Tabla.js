@@ -15,11 +15,6 @@ const Tabla = (props) => {
 
     const atributos = props.atributos;
 
-    useEffect(() => {
-        console.log(filteredData);
-      return;
-    }, [filteredData])
-
     return(
         <div class="table-responsive">
             <table class="table">

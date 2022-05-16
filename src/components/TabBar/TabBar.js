@@ -11,6 +11,7 @@ export const TabBar = () => {
     const params = useParams();
     const [dataModelo, setDataModelo] = useState(undefined);
     const [atributos, setAtributos] = useState(undefined);
+    const [nombreModelo, setNombreModelo] = useState(undefined);
 
     useEffect(() => {
         getModelo();
@@ -23,6 +24,7 @@ export const TabBar = () => {
          console.log(result);
          setDataModelo(result["data"]["results"]);
          setAtributos(result["data"]["variables"]);
+         setNombreModelo(result["data"]["name"]);
      }
 
     return (
@@ -54,7 +56,7 @@ export const TabBar = () => {
                 <div className='w-full'>
                     {
                         atributos === undefined || dataModelo === undefined ? <></>:
-                        <Outlet context={[dataModelo, atributos]}/>
+                        <Outlet context={[dataModelo, atributos, nombreModelo]}/>
                     }
                 </div>
             </div>  
