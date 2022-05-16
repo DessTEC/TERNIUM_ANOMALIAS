@@ -84,10 +84,10 @@ export const ModelosCorrida = () => {
                             return value.name.toLowerCase().includes(wordEntered.toLowerCase())
                         }).map( modelo => {
                             return(
-                                <Link to={modelo.id} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
+                                <Link to={modelo["_id"]["$oid"]} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
                                     <div className='p-4 w-full'>
                                         <p className='text-black font-bold text-left text-xl'>{modelo.name}</p>
-                                        <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {modelo.fecha}</p>
+                                        <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {modelo["fecha"]["$date"]}</p>
                                     </div>
                                 </Link>
                             );

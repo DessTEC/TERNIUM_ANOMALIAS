@@ -84,19 +84,19 @@ export const Cargas_1 = () => {
             <div className="bg-white rounded-lg w-5/6 mt-8">
               <p className="text-gray-400 pl-12 pt-3">Parametros de analisis</p>
               <Divider borColor="border-slate-400" />
-              <div className="grid grid-row-2 grid-cols-2 items-start pl-12 pt-2">
+              <div className="grid grid-row-2 grid-cols-2 items-start pl-10 pt-2">
                 <p className="text-gray-400 py-2">Actores internos</p>
                 <p className="text-gray-400 py-2">Actores externos</p>
               </div>
-              <div className="grid grid-row-1 grid-cols-2 overflow-auto items-start h-48 pl-12 pb-3">
-                <div>
+              <div className="grid grid-row-1 grid-cols-2 overflow-auto items-start h-48 pl-10 pb-3">
+                <div className="mr-4">
                   {actInt.map((actor) => {
-                    return <p className="font-semibold py-2">{actor}</p>;
+                    return <p className="font-semibold py-2 truncate">{actor}</p>;
                   })}
                 </div>
                 <div>
                   {actExt.map((actor) => {
-                    return <p className="font-semibold py-2">{actor}</p>;
+                    return <p className="font-semibold py-2 truncate">{actor}</p>;
                   })}
                 </div>
               </div>
