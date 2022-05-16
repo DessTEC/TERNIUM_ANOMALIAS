@@ -9,9 +9,36 @@ import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export const ModelosCorrida = () => {
-    let params = useParams();
+
+    const params = useParams();
+
+    useEffect(() => {
+        fetchModelos();
+    }, []);
+
+    const [modelos, setModelos] = useState([]);
+
+    const fetchModelos = async () => {
+        console.log(params.reporteId);
+        const result = await axios.get(
+            "http://localhost:4000/getAllModelosByReporteId", {params: {
+                reporteId: params.reporteId 
+            }});
+
+
+        setModelos(result.data);
+    };
+
+    const [wordEntered, setWordEntered] = useState("");
+
+    const handleFilter = (event) => {
+        const searchWord = event.target.value;
+        setWordEntered(searchWord);
+    };
 
     return (
           <div>
@@ -27,7 +54,17 @@ export const ModelosCorrida = () => {
                         </button>
                         <p className='text-black font-bold text-center text-xl'>CONSULTAR</p>
                         <p className='text-black font-normal text-center text-xl pb-3'>Navega por los reportes generados anteriormente</p>
-                        <SearchBar />
+                        <form action="/" method="get" className='text-center'>
+                            <input
+                                type="text"
+                                id="header-search"
+                                placeholder="Buscar por nombre"
+                                name="s" 
+                                className='bg-[#F2F2F2] rounded-xl pt-2 pb-2 pl-3 w-1/3'
+                                value={wordEntered}
+                                onChange={handleFilter}
+                            />
+                        </form>
                     </div>
                     <div className='w-2/3 d-flex justify-content-between'>
                         <Link to={'/dashboard/consultar'} className="bg-[#FFFFFF] text-black border-0 hover:bg-[#FFFFFF] text-xl font-bold">
@@ -42,24 +79,20 @@ export const ModelosCorrida = () => {
                     <hr className="w-2/3 p-0"/>
                 </div>
                 <div className='grid grid-cols-1 lg:grid-cols-1 relative gap-y-10 px-4 pt-4 justify-items-center'>
-                    <Link to={"modelo"} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Modelo Planta Transportista</p>
-                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: 22 de marzo de 2022</p>
-                        </div>
-                    </Link>
-                    <Link to={"modelo"} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Modelo 3</p>
-                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: 29 de marzo de 2022</p>
-                        </div>
-                    </Link>
-                    <Link to={"modelo"} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
-                        <div className='p-4 w-full'>
-                            <p className='text-black font-bold text-left text-xl'>Modelo Prueba</p>
-                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: 10 de abril de 2022</p>
-                        </div>
-                    </Link>
+                    {
+                        modelos.filter((value) => {
+                            return value.name.toLowerCase().includes(wordEntered.toLowerCase())
+                        }).map( modelo => {
+                            return(
+                                <Link to={modelo.id} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
+                                    <div className='p-4 w-full'>
+                                        <p className='text-black font-bold text-left text-xl'>{modelo.name}</p>
+                                        <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {modelo.fecha}</p>
+                                    </div>
+                                </Link>
+                            );
+                        })
+                    }
                 </div>
             </div>
           </div>

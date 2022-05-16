@@ -8,9 +8,12 @@ import RangeSlider from "./RangeSlider";
 import {ButtonGroupCharts} from "./ButtonGroupCharts";
 import { ButtonGroupCor } from "./ButtonGroupCor";
 
-import { UserData } from "../../data/Data";
-import { UserData2 } from "../../data/Data2";
 import _uniqueId from 'lodash/uniqueId';
+
+import { createArrayChart } from "../utils/createArrayChart";
+import { createArrayCorrelacion } from "../utils/createArrayCorrelacion";
+import { createArrayBurbuja } from "../utils/createArrayBurbuja";
+import { getValuesOfVar } from "../utils/getValuesOfVar";
 
 
 export default function AddGraph(props) {
@@ -23,62 +26,125 @@ export default function AddGraph(props) {
   //Variables de configuración
   const [chartType, setChartType] = useState("barrasV");
   const [analysisType, setAnalysisType] = useState('Anomalías');
+
+  const [varX, setVarX] = useState(props.atributos[0]);
+  const [varY, setVarY] = useState(props.atributos[0]);
+
+  const [optionsValueY, setOptionsValueY] = useState(getValuesOfVar(props.dataModelo, varY));
+  const [valueY, setValueY] = useState(optionsValueY[0]);
+
   const [minValAnomalias, setMinValAnomalias] = useState(-100);
   const [maxValAnomalias, setMaxValAnomalias] = useState(100);
 
   const optionsCharts = {
     barrasV: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'Anomalías 2019',
-        },
-      },
       responsive: true,
       maintainAspectRatio: true,
       scales: {
         x: {
           stacked: true,
+          title: {
+            display:true,
+            text: "Variable",
+            font: {
+              size: 14
+            }
+          }
         },
         y: {
           stacked: true,
+          title: {
+            display:true,
+            text: "Total de datos",
+            font: {
+              size: 14
+            }
+          }
         },
       },
     },
     barrasH: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'Anomalías 2019',
-        },
-      },
       responsive: true,
       indexAxis: 'y',
       maintainAspectRatio: true,
       scales: {
         x: {
           stacked: true,
+          title: {
+            display:true,
+            text: "",
+            font: {
+              size: 14
+            }
+          }
         },
         y: {
           stacked: true,
+          title: {
+            display:true,
+            text: "",
+            font: {
+              size: 14
+            }
+          } 
         },
       },
     },
     burbuja: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'Anomalías 2019',
-        },
-      },
       responsive: true,
       maintainAspectRatio: true,
+      scales: {
+        x: {
+          title: {
+            display:true,
+            text: "",
+            font: {
+              size: 14
+            }
+          }
+        },
+        y: {
+          title: {
+            display:true,
+            text: "",
+            font: {
+              size: 14
+            }
+          } 
+        },
+      }
     }
   }
 
   const handleClick = () => {
     setIsMenuOpen(true);
   };
+
+  const handleVarXForm = (value) => {
+    setVarX(value);
+  };
+
+  const handleVarYForm = (value) => {
+    setVarY(value);
+  };
+
+  useEffect(() => {
+    setOptionsValueY(getValuesOfVar(props.dataModelo, varY));
+  }, [varY])
+  
+  useEffect(() => {
+    setValueY(optionsValueY[0]);
+  }, [optionsValueY])
+
+  useEffect(() => {
+    if(chartType === "burbuja"){
+      setAnalysisType("Correlación");
+    }
+  }, [chartType])
+
+  const handleValueYForm = (value) => {
+    setValueY(value);
+  }
 
   useEffect(() => {
     const checkClickOutside = (e) => {
@@ -97,33 +163,87 @@ export default function AddGraph(props) {
   const handleCreateChart = () => {
     setIsMenuOpen(false);
     const id = _uniqueId('id-');
-    console.log(id);
 
-    props.setCharts(prevCharts => [...prevCharts, {
-      id: id,
-      type: chartType,
-      data: {
-        labels: UserData2.map((data) => data.planta),
+    let arrayForChart;
+
+    if(chartType !== "burbuja"){
+      if(analysisType === 'Anomalías'){
+        arrayForChart = createArrayChart(props.dataModelo, varX);
+      }else{
+        arrayForChart = createArrayCorrelacion(props.dataModelo, varX, varY, valueY);
+      }
+    }else{
+      arrayForChart = createArrayBurbuja(props.dataModelo, varX, varY);
+    }
+ 
+    let conf = {...optionsCharts[chartType]};
+
+    switch(chartType){
+      case "barrasV":
+        conf["scales"]["x"]["title"]["text"] = varX;
+        conf["scales"]["y"]["title"]["text"] = "Total de datos";
+        break;
+      case "barrasH":
+        conf["scales"]["x"]["title"]["text"] = "Total de datos";
+        conf["scales"]["y"]["title"]["text"] = varX;
+        break;
+      case "burbuja":
+        conf["scales"]["x"]["title"]["text"] = varX;
+        conf["scales"]["y"]["title"]["text"] = varY;
+        break;
+      default:
+        
+    }
+
+    if(chartType !== "burbuja" && analysisType === "Correlación"){
+      conf["scales"]["y"]["title"]["text"] += `(${varY}:${valueY}))`;
+    }
+
+    let dataChart;
+    if(chartType !== "burbuja"){
+      dataChart = {
+        labels: arrayForChart.map((data) => data.value),
         datasets: [
           {
             label: "Relaciones Normales",
-            data: UserData2.map((data) => data.normales),
+            data: arrayForChart.map((data) => data.normales),
             backgroundColor: ["#FAAD42"],
           },
           {
             label: "Relaciones Anómalas",
-            data: UserData2.map((data) => data.anomalias),
+            data: arrayForChart.map((data) => data.anomalias),
             backgroundColor: ["#F25C29"],
           },
         ],
-      },
-      options: optionsCharts[chartType]
+      };
+    }else{
+      dataChart = {
+        datasets: [
+          {
+            label: "Relaciones Anómalas",
+            data: arrayForChart["anomalias"],
+            backgroundColor: 'rgba(242, 92, 41, 0.5)',
+          },
+          {
+            label: "Relaciones Normales",
+            data: arrayForChart["normales"],
+            backgroundColor: 'rgba(250, 173, 66, 0.5)',
+          }
+        ],
+      };
+    }
+
+    props.setCharts(prevCharts => [...prevCharts, {
+      id: id,
+      type: chartType,
+      data: dataChart,
+      options: conf
     }])
   }
 
   return (
     <div>
-      <div class="relative inline-block text-left">
+      <div className="relative inline-block text-left">
         <div>
           <button
             onClick={handleClick}
@@ -163,6 +283,7 @@ export default function AddGraph(props) {
                 <ButtonGroupCor
                   setAnalysisType={setAnalysisType}
                   analysisType={analysisType}
+                  chartType = {chartType}
                 />
               </div>
 
@@ -170,13 +291,17 @@ export default function AddGraph(props) {
               <Divider borColor="border-black"/>
               {analysisType === "Anomalías" ?
                 <div className="grid grid-cols-2 pt-3 px-3">
-                  <GraphForm text="Eje X" />
+                  <GraphForm text="Eje X" atributos={props.atributos} valueSelect={varX} handleSelect={handleVarXForm}/>
                 </div>
                 :
                 <div className="grid grid-cols-2 pt-3 px-3">
-                  <GraphForm text="Eje X" />
-                  <GraphForm text="Valor" />
-                  <GraphForm text="Eje Y" />
+                  <GraphForm text="Eje X" atributos={props.atributos} valueSelect={varX} handleSelect={handleVarXForm}/>
+                  <GraphForm text="Eje Y" atributos={props.atributos} valueSelect={varY} handleSelect={handleVarYForm}/>
+                  {chartType !== "burbuja" ?  
+                    <GraphForm text="Valor Y" atributos={optionsValueY} valueSelect={valueY} handleSelect={handleValueYForm}/>
+                    :
+                    <></>
+                  } 
                 </div>
               }
 

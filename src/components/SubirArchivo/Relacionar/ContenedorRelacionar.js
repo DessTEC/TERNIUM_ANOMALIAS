@@ -30,14 +30,12 @@ const Contenedor = () => {
         if(source.droppableId === "subidos"){
             add = subidos[source.index];
             subidos.splice(source.index,1);
-            console.log("el bloque sale de subidos")
         }
 
         //---------EXTERNOS------------
         else if(source.droppableId === "externos"){
                 add = arregloExternos[source.index]
                 arregloExternos.splice(source.index,1)
-                console.log("el bloque sale de externos 1")
         }
 
 
@@ -45,7 +43,6 @@ const Contenedor = () => {
         else if(source.droppableId === "internos"){
             add = arregloInternos[source.index]
             arregloInternos.splice(source.index,1)
-            console.log("el bloque sale de internos 1")
         }
 
 
@@ -53,27 +50,20 @@ const Contenedor = () => {
         //-------------DESTINATION LOGIC------------------------
         if(destination.droppableId === "subidos"){
             subidos.splice(destination.index,0,add)
-            console.log("el bloque llega a subidos")
         }
         else if(destination.droppableId === "externos"){
             arregloExternos.splice(destination.index,0,add)
-            console.log("el bloque llega a externos y el tamaño del arreglo ahora es de 1")
         }
 
         //-----------INTERNOS------------
 
         else if(destination.droppableId === "internos"){
             arregloInternos.splice(destination.index,0,add)
-            console.log("el bloque llega a internos y el tamaño del arreglo ahora es de 1")
         }
 
 
 
         
-        console.log("EXTERNOS:")
-        console.log(actExt)
-        console.log("INTERNOS")
-        console.log(actInt)
         setAtributos(subidos)
         setActExt(arregloExternos)
         setActInt(arregloInternos)
@@ -104,7 +94,7 @@ const Contenedor = () => {
                             {atributos.map((atributo, index) => (
                                 <Draggable key={atributo} draggableId={atributo} index={index}>
                                     {(draggableProvided) => (
-                                        <li 
+                                        <li
                                         {...draggableProvided.draggableProps}
                                         ref={draggableProvided.innerRef}
                                         {...draggableProvided.dragHandleProps}

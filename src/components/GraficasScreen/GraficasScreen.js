@@ -4,8 +4,11 @@ import DownloadButton from "./DownloadButton";
 import {useState} from 'react';
 
 import { exportMultipleChartsToPdf } from "../utils/exportPdf";
+import { useOutletContext } from "react-router-dom";
 
 export const GraficasScreen = () => {
+
+  const [dataModelo, atributos] = useOutletContext();
 
   const [charts, setCharts] = useState([]);
   const [selectCharts, setSelectCharts] = useState([]);
@@ -20,7 +23,8 @@ export const GraficasScreen = () => {
         <AddGraph 
           text="Agregar gráfica"
           setCharts = {setCharts}
-          charts = {charts}
+          dataModelo = {dataModelo}
+          atributos = {atributos}
         />
       </div>
 
