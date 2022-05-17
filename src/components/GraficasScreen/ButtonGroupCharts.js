@@ -1,5 +1,5 @@
 import barchart1 from "../../assets/bar-chart1.png";
-import barchart2 from "../../assets/bar-chart3.png";
+import dona from "../../assets/dona.png";
 import chart1 from "../../assets/chart1.png";
 
 
@@ -7,14 +7,14 @@ export const ButtonGroupCharts = ({chartType, setChartType}) => {
 
     const buttons = [
         {
-            id: "barrasV",
+            id: "barras",
             image: barchart1,
             text: "Columnas verticales"
         },
         {
-            id: "barrasH",
-            image: barchart2,
-            text: "Columnas horizontales"
+            id: "dona",
+            image: dona,
+            text: "Dona"
         },
         {
             id: "burbuja",

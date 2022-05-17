@@ -7,6 +7,7 @@ import ChartFilterPopMenu from "../chartFilterMenu/chartFilterPopMenu";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import { BubbleChart } from "./BubbleChart";
+import { DonaChart } from "./DonaChart";
 
 export const ChartWrapper = ({ chartId, chartData, options, type, setSelectCharts }) => {
 
@@ -51,8 +52,10 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                 {
                     type === 'burbuja' ? 
                     <BubbleChart options = {options} chartData={chartData} />
-                    :
+                    : type === 'barras' ?
                     <BarChart options = {options} chartData={chartData} />
+                    : 
+                    <DonaChart options = {options} chartData={chartData} />
                 }
             </div>
                     
@@ -80,8 +83,10 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                         {
                             type === 'burbuja' ? 
                             <BubbleChart options = {options} chartData={chartData} />
-                            :
+                            : type === 'barras' ?
                             <BarChart options = {options} chartData={chartData} />
+                            : 
+                            <DonaChart options = {options} chartData={chartData} />
                         }
                         </div>
                     </div>
