@@ -35,6 +35,18 @@ export default function DropDownMenuOption(props){
 
     function toggleFilter(){
         setIsOpenOption(isOpenOption => !isOpenOption);
+        if(props.textDisplay === "Quitar"){
+            console.log("El id es... ", props.chartIndex)
+            console.log("Charts")
+            console.log(props.charts)
+            console.log("el  elemento que se va eliminar: ")
+            console.log(props.charts[props.chartIndex])
+            let updateCharts = props.charts.slice()
+            console.log("Update charts ")
+            console.log(updateCharts)
+            updateCharts.splice(props.chartIndex,1)
+            props.setCharts(updateCharts)
+        }
     }
 
     let arrowIcon = isOpenOption ? faAngleDown : faAngleRight
