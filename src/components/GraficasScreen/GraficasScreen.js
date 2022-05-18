@@ -43,6 +43,8 @@ export const GraficasScreen = () => {
                         analysisType = {chart.analysis}
                         atributos = {atributos}
                         dataModelo = {dataModelo}
+                        setCharts = {setCharts}
+                        charts = {charts}
                       />
                 );
             })

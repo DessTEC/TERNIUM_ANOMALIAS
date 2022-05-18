@@ -44,8 +44,7 @@ export default function ChartFilterPopMenu(props){
 
     const options = [
         <>
-            <DropDownMenuOption iconLeft={faSort} subMenu={<AxisFilterDropdown/>} textDisplay="Ordenar eje" expandable={true}/>
-            <DropDownMenuOption iconLeft={faArrowsRotate} subMenu={<VariableFilterDropdown atributos={props.atributos} analysis={props.analysisType} chartType={props.chartType} dataModelo={props.dataModelo}/>} textDisplay="Cambiar variables" expandable={true}/>
+            <DropDownMenuOption iconLeft={faArrowsRotate} subMenu={<VariableFilterDropdown atributos={props.atributos} analysis={props.analysisType} chartType={props.chartType} dataModelo={props.dataModelo} setCharts = {props.setCharts} id={props.id} charts={props.charts}/>} textDisplay="Cambiar variables" expandable={true}/>
             <DropDownMenuOption iconLeft={faCalendarDays} subMenu={<CalendarFilterDropdown/>} textDisplay="Fecha" expandable={true}/>
             <DropDownMenuOption iconLeft={faCog} subMenu={<RangeFilterDropdown/>} textDisplay="Rango de anomalía" expandable={true}/>
             <DropDownMenuOption iconLeft={faXmark} subMenu={<></>} textDisplay="Quitar" expandable={false}/>
