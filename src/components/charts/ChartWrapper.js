@@ -8,7 +8,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import { BubbleChart } from "./BubbleChart";
 
-export const ChartWrapper = ({ chartId, chartData, options, type, setSelectCharts }) => {
+export const ChartWrapper = ({ chartId, chartData, options, type, setSelectCharts, analysisType, atributos, dataModelo, setCharts, charts }) => {
 
     const [isOpen, setIsOpen] = React.useState(false);
 
@@ -58,7 +58,7 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                     
             <div className="w-8">
                 <div className="flex flex-column justify-content-start">
-                    <ChartFilterPopMenu/>
+                    <ChartFilterPopMenu atributos={atributos} analysisType={analysisType} chartType={type} dataModelo={dataModelo} setCharts = {setCharts} id={chartId} charts={charts}/>
                     <button className="w-full mb-2 rounded-t-md rounded-b-md border border-gray-200 shadow-md bg-[#F5F5F5]" onClick={handleZoom}><FontAwesomeIcon icon={faMagnifyingGlass} className="color-black w-4/6"/></button>
                 </div>
             </div>

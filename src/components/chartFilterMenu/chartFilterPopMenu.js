@@ -47,7 +47,7 @@ export default function ChartFilterPopMenu(props){
             <DropDownMenuOption iconLeft={faArrowsRotate} subMenu={<VariableFilterDropdown/>} textDisplay="Cambiar variables" expandable={true}/>
             <DropDownMenuOption iconLeft={faCalendarDays} subMenu={<CalendarFilterDropdown/>} textDisplay="Fecha" expandable={true}/>
             <DropDownMenuOption iconLeft={faCog} subMenu={<RangeFilterDropdown/>} textDisplay="Rango de anomalía" expandable={true}/>
-            <DropDownMenuOption iconLeft={faXmark} subMenu={<></>} textDisplay="Quitar" expandable={false}/>
+            <DropDownMenuOption iconLeft={faXmark} subMenu={<></>} textDisplay="Quitar" expandable={false} chartIndex={props.chartIndex} charts={props.charts} setCharts={props.setCharts}/>
         </>
         ]
 

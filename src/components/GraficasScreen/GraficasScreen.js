@@ -31,7 +31,7 @@ export const GraficasScreen = () => {
       {charts.length > 0 ? 
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-evenly justify-items-center" id="reporte">
           {
-            charts.map( chart => {
+            charts.map( (chart, index) => {
                 return(
                         <ChartWrapper 
                         key = {chart.id}
@@ -40,6 +40,11 @@ export const GraficasScreen = () => {
                         type = {chart.type}
                         setSelectCharts = {setSelectCharts}
                         chartId = {chart.id}
+                        analysisType = {chart.analysis}
+                        atributos = {atributos}
+                        dataModelo = {dataModelo}
+                        setCharts = {setCharts}
+                        charts = {charts}
                       />
                 );
             })
