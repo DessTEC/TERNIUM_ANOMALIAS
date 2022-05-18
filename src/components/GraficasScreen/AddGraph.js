@@ -13,7 +13,9 @@ import _uniqueId from 'lodash/uniqueId';
 import { createArrayChart } from "../utils/createArrayChart";
 import { createArrayCorrelacion } from "../utils/createArrayCorrelacion";
 import { createArrayBurbuja } from "../utils/createArrayBurbuja";
+import { createArrayDonaAnom } from "../utils/createArrayDonaAnom";
 import { getValuesOfVar } from "../utils/getValuesOfVar";
+import { createArrayDonaCorr } from "../utils/createArrayDonaCorr";
 
 
 export default function AddGraph(props) {
@@ -24,7 +26,7 @@ export default function AddGraph(props) {
   //Selección de gráficas
 
   //Variables de configuración
-  const [chartType, setChartType] = useState("barrasV");
+  const [chartType, setChartType] = useState("barras");
   const [analysisType, setAnalysisType] = useState('Anomalías');
 
   const [varX, setVarX] = useState(props.atributos[0]);
@@ -37,7 +39,7 @@ export default function AddGraph(props) {
   const [maxValAnomalias, setMaxValAnomalias] = useState(100);
 
   const optionsCharts = {
-    barrasV: {
+    barras: {
       responsive: true,
       maintainAspectRatio: true,
       scales: {
@@ -63,13 +65,21 @@ export default function AddGraph(props) {
         },
       },
     },
-    barrasH: {
+    dona: {
       responsive: true,
-      indexAxis: 'y',
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
+      plugins: {
+        title: {
+          display: true,
+          text: analysisType === "Anomalías" ? `Anomalías ${varX}`: `Anomalías ${varX} - ${varY}:${valueY}`,
+        },
+      },
+    },
+    burbuja: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         x: {
-          stacked: true,
           title: {
             display:true,
             text: "",
@@ -79,7 +89,6 @@ export default function AddGraph(props) {
           }
         },
         y: {
-          stacked: true,
           title: {
             display:true,
             text: "",
@@ -89,29 +98,22 @@ export default function AddGraph(props) {
           } 
         },
       },
-    },
-    burbuja: {
-      responsive: true,
-      maintainAspectRatio: true,
-      scales: {
-        x: {
-          title: {
-            display:true,
-            text: "",
-            font: {
-              size: 14
+      plugins: {
+        tooltip: {
+            callbacks: {
+                label: function(context) {
+                    let label = context.dataset.label || ''; //Obtener label de contexto
+
+                    if (label) {
+                        label += ': '; //Agregar dos puntos
+                    }
+                    if (context.parsed._custom !== null) { //Si el radio no es nulo
+                        label += context.raw.realR //Acceder a la información raw y obtener el valor del radio sin normalizar
+                    }
+                    return label;
+                }
             }
-          }
-        },
-        y: {
-          title: {
-            display:true,
-            text: "",
-            font: {
-              size: 14
-            }
-          } 
-        },
+        }
       }
     }
   }
@@ -166,26 +168,33 @@ export default function AddGraph(props) {
 
     let arrayForChart;
 
-    if(chartType !== "burbuja"){
-      if(analysisType === 'Anomalías'){
+    //Crear información según tipo de gráfica y tipo de análisis
+    if(analysisType === 'Anomalías'){
+      if(chartType === "barras"){
         arrayForChart = createArrayChart(props.dataModelo, varX, minValAnomalias, maxValAnomalias);
-      }else{
-        arrayForChart = createArrayCorrelacion(props.dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
+      }
+      if(chartType === "dona"){
+        arrayForChart = createArrayDonaAnom(props.dataModelo, varX, minValAnomalias, maxValAnomalias);
       }
     }else{
-      arrayForChart = createArrayBurbuja(props.dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
+      if(chartType === "barras"){
+        arrayForChart = createArrayCorrelacion(props.dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
+      }
+      if(chartType === "dona"){
+        arrayForChart = createArrayDonaCorr(props.dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
+      }
+      if(chartType === "burbuja"){
+        arrayForChart = createArrayBurbuja(props.dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
+      }
     }
+
  
     let conf = {...optionsCharts[chartType]};
 
     switch(chartType){
-      case "barrasV":
+      case "barras":
         conf["scales"]["x"]["title"]["text"] = varX;
         conf["scales"]["y"]["title"]["text"] = "Total de datos";
-        break;
-      case "barrasH":
-        conf["scales"]["x"]["title"]["text"] = "Total de datos";
-        conf["scales"]["y"]["title"]["text"] = varX;
         break;
       case "burbuja":
         conf["scales"]["x"]["title"]["text"] = varX;
@@ -195,12 +204,12 @@ export default function AddGraph(props) {
         
     }
 
-    if(chartType !== "burbuja" && analysisType === "Correlación"){
+    if(chartType === "barras" && analysisType === "Correlación"){
       conf["scales"]["y"]["title"]["text"] += `(${varY}:${valueY}))`;
     }
 
     let dataChart;
-    if(chartType !== "burbuja"){
+    if(chartType === "barras"){
       dataChart = {
         labels: arrayForChart.map((data) => data.value),
         datasets: [
@@ -216,7 +225,7 @@ export default function AddGraph(props) {
           },
         ],
       };
-    }else{
+    }else if(chartType === "burbuja"){
       dataChart = {
         datasets: [
           {
@@ -228,6 +237,32 @@ export default function AddGraph(props) {
             label: "Relaciones Normales",
             data: arrayForChart["normales"],
             backgroundColor: 'rgba(250, 173, 66, 0.5)',
+          }
+        ],
+      };
+    }else{
+      dataChart = {
+        labels: arrayForChart.map((data) => data.value),
+        datasets: [{
+            label: 'Número de anomalías',
+            data: arrayForChart.map((data) => data.anomalias),
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)',
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)',
+            ],
+            borderWidth: 1,
           }
         ],
       };

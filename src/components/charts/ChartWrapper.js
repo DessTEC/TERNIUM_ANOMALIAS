@@ -48,7 +48,7 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                     onClick={handleCheck}
                 />
             </div>
-            <div className="w-full" id={chartId}>
+            <div className="w-full h-80" id={chartId}>
                 {
                     type === 'burbuja' ? 
                     <BubbleChart options = {options} chartData={chartData} />
