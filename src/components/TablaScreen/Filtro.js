@@ -67,7 +67,7 @@ export const Filtro = (props) => {
                     onChange={handleSearch}
                 />
             </form>
-            <ul>
+            <ul className="column-values">
                 {column.filter(value => value.toString().toLowerCase().includes(wordEntered.toLowerCase())).map((value) =>
                     <li>
                         <input type="checkbox" checked={checkedState[value]} onChange={() => { handleCheckboxChange(value) }} />
