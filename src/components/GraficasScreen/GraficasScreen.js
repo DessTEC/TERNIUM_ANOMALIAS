@@ -40,6 +40,11 @@ export const GraficasScreen = () => {
                         type = {chart.type}
                         setSelectCharts = {setSelectCharts}
                         chartId = {chart.id}
+                        analysisType = {chart.analysis}
+                        atributos = {atributos}
+                        dataModelo = {dataModelo}
+                        setCharts = {setCharts}
+                        charts = {charts}
                       />
                 );
             })
