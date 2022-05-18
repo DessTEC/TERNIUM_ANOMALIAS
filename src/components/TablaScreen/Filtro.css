@@ -27,3 +27,22 @@
     width: 70px;
     text-align: center;
 }
+
+.column-values {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.column-values::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
+.column-values::-webkit-scrollbar:vertical {
+    width: 11px;
+}
+
+.column-values::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    border: 2px solid white; /* should match background, can't be transparent */
+    background-color: rgba(0, 0, 0, .5);
+}

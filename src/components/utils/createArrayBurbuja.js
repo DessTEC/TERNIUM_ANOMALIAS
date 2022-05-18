@@ -1,5 +1,10 @@
 
-export const createArrayBurbuja = (data, varXInterest, varYInterest) => {
+export const createArrayBurbuja = (data, varXInterest, varYInterest, minVal, maxVal) => {
+
+    let maxX = 0; //Valor máximo que puede tomar la variable X
+    let maxY = 0; //Valor máximo que puede tomar la variable Y
+    
+    let maxBubble = 0;
 
     //Las llaves serán concatenación del valor de varX con valor de varY
     let valuesOfVar = {};
@@ -8,10 +13,12 @@ export const createArrayBurbuja = (data, varXInterest, varYInterest) => {
     for(let i=0; i < data.length; i++){
         const objElemX = data[i];
         const valueX= objElemX[varXInterest];
+        maxX = Math.max(maxX, valueX)
         //Checar si en el registro sale la llave de valores combinados
         for(let j=0; j < data.length; j++){
             const objElemY = data[j];
             const valueY= objElemY[varYInterest];
+            maxY = Math.max(maxY, valueY)
 
             const llaveComb = `${varXInterest}:${valueX.toString()},${varYInterest}:${valueY.toString()}`;
             if(!valuesOfVar.hasOwnProperty(llaveComb)){
@@ -33,27 +40,35 @@ export const createArrayBurbuja = (data, varXInterest, varYInterest) => {
         
         const llaveElem = `${varXInterest}:${valueX.toString()},${varYInterest}:${valueY.toString()}`;
 
-        if(objElem["anomaly"] === -1){
+        if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
             valuesOfVar[llaveElem]["anomalias"]+=1;
         }else{
             valuesOfVar[llaveElem]["normales"]+=1;
         }
+
+        maxBubble = Math.max(maxBubble, valuesOfVar[llaveElem]["anomalias"], valuesOfVar[llaveElem]["normales"])
     }
 
     let dataAnomalias = []
     let dataNormales = []
+    
+    let maxRadius = Math.min(maxX, maxY); //Tamaño máximo del radio de la burbuja
+    let factNorm = maxRadius / maxBubble; //Factor para normalizar el tamaño de las burbujas a partir del máximo
+
 
     Object.keys(valuesOfVar).map(function(key, index) {
         dataAnomalias.push({
             x: valuesOfVar[key]["valueX"],
             y: valuesOfVar[key]["valueY"],
-            r: valuesOfVar[key]["anomalias"]
+            r: valuesOfVar[key]["anomalias"] * factNorm, //Calcular radio con base en área de círculos
+            realR: valuesOfVar[key]["anomalias"]
         })
 
         dataNormales.push({
             x: valuesOfVar[key]["valueX"],
             y: valuesOfVar[key]["valueY"],
-            r: valuesOfVar[key]["normales"]
+            r: valuesOfVar[key]["normales"] * factNorm,
+            realR: valuesOfVar[key]["normales"]
         })
     });
 

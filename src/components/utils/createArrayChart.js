@@ -1,5 +1,5 @@
 
-export const createArrayChart = (data, varInterest) => {
+export const createArrayChart = (data, varInterest, minVal, maxVal) => {
 
     let valuesOfVar = {};
 
@@ -8,13 +8,13 @@ export const createArrayChart = (data, varInterest) => {
 
         // Sumar 1 a llave existente al campo correspondiente
         if(valuesOfVar.hasOwnProperty(objElem[varInterest])){
-            if(objElem["anomaly"] === -1){
+            if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
                 valuesOfVar[objElem[varInterest]]["anomalias"]++
             }else{
                 valuesOfVar[objElem[varInterest]]["normales"]++
             }            
         }else{ // Instanciar nueva entrada del objeto con nuevo valor de la variable de interés 
-            if(objElem["anomaly"] === -1){
+            if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
                 valuesOfVar[objElem[varInterest]] = {
                     anomalias: 1,
                     normales: 0

@@ -1,5 +1,5 @@
 
-export const createArrayCorrelacion = (data, varXInterest, varYInterest, valueYInterest, minVal, maxVal) => {
+export const createArrayDonaCorr = (data, varXInterest, varYInterest, valueYInterest, minVal, maxVal) => {
 
     let valuesOfVar = {};
 
@@ -13,35 +13,54 @@ export const createArrayCorrelacion = (data, varXInterest, varYInterest, valueYI
             if(valuesOfVar.hasOwnProperty(objElem[varXInterest])){
                 if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
                     valuesOfVar[objElem[varXInterest]]["anomalias"]++
-                }else{
-                    valuesOfVar[objElem[varXInterest]]["normales"]++
-                }            
+                }        
             }else{ // Instanciar nueva entrada del objeto con nuevo valor de la variable de interés 
                 if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
                     valuesOfVar[objElem[varXInterest]] = {
                         anomalias: 1,
                         normales: 0
                     }
-                }else{
-                    valuesOfVar[objElem[varXInterest]] = {
-                        anomalias: 0,
-                        normales: 1
-                    }
                 }
             }
         }
     }
 
-    let dataForChart = []
+    let countAnomArray = []
 
     Object.keys(valuesOfVar).map(function(key, index) {
-        dataForChart.push({
-            id: index,
+        countAnomArray.push({
             value: key,
-            normales: valuesOfVar[key]["normales"],
             anomalias: valuesOfVar[key]["anomalias"]
         })
     });
+
+    //Ordenar arreglo dependiendo de las anomalías de los datos de mayor a menor
+    countAnomArray.sort(function(a, b) {
+        return a["anomalias"] > b["anomalias"] ? -1 : 1;
+    });
+
+    //Si hay más de 5 valores, juntar del 5 en adelante bajo el nombre Otros
+    if(countAnomArray.length > 5){
+        let otrosAnom = 0
+        for(let i=4; i < countAnomArray.length; i++){
+            otrosAnom+=countAnomArray[i]["anomalias"]
+        }
+        countAnomArray.splice(4)
+
+        countAnomArray.push({
+            value: "Otros",
+            anomalias: otrosAnom
+        })
+    }
+
+    let dataForChart = []
+    for(let i=0; i < countAnomArray.length; i++){
+        dataForChart.push({
+            id: i,
+            value: countAnomArray[i]["value"],
+            anomalias: countAnomArray[i]["anomalias"]
+        })
+    }
 
     return dataForChart;
 }

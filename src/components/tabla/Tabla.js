@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
 
+
 import "./Tabla.css"
 import { Filtro } from "../TablaScreen/Filtro";
 import { FiltroAnomalias } from "../TablaScreen/FiltroAnomalias";
@@ -15,15 +16,10 @@ const Tabla = (props) => {
 
     const atributos = props.atributos;
 
-    useEffect(() => {
-        console.log(filteredData);
-      return;
-    }, [filteredData])
-
     return(
-        <div class="table-responsive">
-            <table class="table">
-            <thead>
+        <div className="table-container">
+            <table className="table">
+            <thead className="table-responsive">
                 {atributos.map((header,index) =>
                     <Header hasCheckboxes={hasCheckboxes} header={header} index={index} filteredData={filteredData} filterFunction={setFilteredData} setSelectedVars={props.setSelectedVars} emptiedFilters={props.emptiedFilters} setEmptiedFilters={props.setEmptiedFilters}/>
                 )}
