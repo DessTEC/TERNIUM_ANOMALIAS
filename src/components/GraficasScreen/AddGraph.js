@@ -237,7 +237,8 @@ export default function AddGraph(props) {
       id: id,
       type: chartType,
       data: dataChart,
-      options: conf
+      options: conf,
+      analysis: analysisType
     }])
   }
 
