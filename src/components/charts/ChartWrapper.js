@@ -8,6 +8,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import { BubbleChart } from "./BubbleChart";
 import { data } from "autoprefixer";
+import { DonaChart } from "./DonaChart";
 
 export const ChartWrapper = ({ chartId, chartData, options, type, setSelectCharts, analysisType, atributos, dataModelo, setCharts, charts }) => {
 
@@ -48,12 +49,14 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                     onClick={handleCheck}
                 />
             </div>
-            <div className="w-full" id={chartId}>
+            <div className="w-full h-80" id={chartId}>
                 {
                     type === 'burbuja' ? 
                     <BubbleChart options = {options} chartData={chartData} />
-                    :
+                    : type === 'barras' ?
                     <BarChart options = {options} chartData={chartData} />
+                    : 
+                    <DonaChart options = {options} chartData={chartData} />
                 }
             </div>
                     
@@ -81,8 +84,10 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                         {
                             type === 'burbuja' ? 
                             <BubbleChart options = {options} chartData={chartData} />
-                            :
+                            : type === 'barras' ?
                             <BarChart options = {options} chartData={chartData} />
+                            : 
+                            <DonaChart options = {options} chartData={chartData} />
                         }
                         </div>
                     </div>
