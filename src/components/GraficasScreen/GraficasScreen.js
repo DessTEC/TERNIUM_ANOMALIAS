@@ -45,6 +45,8 @@ export const GraficasScreen = () => {
                         dataModelo = {dataModelo}
                         setCharts = {setCharts}
                         charts = {charts}
+                        minValAnomalias = {chart.minValAnomalias}
+                        maxValAnomalias = {chart.maxValAnomalias}
                       />
                 );
             })

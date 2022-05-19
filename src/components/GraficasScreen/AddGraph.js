@@ -21,6 +21,10 @@ import { createArrayDonaCorrGen } from "../utils/createArrayDonaCorrGen";
 import {Chart} from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { createArrayBarrasCorrGen } from "../utils/createArrayBarrasCorrGen";
+
+import {createArrayForChart, createConf} from '../utils/configChart'
+import createDataForChart from '../utils/createDataForChart'
+
 Chart.register(ChartDataLabels);
 
 
@@ -193,122 +197,20 @@ export default function AddGraph(props) {
     setIsMenuOpen(false);
     const id = _uniqueId('id-');
 
-    let arrayForChart;
+    let arrayForChart = createArrayForChart(props.dataModelo, analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias);
 
-    //Crear información según tipo de gráfica y tipo de análisis
-    if(analysisType === 'Anomalías'){
-      if(chartType === "barras"){
-        arrayForChart = createArrayBarrasAnom(props.dataModelo, varX, minValAnomalias, maxValAnomalias);
-      }
-      if(chartType === "dona"){
-        arrayForChart = createArrayDonaAnom(props.dataModelo, varX, minValAnomalias, maxValAnomalias);
-      }
-    }else if(analysisType === "Correlación Puntual"){
-      if(chartType === "barras"){
-        arrayForChart = createArrayBarrasCorrPun(props.dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
-      }
-      if(chartType === "dona"){
-        arrayForChart = createArrayDonaCorrPun(props.dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
-      }
-    }else{
-      if(chartType === "barras"){
-        arrayForChart = createArrayBarrasCorrGen(props.dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
-      }
-      if(chartType === "dona"){
-        arrayForChart = createArrayDonaCorrGen(props.dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
-      }
-      if(chartType === "burbuja"){
-        arrayForChart = createArrayBurbuja(props.dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
-      }
-      
-    }
+    let conf = createConf({...optionsCharts[chartType]}, analysisType, chartType, varX, varY, valueY);
 
- 
-    let conf = {...optionsCharts[chartType]};
-
-
-    if(chartType === "barras"){
-
-      conf["scales"]["x"]["title"]["text"] = varX;
-      conf["scales"]["y"]["title"]["text"] = "Total de datos";
-
-      if(analysisType === "Correlación General"){
-        conf["scales"]["y"]["title"]["text"] = varY;
-      }else{
-        conf["scales"]["y"]["title"]["text"] = `${varY}:${valueY}`;
-      }
-
-    }else if(chartType === "burbuja"){
-      conf["scales"]["x"]["title"]["text"] = varX;
-      conf["scales"]["y"]["title"]["text"] = varY;
-    }
-
-    let dataChart;
-    if(chartType === "barras"){
-      dataChart = {
-        labels: arrayForChart.map((data) => data.value),
-        datasets: [
-          {
-            label: "Relaciones Normales",
-            data: arrayForChart.map((data) => data.normales),
-            backgroundColor: ["#FAAD42"],
-          },
-          {
-            label: "Relaciones Anómalas",
-            data: arrayForChart.map((data) => data.anomalias),
-            backgroundColor: ["#F25C29"],
-          },
-        ],
-      };
-    }else if(chartType === "burbuja"){
-      dataChart = {
-        datasets: [
-          {
-            label: "Relaciones Anómalas",
-            data: arrayForChart["anomalias"],
-            backgroundColor: 'rgba(242, 92, 41, 0.5)',
-          },
-          {
-            label: "Relaciones Normales",
-            data: arrayForChart["normales"],
-            backgroundColor: 'rgba(250, 173, 66, 0.5)',
-          }
-        ],
-      };
-    }else{
-      dataChart = {
-        labels: arrayForChart.map((data) => data.value),
-        datasets: [{
-            label: 'Número de anomalías',
-            data: arrayForChart.map((data) => data.anomalias),
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
-          }
-        ],
-      };
-    }
+    let dataChart = createDataForChart(chartType, arrayForChart);
 
     props.setCharts(prevCharts => [...prevCharts, {
       id: id,
       type: chartType,
       data: dataChart,
       options: conf,
-      analysis: analysisType
+      analysis: analysisType,
+      minValAnomalias: minValAnomalias,
+      maxValAnomalias: maxValAnomalias
     }])
   }
 
