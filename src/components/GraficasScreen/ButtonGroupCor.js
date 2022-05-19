@@ -5,13 +5,16 @@ export const ButtonGroupCor = ({analysisType, setAnalysisType, chartType}) => {
             id: "Anomalías",
         },
         {
-            id: "Correlación",
+            id: "Correlación Puntual",
+        },
+        {
+            id: "Correlación General",
         },
     ]
 
 
-    const state1 = "px-4 py-2 mr-8 text-black font-medium border-b-2 border-l-2 border-gray-300 rounded-md" 
-    const state2 = "px-4 py-2 mr-8 text-white bg-[#F25C29] font-medium border-b-2 border-l-2 border-gray-300 rounded-md" 
+    const state1 = "px-4 py-2 mr-8 h-14 text-black font-medium border-b-2 border-l-2 border-gray-300 rounded-md" 
+    const state2 = "px-4 py-2 mr-8 h-14 text-white bg-[#F25C29] font-medium border-b-2 border-l-2 border-gray-300 rounded-md" 
 
     return(
         <>
@@ -27,10 +30,10 @@ export const ButtonGroupCor = ({analysisType, setAnalysisType, chartType}) => {
                 ))
                 :
                 <button 
-                    className={(analysisType === "Correlación" ?  state2 : state1)} 
-                    onClick={() => setAnalysisType("Correlación")}
+                    className={(analysisType === "Correlación General" ?  state2 : state1)} 
+                    onClick={() => setAnalysisType("Correlación General")}
                 >
-                    Correlación
+                    Correlación General
                 </button>
             }
         </>

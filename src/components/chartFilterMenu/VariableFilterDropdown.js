@@ -3,8 +3,8 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import GraphForm from "../GraficasScreen/GraphForm";
 
-import { createArrayChart } from "../utils/createArrayChart";
-import { createArrayCorrelacion } from "../utils/createArrayCorrelacion";
+import { createArrayBarrasAnom } from "../utils/createArrayBarrasAnom";
+import { createArrayBarrasCorrPun } from "../utils/createArrayBarrasCorrPun";
 import { createArrayBurbuja } from "../utils/createArrayBurbuja";
 import { getValuesOfVar } from "../utils/getValuesOfVar";
 
@@ -124,9 +124,9 @@ export default function VariableFilterDropdown(props){
 
     if(props.chartType !== "burbuja"){
       if(props.analysis === 'Anomalías'){
-        arrayForChart = createArrayChart(props.dataModelo, varX);
+        arrayForChart = createArrayBarrasAnom(props.dataModelo, varX);
       }else{
-        arrayForChart = createArrayCorrelacion(props.dataModelo, varX, varY, valueY);
+        arrayForChart = createArrayBarrasCorrPun(props.dataModelo, varX, varY, valueY);
       }
     }else{
       arrayForChart = createArrayBurbuja(props.dataModelo, varX, varY);
