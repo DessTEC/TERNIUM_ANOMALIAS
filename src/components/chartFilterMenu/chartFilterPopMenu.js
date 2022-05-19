@@ -44,7 +44,7 @@ export default function ChartFilterPopMenu(props){
 
     const options = [
         <>
-            <DropDownMenuOption iconLeft={faArrowsRotate} subMenu={<VariableFilterDropdown atributos={props.atributos} analysis={props.analysisType} chartType={props.chartType} dataModelo={props.dataModelo} setCharts = {props.setCharts} id={props.id} charts={props.charts} minValAnomalias={props.minValAnomalias} maxValAnomalias={props.maxValAnomalias}/>} textDisplay="Cambiar variables" expandable={true}/>
+            <DropDownMenuOption iconLeft={faArrowsRotate} subMenu={<VariableFilterDropdown atributos={props.atributos} analysis={props.analysisType} chartType={props.chartType} dataModelo={props.dataModelo} setCharts = {props.setCharts} id={props.id} charts={props.charts} minValAnomalias={props.minValAnomalias} maxValAnomalias={props.maxValAnomalias} varX = {props.varX} varY={props.varY} valY={props.valY}/>} textDisplay="Cambiar variables" expandable={true}/>
             <DropDownMenuOption iconLeft={faCalendarDays} subMenu={<CalendarFilterDropdown/>} textDisplay="Fecha" expandable={true}/>
             <DropDownMenuOption iconLeft={faCog} subMenu={<RangeFilterDropdown/>} textDisplay="Rango de anomalía" expandable={true}/>
             <DropDownMenuOption iconLeft={faXmark} subMenu={<></>} textDisplay="Quitar" expandable={false} chartIndex={props.chartIndex} charts={props.charts} setCharts={props.setCharts}/>

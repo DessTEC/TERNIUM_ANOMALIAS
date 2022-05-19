@@ -210,7 +210,10 @@ export default function AddGraph(props) {
       options: conf,
       analysis: analysisType,
       minValAnomalias: minValAnomalias,
-      maxValAnomalias: maxValAnomalias
+      maxValAnomalias: maxValAnomalias,
+      varX: varX,
+      varY:varY,
+      valY:valueY
     }])
   }
 

@@ -17,8 +17,8 @@ import createDataForChart from '../utils/createDataForChart';
 
 export default function VariableFilterDropdown(props){
   
-  const [varX, setVarX] = useState(props.atributos[0]);
-  const [varY, setVarY] = useState(props.atributos[0]);
+  const [varX, setVarX] = useState(props.varX == null ? props.atributos[0] : props.varX);
+  const [varY, setVarY] = useState(props.varY == null ? props.atributos[0] : props.varY);
 
   const handleVarXForm = (value) => {
     setVarX(value);
@@ -30,6 +30,9 @@ export default function VariableFilterDropdown(props){
    // handleChangeVariableChart();
   };
   
+  const [optionsValueY, setOptionsValueY] = useState(getValuesOfVar(props.dataModelo, varY));
+  const [valueY, setValueY] = useState(props.valY == null ? optionsValueY[0] : props.valY);
+
   useEffect(() => {
     setOptionsValueY(getValuesOfVar(props.dataModelo, varY));
   }, [varY])
@@ -39,13 +42,8 @@ export default function VariableFilterDropdown(props){
     //handleChangeVariableChart();
   }
 
-  const [optionsValueY, setOptionsValueY] = useState(getValuesOfVar(props.dataModelo, varY));
-  const [valueY, setValueY] = useState(optionsValueY[0]);
-
   const optionsCharts = createOptionsCharts(props.analysis, varX, varY, valueY);
 
-  console.log(props.maxValAnomalias);
-  console.log(props.minValAnomalias);
   const [minValAnomalias, setMinValAnomalias] = useState(props.minValAnomalias);
   const [maxValAnomalias, setMaxValAnomalias] = useState(props.maxValAnomalias);
 
@@ -70,7 +68,10 @@ export default function VariableFilterDropdown(props){
       options: conf,
       analysis: props.analysis,
       minValAnomalias: minValAnomalias,
-      maxValAnomalias: maxValAnomalias
+      maxValAnomalias: maxValAnomalias,
+      varX: varX,
+      varY: varY,
+      valY: valueY
     };
 
     props.setCharts(newCharts);
