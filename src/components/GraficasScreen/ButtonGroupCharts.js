@@ -9,7 +9,7 @@ export const ButtonGroupCharts = ({chartType, setChartType}) => {
         {
             id: "barras",
             image: barchart1,
-            text: "Columnas verticales"
+            text: "Columnas"
         },
         {
             id: "dona",

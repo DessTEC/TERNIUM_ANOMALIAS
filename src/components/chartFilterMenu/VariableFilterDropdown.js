@@ -3,8 +3,8 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import GraphForm from "../GraficasScreen/GraphForm";
 
-import { createArrayChart } from "../utils/createArrayChart";
-import { createArrayCorrelacion } from "../utils/createArrayCorrelacion";
+import { createArrayBarrasAnom } from "../utils/createArrayBarrasAnom";
+import { createArrayBarrasCorrPun } from "../utils/createArrayBarrasCorrPun";
 import { createArrayBurbuja } from "../utils/createArrayBurbuja";
 import { getValuesOfVar } from "../utils/getValuesOfVar";
 
