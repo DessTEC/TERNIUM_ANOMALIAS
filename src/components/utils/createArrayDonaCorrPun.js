@@ -1,5 +1,5 @@
 
-export const createArrayDonaCorr = (data, varXInterest, varYInterest, valueYInterest, minVal, maxVal) => {
+export const createArrayDonaCorrPun = (data, varXInterest, varYInterest, valueYInterest, minVal, maxVal) => {
 
     let valuesOfVar = {};
 
@@ -52,6 +52,9 @@ export const createArrayDonaCorr = (data, varXInterest, varYInterest, valueYInte
             anomalias: otrosAnom
         })
     }
+
+    //Eliminar opciones del arreglo con 0 anomalías
+    countAnomArray = countAnomArray.filter(elem => elem["anomalias"] > 0)
 
     let dataForChart = []
     for(let i=0; i < countAnomArray.length; i++){
