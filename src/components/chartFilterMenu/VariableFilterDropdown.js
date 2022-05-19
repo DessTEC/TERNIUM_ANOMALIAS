@@ -22,12 +22,12 @@ export default function VariableFilterDropdown(props){
 
   const handleVarXForm = (value) => {
     setVarX(value);
-    handleChangeVariableChart();
+   // handleChangeVariableChart();
   };
 
   const handleVarYForm = (value) => {
     setVarY(value);
-    handleChangeVariableChart();
+   // handleChangeVariableChart();
   };
   
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function VariableFilterDropdown(props){
 
   const handleValueYForm = (value) => {
     setValueY(value);
-    handleChangeVariableChart();
+    //handleChangeVariableChart();
   }
 
   const [optionsValueY, setOptionsValueY] = useState(getValuesOfVar(props.dataModelo, varY));
@@ -44,15 +44,21 @@ export default function VariableFilterDropdown(props){
 
   const optionsCharts = createOptionsCharts(props.analysis, varX, varY, valueY);
 
-  const [minValAnomalias, setMinValAnomalias] = useState(-100);
-  const [maxValAnomalias, setMaxValAnomalias] = useState(100);
+  console.log(props.maxValAnomalias);
+  console.log(props.minValAnomalias);
+  const [minValAnomalias, setMinValAnomalias] = useState(props.minValAnomalias);
+  const [maxValAnomalias, setMaxValAnomalias] = useState(props.maxValAnomalias);
+
+  useEffect(() => {
+    handleChangeVariableChart();
+  }, [varY, varX, valueY])
 
   const handleChangeVariableChart = () =>{
     const id = props.id;
 
     let arrayForChart = createArrayForChart(props.dataModelo, props.analysis, props.chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias);
 
-    let conf = createConf({...optionsCharts[ props.chartType]}, props.analysis, props.chartType, varX, varY, valueY);
+    let conf = createConf({...optionsCharts[ props.chartType]}, props.analysis,  props.chartType, varX, varY, valueY);
 
     let dataChart = createDataForChart( props.chartType, arrayForChart);
 
@@ -62,7 +68,9 @@ export default function VariableFilterDropdown(props){
       type: props.chartType,
       data: dataChart,
       options: conf,
-      analysis: props.analysis
+      analysis: props.analysis,
+      minValAnomalias: minValAnomalias,
+      maxValAnomalias: maxValAnomalias
     };
 
     props.setCharts(newCharts);
@@ -85,7 +93,7 @@ export default function VariableFilterDropdown(props){
                   <GraphForm text="Eje Y" atributos={props.atributos} valueSelect={varY} handleSelect={handleVarYForm}/>
                 </li>
                 <li>
-                {props.chartType !== "burbuja" ?  
+                {props.chartType !== "burbuja" & props.analysis === "Correlación Puntual" ?  
                   <GraphForm text="Valor Y" atributos={optionsValueY} valueSelect={valueY} handleSelect={handleValueYForm}/>
                   :
                   <></> 
