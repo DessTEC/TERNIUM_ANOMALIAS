@@ -1,5 +1,5 @@
 
-export const createArrayCorrelacion = (data, varXInterest, varYInterest, valueYInterest, minVal, maxVal) => {
+export const createArrayBarrasCorrPun = (data, varXInterest, varYInterest, valueYInterest, minVal, maxVal) => {
 
     let valuesOfVar = {};
 

@@ -10,14 +10,26 @@ import { ButtonGroupCor } from "./ButtonGroupCor";
 
 import _uniqueId from 'lodash/uniqueId';
 
-import { createArrayChart } from "../utils/createArrayChart";
-import { createArrayCorrelacion } from "../utils/createArrayCorrelacion";
+import { createArrayBarrasAnom } from "../utils/createArrayBarrasAnom";
+import { createArrayBarrasCorrPun } from "../utils/createArrayBarrasCorrPun";
 import { createArrayBurbuja } from "../utils/createArrayBurbuja";
 import { createArrayDonaAnom } from "../utils/createArrayDonaAnom";
 import { getValuesOfVar } from "../utils/getValuesOfVar";
 import { createArrayDonaCorr } from "../utils/createArrayDonaCorr";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { createArrayDonaCorrPun } from "../utils/createArrayDonaCorrPun";
+import { createArrayDonaCorrGen } from "../utils/createArrayDonaCorrGen";
+
+import {Chart} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import { createArrayBarrasCorrGen } from "../utils/createArrayBarrasCorrGen";
+
+import {createArrayForChart, createConf} from '../utils/configChart'
+import createDataForChart from '../utils/createDataForChart'
+
+Chart.register(ChartDataLabels);
+
 
 
 export default function AddGraph(props) {
@@ -57,6 +69,11 @@ export default function AddGraph(props) {
     barras: {
       responsive: true,
       maintainAspectRatio: true,
+      plugins: {
+        datalabels: {
+          display: false,
+        },
+      },
       scales: {
         x: {
           stacked: true,
@@ -86,7 +103,16 @@ export default function AddGraph(props) {
       plugins: {
         title: {
           display: true,
-          text: analysisType === "Anomalías" ? `Anomalías ${varX}`: `Anomalías ${varX} - ${varY}:${valueY}`,
+          text: analysisType === "Anomalías" ? `Anomalías ${varX}`: analysisType === "Correlación Puntual" ? `Anomalías ${varX} - ${varY}:${valueY}` : `Anomalías x:${varX} y:${varY}`,
+        },
+        datalabels: {
+          display: true,
+          align: 'center',
+          color: '#4B4B4B',
+          borderRadius: 3,
+          font: {
+            size: 18,
+          }
         },
       },
     },
@@ -114,6 +140,9 @@ export default function AddGraph(props) {
         },
       },
       plugins: {
+        datalabels: {
+          display: false,
+        },
         tooltip: {
             callbacks: {
                 label: function(context) {
@@ -124,6 +153,9 @@ export default function AddGraph(props) {
                     }
                     if (context.parsed._custom !== null) { //Si el radio no es nulo
                         label += context.raw.realR //Acceder a la información raw y obtener el valor del radio sin normalizar
+
+                        //Añadir coordenadas de burbuja
+                        label += ` x: ${context.raw.x} y: ${context.raw.y}`;
                     }
                     return label;
                 }
@@ -155,7 +187,7 @@ export default function AddGraph(props) {
 
   useEffect(() => {
     if(chartType === "burbuja"){
-      setAnalysisType("Correlación");
+      setAnalysisType("Correlación General");
     }
   }, [chartType])
 
@@ -181,114 +213,23 @@ export default function AddGraph(props) {
     setIsMenuOpen(false);
     const id = _uniqueId('id-');
 
-    let arrayForChart;
+    let arrayForChart = createArrayForChart(props.dataModelo, analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias);
 
-    //Crear información según tipo de gráfica y tipo de análisis
-    if(analysisType === 'Anomalías'){
-      if(chartType === "barras"){
-        arrayForChart = createArrayChart(props.dataModelo, varX, minValAnomalias, maxValAnomalias);
-      }
-      if(chartType === "dona"){
-        arrayForChart = createArrayDonaAnom(props.dataModelo, varX, minValAnomalias, maxValAnomalias);
-      }
-    }else{
-      if(chartType === "barras"){
-        arrayForChart = createArrayCorrelacion(props.dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
-      }
-      if(chartType === "dona"){
-        arrayForChart = createArrayDonaCorr(props.dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
-      }
-      if(chartType === "burbuja"){
-        arrayForChart = createArrayBurbuja(props.dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
-      }
-    }
+    let conf = createConf({...optionsCharts[chartType]}, analysisType, chartType, varX, varY, valueY);
 
- 
-    let conf = {...optionsCharts[chartType]};
-
-    switch(chartType){
-      case "barras":
-        conf["scales"]["x"]["title"]["text"] = varX;
-        conf["scales"]["y"]["title"]["text"] = "Total de datos";
-        break;
-      case "burbuja":
-        conf["scales"]["x"]["title"]["text"] = varX;
-        conf["scales"]["y"]["title"]["text"] = varY;
-        break;
-      default:
-        
-    }
-
-    if(chartType === "barras" && analysisType === "Correlación"){
-      conf["scales"]["y"]["title"]["text"] += `(${varY}:${valueY}))`;
-    }
-
-    let dataChart;
-    if(chartType === "barras"){
-      dataChart = {
-        labels: arrayForChart.map((data) => data.value),
-        datasets: [
-          {
-            label: "Relaciones Normales",
-            data: arrayForChart.map((data) => data.normales),
-            backgroundColor: ["#FAAD42"],
-          },
-          {
-            label: "Relaciones Anómalas",
-            data: arrayForChart.map((data) => data.anomalias),
-            backgroundColor: ["#F25C29"],
-          },
-        ],
-      };
-    }else if(chartType === "burbuja"){
-      dataChart = {
-        datasets: [
-          {
-            label: "Relaciones Anómalas",
-            data: arrayForChart["anomalias"],
-            backgroundColor: 'rgba(242, 92, 41, 0.5)',
-          },
-          {
-            label: "Relaciones Normales",
-            data: arrayForChart["normales"],
-            backgroundColor: 'rgba(250, 173, 66, 0.5)',
-          }
-        ],
-      };
-    }else{
-      dataChart = {
-        labels: arrayForChart.map((data) => data.value),
-        datasets: [{
-            label: 'Número de anomalías',
-            data: arrayForChart.map((data) => data.anomalias),
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-              'rgba(255, 159, 64, 0.2)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
-          }
-        ],
-      };
-    }
+    let dataChart = createDataForChart(chartType, arrayForChart);
 
     props.setCharts(prevCharts => [...prevCharts, {
       id: id,
       type: chartType,
       data: dataChart,
       options: conf,
-      analysis: analysisType
+      analysis: analysisType,
+      minValAnomalias: minValAnomalias,
+      maxValAnomalias: maxValAnomalias,
+      varX: varX,
+      varY:varY,
+      valY:valueY
     }])
 
     subirGrafica({
@@ -356,8 +297,10 @@ export default function AddGraph(props) {
                 <div className="grid grid-cols-2 pt-3 px-3">
                   <GraphForm text="Eje X" atributos={props.atributos} valueSelect={varX} handleSelect={handleVarXForm}/>
                   <GraphForm text="Eje Y" atributos={props.atributos} valueSelect={varY} handleSelect={handleVarYForm}/>
-                  {chartType !== "burbuja" ?  
-                    <GraphForm text="Valor Y" atributos={optionsValueY} valueSelect={valueY} handleSelect={handleValueYForm}/>
+                  {chartType !== "burbuja" & analysisType === "Correlación Puntual" ?  
+                    <div className="col-start-2">
+                      <GraphForm text="Valor Y" atributos={optionsValueY} valueSelect={valueY} handleSelect={handleValueYForm}/>
+                    </div>
                     :
                     <></>
                   } 

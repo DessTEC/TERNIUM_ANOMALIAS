@@ -1,5 +1,5 @@
 
-export const createArrayChart = (data, varInterest, minVal, maxVal) => {
+export const createArrayBarrasAnom = (data, varInterest, minVal, maxVal) => {
 
     let valuesOfVar = {};
 
