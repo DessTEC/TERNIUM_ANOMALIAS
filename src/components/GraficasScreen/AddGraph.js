@@ -15,6 +15,9 @@ import { createArrayBarrasCorrPun } from "../utils/createArrayBarrasCorrPun";
 import { createArrayBurbuja } from "../utils/createArrayBurbuja";
 import { createArrayDonaAnom } from "../utils/createArrayDonaAnom";
 import { getValuesOfVar } from "../utils/getValuesOfVar";
+import { createArrayDonaCorr } from "../utils/createArrayDonaCorr";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 import { createArrayDonaCorrPun } from "../utils/createArrayDonaCorrPun";
 import { createArrayDonaCorrGen } from "../utils/createArrayDonaCorrGen";
 
@@ -48,6 +51,19 @@ export default function AddGraph(props) {
 
   const [minValAnomalias, setMinValAnomalias] = useState(-100);
   const [maxValAnomalias, setMaxValAnomalias] = useState(100);
+  const params = useParams();
+  const [modeloId, setReporteId] = useState(params.modeloId);
+
+
+  const subirGrafica = async(grafica) => {
+
+    const result = await axios.put(
+        "http://localhost:4000/addGrafica", {params: {id: modeloId, newGrafica: grafica }}, 
+    );
+   
+}
+
+
 
   const optionsCharts = {
     barras: {
@@ -215,6 +231,14 @@ export default function AddGraph(props) {
       varY:varY,
       valY:valueY
     }])
+
+    subirGrafica({
+      id: id,
+      type: chartType,
+      data: dataChart,
+      options: conf,
+      analysis: analysisType
+    })
   }
 
   return (
