@@ -287,6 +287,8 @@ export default function AddGraph(props) {
               <Divider borColor="border-black"/>
               <div className="flex items-center justify-center pb-4">
                 <RangeSlider 
+                  startMinVal={-100}
+                  startMaxVal = {0}
                   min={-100}
                   max={100}
                   onChange={({ min, max }) => {
