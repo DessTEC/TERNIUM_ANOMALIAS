@@ -15,7 +15,6 @@ import { createArrayBarrasCorrPun } from "../utils/createArrayBarrasCorrPun";
 import { createArrayBurbuja } from "../utils/createArrayBurbuja";
 import { createArrayDonaAnom } from "../utils/createArrayDonaAnom";
 import { getValuesOfVar } from "../utils/getValuesOfVar";
-import { createArrayDonaCorr } from "../utils/createArrayDonaCorr";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { createArrayDonaCorrPun } from "../utils/createArrayDonaCorrPun";
