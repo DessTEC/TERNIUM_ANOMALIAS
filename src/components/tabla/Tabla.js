@@ -7,11 +7,19 @@ import "./Tabla.css"
 import { Filtro } from "../TablaScreen/Filtro";
 import { FiltroAnomalias } from "../TablaScreen/FiltroAnomalias";
 
+import { useTable } from "./useTable";
+import { TableFooter } from "./TableFooter";
+
 const Tabla = (props) => {
 
     const hasCheckboxes = props.hasCheckboxes;
     const filteredData = props.filteredData;
     const setFilteredData = props.setFilteredData;
+
+
+    const [page, setPage] = useState(1);
+    const [rowsPerPage, setRowsPerPage] = useState(10)
+    const { slice, range, canPreviousPage, canNextPage } = useTable(filteredData, page, rowsPerPage);
 
 
     const atributos = props.atributos;
@@ -25,9 +33,10 @@ const Tabla = (props) => {
                 )}
             </thead>
             <tbody>
-                {filteredData.map(row => <Row row = {row} headers={atributos}/>)}
+                {slice.map(row => <Row row = {row} headers={atributos}/>)}
             </tbody>
             </table>
+            <TableFooter range={range} slice={slice} setPage={setPage} page={page} setRowsPerPage={setRowsPerPage} rowsPerPage= {rowsPerPage} canPreviousPage={canPreviousPage} canNextPage={canNextPage}/>
         </div>
     );
 }
