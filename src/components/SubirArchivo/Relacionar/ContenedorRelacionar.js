@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import BloqueSubido from "./BloqueSubido"
 import { Buscar } from "./Buscar"
 import { useOutletContext } from "react-router-dom";
-import { render } from "@testing-library/react"
 import "./Relacionar.css"
 
 
@@ -21,6 +20,8 @@ const Contenedor = () => {
     const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
 
     const [atributos, setAtributos] = useState(columnas);
+    const [fecha, setFecha] = useState([]);
+
 
     const onDragEnd = (result) => {
 
@@ -30,7 +31,7 @@ const Contenedor = () => {
 
         if (destination.droppableId === source.droppableId && source.index === destination.index) return
 
-        let add, arregloExternos = actExt, subidos = atributos, arregloInternos = actInt;
+        let add, arregloExternos = actExt, subidos = atributos, arregloInternos = actInt, arregloFecha = fecha;
 
 
         //-------------SOURCE LOGIC------------------------
@@ -54,6 +55,12 @@ const Contenedor = () => {
             arregloInternos.splice(source.index, 1)
         }
 
+        //---------FECHA------------
+        else if (source.droppableId === "fecha") {
+            add = arregloFecha[source.index]
+            arregloFecha.splice(source.index, 1)
+        }
+
 
 
         //-------------DESTINATION LOGIC------------------------
@@ -70,12 +77,19 @@ const Contenedor = () => {
             arregloInternos.splice(destination.index, 0, add)
         }
 
+        //-----------FECHA------------
+
+        else if (destination.droppableId === "fecha") {
+            arregloFecha.splice(destination.index, 0, add)
+        }
+
 
 
 
         setAtributos(subidos)
         setActExt(arregloExternos)
         setActInt(arregloInternos)
+        setFecha(arregloFecha)
     }
 
 
@@ -84,7 +98,7 @@ const Contenedor = () => {
         <DragDropContext onDragEnd={onDragEnd}>
             <div className="columnaFecha">
                 <h5 id="centerTitle">Fecha de referencia</h5>
-                <BloqueAtributo titulo="Planta Transportista" color="backgroundAzulClaro" id="fecha" arregloAtributos={actExt} claseNormal="containerFecha" claseDotted="containerDottedFecha"/>
+                <BloqueAtributo titulo="Planta Transportista" color="backgroundAzulClaro" id="fecha" arregloAtributos={fecha} claseNormal="containerFecha" claseDotted="containerDottedFecha"/>
             </div>
 
             <div className="d-flex justify-content-between containerColumnas">
