@@ -41,13 +41,15 @@ export const ModelosCorrida = () => {
 
     const handleSelectModeloToDelete = idModelo => () => {
         setModeloToDelete(idModelo);
+        setShowModal(true);
     }
 
-    const deleteModelo = idModelo => async () => {
+    const deleteModelo =  async () => {
         await axios.delete(
             "http://localhost:4000/deleteModelo", {params: {
-                id: idModelo
+                id: modeloToDelete
         }});
+        setShowModal(false);
         fetchModelos();
     };
 
@@ -112,14 +114,14 @@ export const ModelosCorrida = () => {
                             return value.name.toLowerCase().includes(wordEntered.toLowerCase())
                         }).map( modelo => {
                             return(
-                                <div className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
+                                <div key={modelo["_id"]["$oid"]} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
                                     <div className="flex flex-row p-4 w-full">
                                         <Link to={modelo["_id"]["$oid"]} className="w-3/4">
                                             <p className='text-black font-bold text-left text-xl'>{modelo.name}</p>
                                             <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {modelo["fecha"]["$date"]}</p>
                                         </Link>
                                         <div className="flex w-1/4 justify-end">
-                                            <div className= "my-auto mr-4 cursor-pointer" onClick={deleteModelo(modelo["_id"]["$oid"]) }>
+                                            <div className= "my-auto mr-4 cursor-pointer" onClick={handleSelectModeloToDelete(modelo["_id"]["$oid"]) }>
                                                 <FontAwesomeIcon
                                                     icon={faTrashCan}
                                                     className="w-6 h-6 text-black"
@@ -136,7 +138,7 @@ export const ModelosCorrida = () => {
 
             <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
                 <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
-                    <div className="relative bg-white rounded-lg shadow h-64">
+                    <div className="relative bg-white rounded-lg shadow h-80">
                         <div className="flex flex-col center p-3 rounded-t w-full">
                             <div className="flex flex-row justify-end">
                                 <button onClick={handleClose} className="bg-slate-50 hover:bg-slate-300 rounded-lg p-1.5 ml-auto inline-flex items-center text-gray-400 hover:text-gray-900">
@@ -144,14 +146,14 @@ export const ModelosCorrida = () => {
                                 </button>
                             </div>
                             <FontAwesomeIcon icon={faCircleExclamation} className='w-full h-1/3 text-[#F6A000]'/>
-                            <h3 className="text-center mt-4">
-                                Al eliminar el modelo se borrarán también se borrarán las gráficas generadas en él. ¿Deseas continuar?
+                            <h3 className="text-center mt-4 text-base leading-7 mb-1">
+                                Al eliminar el modelo se borrarán las gráficas generadas en él. ¿Deseas continuar?
                             </h3>
-                            <div className="flex flex-row justify-between">
-                                <button onClick={handleClose} className="bg-[#f25c29] text-white font-bold py-2 px-4 rounded">
+                            <div className="flex flex-row justify-evenly mt-4">
+                                <button onClick={deleteModelo} className="bg-[#f25c29] text-white font-bold py-2 px-4 rounded">
                                     Eliminar
                                 </button>
-                                <button onClick={handleClose} className="bg-white border-solid border-[#f25c29] text-black font-bold py-2 px-4 rounded">
+                                <button onClick={handleClose} className="bg-white border-2 border-solid border-[#f25c29] text-black font-bold py-2 px-4 rounded">
                                     Cancelar
                                 </button>
                             </div>
