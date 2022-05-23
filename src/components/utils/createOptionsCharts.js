@@ -1,5 +1,6 @@
 export default function createOptionsCharts(analysisType, varX, varY, valueY){
-    return({
+    return(
+      {
         barras: {
           responsive: true,
           maintainAspectRatio: true,
@@ -97,4 +98,5 @@ export default function createOptionsCharts(analysisType, varX, varY, valueY){
             }
           }
         }
-      })}
+      }
+    )}
