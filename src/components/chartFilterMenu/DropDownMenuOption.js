@@ -1,14 +1,17 @@
 import React from "react";
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import { faAngleRight } from '@fortawesome/free-solid-svg-icons'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 //{props.expandable} ? <FontAwesomeIcon icon={faAngleDown} className="absolute right-2" /> : <></>
 
 export default function DropDownMenuOption(props){
 
-
+    const params = useParams();
+    const [modeloId, setReporteId] = useState(params.modeloId);
 
     const [isOpenOption, setIsOpenOption] = React.useState(false);
 
@@ -33,18 +36,19 @@ export default function DropDownMenuOption(props){
       };
     }, [isOpenOption]);
 
+    const updateGraficas = async(graficas) => {
+        const result = await axios.put(
+            "http://localhost:4000/updateGraficas", {params: {id: modeloId, newGraficas: graficas }}, 
+        );
+       
+    }
+
     function toggleFilter(){
         setIsOpenOption(isOpenOption => !isOpenOption);
         if(props.textDisplay === "Quitar"){
-            console.log("El id es... ", props.chartIndex)
-            console.log("Charts")
-            console.log(props.charts)
-            console.log("el  elemento que se va eliminar: ")
-            console.log(props.charts[props.chartIndex])
             let updateCharts = props.charts.slice()
-            console.log("Update charts ")
-            console.log(updateCharts)
             updateCharts.splice(props.chartIndex,1)
+            updateGraficas(updateCharts)
             props.setCharts(updateCharts)
         }
     }
