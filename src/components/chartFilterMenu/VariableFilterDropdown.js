@@ -1,11 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import GraphForm from "../GraficasScreen/GraphForm";
 
-import { createArrayBarrasAnom } from "../utils/createArrayBarrasAnom";
-import { createArrayBarrasCorrPun } from "../utils/createArrayBarrasCorrPun";
-import { createArrayBurbuja } from "../utils/createArrayBurbuja";
 import { getValuesOfVar } from "../utils/getValuesOfVar";
 
 import _uniqueId from 'lodash/uniqueId';
@@ -22,12 +18,10 @@ export default function VariableFilterDropdown(props){
 
   const handleVarXForm = (value) => {
     setVarX(value);
-   // handleChangeVariableChart();
   };
 
   const handleVarYForm = (value) => {
     setVarY(value);
-   // handleChangeVariableChart();
   };
   
   const [optionsValueY, setOptionsValueY] = useState(getValuesOfVar(props.dataModelo, varY));
@@ -39,7 +33,6 @@ export default function VariableFilterDropdown(props){
 
   const handleValueYForm = (value) => {
     setValueY(value);
-    //handleChangeVariableChart();
   }
 
   const optionsCharts = createOptionsCharts(props.analysis, varX, varY, valueY);
