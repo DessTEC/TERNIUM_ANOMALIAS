@@ -82,11 +82,17 @@ const Contenedor = () => {
     //se necesita desplegar en draggables los componentes de externos1
     return (
         <DragDropContext onDragEnd={onDragEnd}>
+            <div className="columnaFecha">
+                <h5 id="centerTitle">Fecha de referencia</h5>
+                <BloqueAtributo titulo="Planta Transportista" color="backgroundAzulClaro" id="fecha" arregloAtributos={actExt} claseNormal="containerFecha" claseDotted="containerDottedFecha"/>
+            </div>
+
             <div className="d-flex justify-content-between containerColumnas">
                 {/* Columna de actores externos */}
+
                 <div className="columna">
                     <h5>Actores externos</h5>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externos" arregloAtributos={actExt} />
+                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externos" arregloAtributos={actExt} claseNormal="containerRelacionar" claseDotted="containerDotted"/>
                 </div>
 
                 <div className="columna">
@@ -124,7 +130,7 @@ const Contenedor = () => {
 
                 <div className="columna">
                     <h5 className="alinearDerecha">Actores internos</h5>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="internos" arregloAtributos={actInt} />
+                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="internos" arregloAtributos={actInt} claseNormal="containerRelacionar" claseDotted="containerDotted"/>
                 </div>
             </div>
         </DragDropContext>
