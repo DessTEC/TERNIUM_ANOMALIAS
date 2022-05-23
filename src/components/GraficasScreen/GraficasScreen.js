@@ -26,8 +26,6 @@ export const GraficasScreen = () => {
       const result = await axios.get(
           "http://localhost:4000/getGraficas", {params: {id: modeloId }}, 
       );
-      console.log(result["data"]["graficas"])
-      console.log("id ", modeloId)
       setCharts(result["data"]["graficas"])
      
   }
