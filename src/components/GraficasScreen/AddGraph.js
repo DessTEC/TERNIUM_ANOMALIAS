@@ -22,12 +22,15 @@ import { createArrayDonaCorrGen } from "../utils/createArrayDonaCorrGen";
 
 import {Chart} from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
+import zoomPlugin  from 'chartjs-plugin-zoom'
+
 import { createArrayBarrasCorrGen } from "../utils/createArrayBarrasCorrGen";
 
 import {createArrayForChart, createConf} from '../utils/configChart'
 import createDataForChart from '../utils/createDataForChart'
 
 Chart.register(ChartDataLabels);
+Chart.register(zoomPlugin);
 
 
 
@@ -72,6 +75,19 @@ export default function AddGraph(props) {
         datalabels: {
           display: false,
         },
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: "xy"
+          },
+          zoom: {
+            enabled: true,
+            mode: "xy",
+            wheel: {
+              enabled: true
+            }
+          },
+        }
       },
       scales: {
         x: {
@@ -141,6 +157,19 @@ export default function AddGraph(props) {
       plugins: {
         datalabels: {
           display: false,
+        },
+        zoom: {
+          pan: {
+            enabled: true,
+            mode: "xy"
+          },
+          zoom: {
+            enabled: true,
+            mode: "xy",
+            wheel: {
+              enabled: true
+            }
+          },
         },
         tooltip: {
             callbacks: {
