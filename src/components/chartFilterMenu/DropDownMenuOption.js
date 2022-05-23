@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-//{props.expandable} ? <FontAwesomeIcon icon={faAngleDown} className="absolute right-2" /> : <></>
 
 export default function DropDownMenuOption(props){
 
@@ -46,8 +45,12 @@ export default function DropDownMenuOption(props){
     function toggleFilter(){
         setIsOpenOption(isOpenOption => !isOpenOption);
         if(props.textDisplay === "Quitar"){
-            let updateCharts = props.charts.slice()
-            updateCharts.splice(props.chartIndex,1)
+            let updateCharts = []
+            props.charts.map(function(chart){
+                if(chart["id"] != props.id)
+                    updateCharts.push(chart)
+            })
+
             updateGraficas(updateCharts)
             props.setCharts(updateCharts)
         }
@@ -69,17 +72,6 @@ export default function DropDownMenuOption(props){
         {props.expandable && isOpenOption && props.subMenu}
         </li>
     </div>
-    /*
-    <li className="filterMenu--listItem">
-        <div className ="filterMenu--option" onClick={props.toggler}>
-            <div>
-                <FontAwesomeIcon icon={props.iconLeft} className="w-4 h-4 mr-2 -ml-1" />
-                {props.textDisplay}        
-                {props.expandable ? <FontAwesomeIcon icon={arrowIcon} className="w-4 h-4 mr-2 -ml-1 absolute right-2" /> : <></>}
-            </div>
-        </div>
-        {props.isOn && props.subMenu}
-    </li>
-    */
+
     )
 }
