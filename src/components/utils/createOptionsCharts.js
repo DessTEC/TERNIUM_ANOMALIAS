@@ -52,7 +52,7 @@ export default function createOptionsCharts(analysisType, varX, varY, valueY){
             text: analysisType === "Anomalías" ? `Anomalías ${varX}`: analysisType === "Correlación Puntual" ? `Anomalías ${varX} - ${varY}:${valueY}` : `Anomalías x:${varX} y:${varY}`,
           },
           datalabels: {
-            display: true,
+            display: 'auto',
             align: 'center',
             color: '#4B4B4B',
             borderRadius: 3,

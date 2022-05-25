@@ -22,7 +22,7 @@ import { createArrayDonaCorrGen } from "../utils/createArrayDonaCorrGen";
 
 import {Chart} from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
-import zoomPlugin  from 'chartjs-plugin-zoom'
+import zoomPlugin  from 'chartjs-plugin-zoom';
 
 import { createArrayBarrasCorrGen } from "../utils/createArrayBarrasCorrGen";
 
@@ -32,7 +32,6 @@ import createOptionsCharts from "../utils/createOptionsCharts";
 
 Chart.register(ChartDataLabels);
 Chart.register(zoomPlugin);
-
 
 
 export default function AddGraph(props) {
