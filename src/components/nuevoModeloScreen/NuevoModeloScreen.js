@@ -39,7 +39,7 @@ export const NuevoModeloScreen = () => {
         );
         resultRequest.current = result["data"]["data"];
         setDataCsv(resultRequest.current.map((item) => item));
-        setAtributos([...result["data"]["actoresInternos"], ...result["data"]["actoresExternos"]]);
+        setAtributos([...result["data"]["fechaRelacion"], ...result["data"]["actoresInternos"], ...result["data"]["actoresExternos"]]);
     }
 
     const [inputValue, setInputValue] = useState('')

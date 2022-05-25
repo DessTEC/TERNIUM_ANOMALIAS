@@ -17,10 +17,9 @@ const Contenedor = () => {
         setWordEntered(searchWord);
     };
 
-    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
+    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual, fecha, setFecha] = useOutletContext();
 
     const [atributos, setAtributos] = useState(columnas);
-    const [fecha, setFecha] = useState([]);
 
 
     const onDragEnd = (result) => {
@@ -66,21 +65,39 @@ const Contenedor = () => {
         //-------------DESTINATION LOGIC------------------------
         if (destination.droppableId === "subidos") {
             subidos.splice(destination.index, 0, add)
+            console.log("llego a subidos")
         }
         else if (destination.droppableId === "externos") {
             arregloExternos.splice(destination.index, 0, add)
+            console.log("llego a externos")
         }
 
         //-----------INTERNOS------------
 
         else if (destination.droppableId === "internos") {
             arregloInternos.splice(destination.index, 0, add)
+            console.log("llego a internos")
         }
 
         //-----------FECHA------------
 
-        else if (destination.droppableId === "fecha") {
+        else if (destination.droppableId === "fecha" && fecha.length === 0) {
+            console.log("llego a fecha")
             arregloFecha.splice(destination.index, 0, add)
+        }
+        
+        //-----------FECHA ASIGNADA------------
+        else if(destination.droppableId === "fecha" && fecha.length >= 1 && source.droppableId === "internos"){
+            console.log("llego a fecha con source internos")
+            arregloInternos.splice(source.index,0,add)
+        }
+        else if(destination.droppableId === "fecha" && fecha.length >= 1 && source.droppableId === "externos"){
+            console.log("llego a fecha con source externos")
+            arregloExternos.splice(source.index,0,add)
+        }
+        else if(destination.droppableId === "fecha" && fecha.length >= 1 && source.droppableId === "subidos"){
+            console.log("llego a fecha con source subidos")
+            subidos.splice(source.index,0,add)
         }
 
 

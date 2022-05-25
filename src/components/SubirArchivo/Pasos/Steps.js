@@ -12,6 +12,7 @@ const Steps = () =>{
     const [columnas, setColumnas] = useState(undefined);
     const [actInt, setActInt] = useState([]);
     const [actExt, setActExt] = useState([]);
+    const [fecha, setFecha] = useState([]);
 
     const [stepActual, setStepActual] = useState(1);
 
@@ -28,7 +29,7 @@ const Steps = () =>{
                     <StepText text={"Cargar Datos"}/>
                 </div>
 
-                <Outlet context={[file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual]}/>
+                <Outlet context={[file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual, fecha, setFecha]}/>
             </div>
     )
 }

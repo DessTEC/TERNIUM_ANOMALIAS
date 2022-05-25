@@ -14,7 +14,7 @@ export const Cargas_1 = () => {
 
   const navigate = useNavigate();
 
-  const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
+  const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual, fecha, setFecha] = useOutletContext();
 
   const [reporteId, setReporteId] = useState(undefined);
 
@@ -26,7 +26,8 @@ export const Cargas_1 = () => {
         "name": inputValue, 
         "dataCsv": dataCsv,
         "actoresInternos": actInt,
-        "actoresExternos": actExt
+        "actoresExternos": actExt,
+        "fecha": fecha
       });
 
       setReporteId(result["data"]["id"]);
@@ -47,6 +48,7 @@ export const Cargas_1 = () => {
     setActExt([]);
     setActInt([]);
     setStepActual(2);
+    setFecha([])
     navigate('/dashboard/subir/parametros');
   }
 
@@ -77,6 +79,13 @@ export const Cargas_1 = () => {
               <p className="text-gray-400 pl-12 pt-3">Archivo a cargar</p>
               <Divider borColor="border-slate-400" />
               <p className="font-semibold pl-12 pt-2 pb-3">{file.name}</p>
+            </div>
+          </div>
+          <div className="flex flex-row justify-center">
+            <div className="bg-white rounded-lg w-5/6 mt-8">
+              <p className="text-gray-400 pl-12 pt-3">Fecha de referencia</p>
+              <Divider borColor="border-slate-400" />
+              <p className="font-semibold pl-12 pt-2 pb-3">{fecha}</p>
             </div>
           </div>
 
