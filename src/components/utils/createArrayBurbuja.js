@@ -57,6 +57,7 @@ export const createArrayBurbuja = (data, varXInterest, varYInterest, minVal, max
 
 
     Object.keys(valuesOfVar).map(function(key, index) {
+
         dataAnomalias.push({
             x: valuesOfVar[key]["valueX"],
             y: valuesOfVar[key]["valueY"],
