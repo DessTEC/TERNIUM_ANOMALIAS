@@ -1,4 +1,5 @@
 export default function createOptionsCharts(analysisType, varX, varY, valueY){
+
     return({
       barras: {
         responsive: true,
