@@ -4,7 +4,6 @@ import { useState, useEffect } from "react"
 import BloqueSubido from "./BloqueSubido"
 import { Buscar } from "./Buscar"
 import { useOutletContext } from "react-router-dom";
-import { render } from "@testing-library/react"
 import "./Relacionar.css"
 
 
@@ -18,9 +17,10 @@ const Contenedor = () => {
         setWordEntered(searchWord);
     };
 
-    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
+    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual, fecha, setFecha] = useOutletContext();
 
     const [atributos, setAtributos] = useState(columnas);
+
 
     const onDragEnd = (result) => {
 
@@ -30,7 +30,7 @@ const Contenedor = () => {
 
         if (destination.droppableId === source.droppableId && source.index === destination.index) return
 
-        let add, arregloExternos = actExt, subidos = atributos, arregloInternos = actInt;
+        let add, arregloExternos = actExt, subidos = atributos, arregloInternos = actInt, arregloFecha = fecha;
 
 
         //-------------SOURCE LOGIC------------------------
@@ -54,20 +54,50 @@ const Contenedor = () => {
             arregloInternos.splice(source.index, 1)
         }
 
+        //---------FECHA------------
+        else if (source.droppableId === "fecha") {
+            add = arregloFecha[source.index]
+            arregloFecha.splice(source.index, 1)
+        }
+
 
 
         //-------------DESTINATION LOGIC------------------------
         if (destination.droppableId === "subidos") {
             subidos.splice(destination.index, 0, add)
+            console.log("llego a subidos")
         }
         else if (destination.droppableId === "externos") {
             arregloExternos.splice(destination.index, 0, add)
+            console.log("llego a externos")
         }
 
         //-----------INTERNOS------------
 
         else if (destination.droppableId === "internos") {
             arregloInternos.splice(destination.index, 0, add)
+            console.log("llego a internos")
+        }
+
+        //-----------FECHA------------
+
+        else if (destination.droppableId === "fecha" && fecha.length === 0) {
+            console.log("llego a fecha")
+            arregloFecha.splice(destination.index, 0, add)
+        }
+        
+        //-----------FECHA ASIGNADA------------
+        else if(destination.droppableId === "fecha" && fecha.length >= 1 && source.droppableId === "internos"){
+            console.log("llego a fecha con source internos")
+            arregloInternos.splice(source.index,0,add)
+        }
+        else if(destination.droppableId === "fecha" && fecha.length >= 1 && source.droppableId === "externos"){
+            console.log("llego a fecha con source externos")
+            arregloExternos.splice(source.index,0,add)
+        }
+        else if(destination.droppableId === "fecha" && fecha.length >= 1 && source.droppableId === "subidos"){
+            console.log("llego a fecha con source subidos")
+            subidos.splice(source.index,0,add)
         }
 
 
@@ -76,17 +106,24 @@ const Contenedor = () => {
         setAtributos(subidos)
         setActExt(arregloExternos)
         setActInt(arregloInternos)
+        setFecha(arregloFecha)
     }
 
 
     //se necesita desplegar en draggables los componentes de externos1
     return (
         <DragDropContext onDragEnd={onDragEnd}>
+            <div className="columnaFecha">
+                <h5 id="centerTitle">Fecha de referencia</h5>
+                <BloqueAtributo titulo="Planta Transportista" color="backgroundAzulClaro" id="fecha" arregloAtributos={fecha} claseNormal="containerFecha" claseDotted="containerDottedFecha"/>
+            </div>
+
             <div className="d-flex justify-content-between containerColumnas">
                 {/* Columna de actores externos */}
+
                 <div className="columna">
                     <h5>Actores externos</h5>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externos" arregloAtributos={actExt} />
+                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externos" arregloAtributos={actExt} claseNormal="containerRelacionar" claseDotted="containerDotted"/>
                 </div>
 
                 <div className="columna">
@@ -124,7 +161,7 @@ const Contenedor = () => {
 
                 <div className="columna">
                     <h5 className="alinearDerecha">Actores internos</h5>
-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="internos" arregloAtributos={actInt} />
+                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="internos" arregloAtributos={actInt} claseNormal="containerRelacionar" claseDotted="containerDotted"/>
                 </div>
             </div>
         </DragDropContext>

@@ -1,10 +1,12 @@
 import { ChartWrapper } from "../charts/ChartWrapper";
 import AddGraph from "./AddGraph";
 import DownloadButton from "./DownloadButton";
-import {useState} from 'react';
-
+import {useState, useEffect} from 'react';
+import axios from "axios";
 import { exportMultipleChartsToPdf } from "../utils/exportPdf";
 import { useOutletContext } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
 
 export const GraficasScreen = () => {
 
@@ -12,6 +14,21 @@ export const GraficasScreen = () => {
 
   const [charts, setCharts] = useState([]);
   const [selectCharts, setSelectCharts] = useState([]);
+  const params = useParams();
+  const [modeloId, setReporteId] = useState(params.modeloId);
+
+
+  useEffect(() => {
+    getGraficas();
+  }, [])
+
+  const getGraficas = async() => {
+      const result = await axios.get(
+          "http://localhost:4000/getGraficas", {params: {id: modeloId }}, 
+      );
+      setCharts(result["data"]["graficas"])
+     
+  }
 
   return (
     <div>

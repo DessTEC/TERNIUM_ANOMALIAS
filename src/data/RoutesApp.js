@@ -11,6 +11,7 @@ import SubirDatos from '../components/SubirArchivo/CargarArchivo/SubirDatos';
 import RelacionarColumnas from '../components/SubirArchivo/Relacionar/RelacionarColumnas';
 import Steps from '../components/SubirArchivo/Pasos/Steps';
 import {Cargas_1} from '../components/Cargas/Cargas_1';
+import { DiccionarioScreen } from '../components/DiccionarioScreen/DiccionarioScreen';
 
 export const RoutesApp = [
     {path: "/", element: <HomeScreen />},
@@ -47,7 +48,8 @@ export const RoutesApp = [
           element: <TabBar/>,
           children: [
             {path: "/dashboard/consultar/:reporteId/:modeloId", element: <TablaScreen/>},
-            {path: "/dashboard/consultar/:reporteId/:modeloId/graficas", element: <GraficasScreen/>}
+            {path: "/dashboard/consultar/:reporteId/:modeloId/graficas", element: <GraficasScreen/>},
+            {path: "/dashboard/consultar/:reporteId/:modeloId/diccionario", element: <DiccionarioScreen/>}
           ]
         },
       ]

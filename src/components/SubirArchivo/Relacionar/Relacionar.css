@@ -49,6 +49,23 @@
     width: 22vw !important;
 }
 
+.containerDottedFecha{
+    background-color: white;
+    border: dotted;
+    height: 4.5vw;
+    width: 24vw;
+    margin:auto;
+    margin-top: 3vw;
+}
+
+.columnaFecha{
+    width: 30vw;
+    height: 15vw;
+    margin: auto;
+    margin-bottom: 3vw;
+    margin-top: 3vw;
+}
+
 .centrarTexto{
     display:flex;
     align-items: center;
@@ -72,6 +89,11 @@ h5{
     background-color: #FFFBD3;
 }
 
+.backgroundAzulClaro{
+    background-color: #F3F6FF;
+}
+
+
 .containerColumnas{
     margin: 3vw;
 }
@@ -82,6 +104,18 @@ h5{
     margin: auto;
     margin-top: 1vw;
 }
+
+.containerFecha{
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    height: 10vw;
+    width: 30vw;
+}
+
+#centerTitle{
+    text-align:center;
+}
+
 
 .columnaMedia::-webkit-scrollbar {
     width: .2vw;               /* width of the entire scrollbar */

@@ -3,14 +3,14 @@ import BloqueSubido from "./BloqueSubido"
 
 const BloqueAtributo = (props) =>{
 
-    let classes = "rounded containerRelacionar " + props.color
-
+    let classesContainerNormal = "rounded " + props.color + " " + props.claseNormal
+    let classesContainerDotted = "rounded overflow-auto " + props.claseDotted 
     return(
-        <div className={classes}>
+        <div className={classesContainerNormal}>
                         <div className="container">
                             <Droppable droppableId={props.id}>
                                 { (droppableProvided) => (
-                                <ul className="rounded containerDotted overflow-auto"
+                                <ul className={classesContainerDotted}
                                     {...droppableProvided.droppableProps}
                                     ref={droppableProvided.innerRef}
                                 >
