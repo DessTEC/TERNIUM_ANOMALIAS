@@ -12,6 +12,9 @@ export const TabBar = () => {
     const [dataModelo, setDataModelo] = useState(undefined);
     const [atributos, setAtributos] = useState(undefined);
     const [nombreModelo, setNombreModelo] = useState(undefined);
+    const [diccionario, setDiccionario] = useState(undefined);
+    const [actInt, setActInt] = useState(undefined);
+    const [actExt, setActExt] = useState(undefined);
 
     useEffect(() => {
         getModelo();
@@ -25,6 +28,9 @@ export const TabBar = () => {
          setDataModelo(result["data"]["results"]);
          setAtributos(result["data"]["variables"]);
          setNombreModelo(result["data"]["name"]);
+         setDiccionario(result["data"]["diccionario"]);
+         setActInt(result["data"]["actoresInternos"]);
+         setActExt(result["data"]["actoresExternos"]);
      }
 
     return (
@@ -51,12 +57,22 @@ export const TabBar = () => {
                             Gráficas
                         </NavLink>
                     </li>
+                    <li className="mr-2">
+                        <NavLink 
+                            className="inline-block p-2 rounded-t-lg border-b-2"
+                            activeClassName= "text-[#F25C29] border-[#F25C29] hover:border-[#c62901] hover:text-[#c62901]"
+                            inactiveClassName= "text-gray-400 border-gray-300 hover:text-gray-600 hover:border-gray-600"
+                            to="diccionario"
+                        >
+                            Diccionario
+                        </NavLink>
+                    </li>
                 </ul>
 
                 <div className='w-full'>
                     {
                         atributos === undefined || dataModelo === undefined ? <></>:
-                        <Outlet context={[dataModelo, atributos, nombreModelo]}/>
+                        <Outlet context={[dataModelo, atributos, nombreModelo, diccionario, actInt, actExt]}/>
                     }
                 </div>
             </div>  
