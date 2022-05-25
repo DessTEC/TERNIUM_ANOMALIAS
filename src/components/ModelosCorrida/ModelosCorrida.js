@@ -15,6 +15,7 @@ import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
 
 export const ModelosCorrida = () => {
 
@@ -23,9 +24,11 @@ export const ModelosCorrida = () => {
 
     useEffect(() => {
         fetchModelos();
+        fetchNombreReporte();
     }, []);
 
     const [modelos, setModelos] = useState([]);
+    const [reporte, setReporte] = useState([]);
     const [modeloToDelete, setModeloToDelete] = useState();
 
     const fetchModelos = async () => {
@@ -37,6 +40,18 @@ export const ModelosCorrida = () => {
 
 
         setModelos(result.data);
+    };
+
+    const fetchNombreReporte = async () => {
+        console.log("Fetch nombre reporte");
+        const result = await axios.get(
+            "http://localhost:4000/getReporteById", {params: {
+                id: params.reporteId,
+                reporteId: params.reporteId 
+            }});
+
+
+        setReporte(result.data);
     };
 
     const handleSelectModeloToDelete = idModelo => () => {
@@ -99,7 +114,7 @@ export const ModelosCorrida = () => {
                     <div className='w-2/3 d-flex justify-content-between'>
                         <Link to={'/dashboard/consultar'} className="bg-[#FFFFFF] text-black border-0 hover:bg-[#FFFFFF] text-xl font-bold">
                             <FontAwesomeIcon icon={faArrowLeft} className="buttonIcon pr-5"/>
-                            {params.nombre}
+                            {reporte.name}
                         </Link>
                         <button className="btn text-white bg-[#F25C29] border-0 hover:bg-[#D15226]" onClick={handleNewModelo}>
                             <FontAwesomeIcon icon={faPlus} className="buttonIcon"/>
@@ -118,7 +133,7 @@ export const ModelosCorrida = () => {
                                     <div className="flex flex-row p-4 w-full">
                                         <Link to={modelo["_id"]["$oid"]} className="w-3/4">
                                             <p className='text-black font-bold text-left text-xl'>{modelo.name}</p>
-                                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {modelo["fecha"]["$date"]}</p>
+                                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {moment(modelo["fecha"]["$date"]).locale("es").format("DD-MMMM-YYYY")}</p>
                                         </Link>
                                         <div className="flex w-1/4 justify-end">
                                             <div className= "my-auto mr-4 cursor-pointer" onClick={handleSelectModeloToDelete(modelo["_id"]["$oid"]) }>
