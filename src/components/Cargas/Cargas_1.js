@@ -43,7 +43,7 @@ export const Cargas_1 = () => {
   
 
   const handleCambio = () => {
-    const colOriginal = [...actInt, ...actExt]
+    const colOriginal = [...columnas,...actInt, ...actExt]
     setColumnas(colOriginal);
     setActExt([]);
     setActInt([]);
