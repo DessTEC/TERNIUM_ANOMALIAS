@@ -54,7 +54,10 @@
     ]
   },
   "devDependencies": {
+    "@4tw/cypress-drag-drop": "^2.1.0",
     "autoprefixer": "^10.4.4",
+    "cypress": "^9.7.0",
+    "cypress-file-upload": "^5.0.8",
     "postcss": "^8.4.12",
     "tailwindcss": "^3.0.23"
   }
