@@ -67,10 +67,10 @@ const SubirDatos = () =>{
         <div>
             <h2 className="text">SUBIR ARCHIVO</h2>
             <h3 className="text">Sube el archivo que deseas analizar</h3>
-            <ContenedorArchivos file={file} setFile={setFile}/>
+            <ContenedorArchivos file={file} setFile={setFile} id="contenedorArchivos"/>
             <BotonesInferior primerBoton="Cancelar" segundoBoton="Configurar parametros" handlePrimero = {handlePrimero} handleSegundo = {handleSegundo}/>
 
-            <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
+            <div id="modal" className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
                 <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
                     <div className="relative bg-white rounded-lg shadow h-64">
                         <div className="flex flex-col center p-3 rounded-t w-full">

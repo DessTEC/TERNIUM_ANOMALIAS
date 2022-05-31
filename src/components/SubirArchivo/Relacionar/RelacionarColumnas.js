@@ -28,7 +28,7 @@ const RelacionarColumnas = () =>{
     }
 
     const handleSegundo = () => {
-        if(columnas.length !== 0){
+        if(actInt.length === 0 || actExt.length === 0){
             console.log(actInt)
             console.log(actExt)
             console.log(columnas)
@@ -36,6 +36,7 @@ const RelacionarColumnas = () =>{
             setShowModal(true);
         }else{
             setStepActual(3);
+            console.log(columnas)
             navigate('/dashboard/subir/cargar');
         }
         
@@ -63,7 +64,7 @@ const RelacionarColumnas = () =>{
                             </div>
                             <FontAwesomeIcon icon={faCircleExclamation} className='w-full h-1/3 text-[#F6A000]'/>
                             <h3 className="text-center mt-4">
-                                Por favor relaciona todas las columnas
+                                Por favor relaciona un actor externo y uno interno
                             </h3>
                         </div>
                     </div>

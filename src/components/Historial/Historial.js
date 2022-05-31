@@ -11,12 +11,13 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
-import axios from "axios";
 
+import axios from "axios";
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 import { useState, useEffect, useRef} from "react";
+import moment from 'moment';
 
 export const Historial = () => {
 
@@ -136,7 +137,7 @@ export const Historial = () => {
                                     <div className="flex flex-row p-4 w-full">
                                         <Link to={reporte["_id"]["$oid"]} className="w-3/4">
                                             <p className='text-black font-bold text-left text-xl'>{reporte.name}</p>
-                                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {reporte["fecha"]["$date"]}</p>
+                                            <p className='text-black font-normal text-left text-l'>Fecha de ejecución: {moment(reporte["fecha"]["$date"]).locale("es").format("DD-MMMM-YYYY")}</p>
                                             <p className='text-black font-normal text-left text-l'>{`${reporte.modelos} modelos`}</p>
                                         </Link>
                                         <div className="flex w-1/4 justify-end">

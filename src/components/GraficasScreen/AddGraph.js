@@ -139,7 +139,12 @@ export default function AddGraph(props) {
       type: chartType,
       data: dataChart,
       options: conf,
-      analysis: analysisType
+      analysis: analysisType,
+      minValAnomalias: minValAnomalias,
+      maxValAnomalias: maxValAnomalias,
+      varX: varX,
+      varY:varY,
+      valY:valueY
     })
   }
 
