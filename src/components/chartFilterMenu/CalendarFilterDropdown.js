@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function CalendarFilterDropdown(props){
+export default function CalendarFilterDropdown({initDate, endDate, setInitDate, setEndDate, inputValueStart, inputValueEnd, setInputValueStart, setInputValueEnd}){
 
     const startDateField = document.getElementsByClassName('startDate');
     const endDateField = document.getElementsByClassName('endDate');
@@ -13,17 +13,17 @@ export default function CalendarFilterDropdown(props){
     const [selectedStart, setSelectedStart] = React.useState(false);
     const [selectedEnd, setSelectedEnd] = React.useState(false);
 
-    const [inputValueStart, setInputValueStart] = React.useState('');
-    const [inputValueEnd, setInputValueEnd] = React.useState('');
+    //const [inputValueStart, setInputValueStart] = React.useState('');
+    //const [inputValueEnd, setInputValueEnd] = React.useState('');
 
-    const [initDate, setInitDate] = React.useState(null);
+    //const [initDate, setInitDate] = React.useState(null);
 
     function onChangeStart(nextValue) {
         setInitDate(nextValue);
         setInputValueStart(getFormatedDate(nextValue));
     }
 
-    const [endDate, setEndDate] = React.useState(null);
+    //const [endDate, setEndDate] = React.useState(null);
 
     function onChangeEnd(nextValue) {
         setEndDate(nextValue);

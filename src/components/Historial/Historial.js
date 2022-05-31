@@ -3,8 +3,12 @@ import logo from '../../assets/terniumLogo.png';
 import industria from '../../assets/industria.png';
 import { SearchBar } from '../SearchBar/SearchBar';
 
+import DropDownMenuOption from "../chartFilterMenu/DropDownMenuOption";
+import CalendarFilterDropdown from "../chartFilterMenu/CalendarFilterDropdown";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
+import { faCalendarDays } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons'
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import axios from "axios";
@@ -12,9 +16,38 @@ import axios from "axios";
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef} from "react";
 
 export const Historial = () => {
+
+    const ref = useRef();
+
+    const [inputValueStart, setInputValueStart] = useState('');
+    const [inputValueEnd, setInputValueEnd] = useState('');
+
+    const [initDate, setInitDate] = useState(null);
+    const [endDate, setEndDate] = useState(null);
+
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
+    const handleClick = () => {
+      setIsMenuOpen(true);
+    };
+  
+    useEffect(() => {
+      const checkClickOutside = (e) => {
+        if (isMenuOpen && ref.current && !ref.current.contains(e.target)) {
+          setIsMenuOpen(false);
+        }
+      };
+
+      document.addEventListener("click", checkClickOutside);
+  
+      return () => {
+        document.removeEventListener("click", checkClickOutside);
+      };
+    }, [isMenuOpen]);
+
 
     useEffect(() => {
         fetchReportes();
@@ -27,8 +60,8 @@ export const Historial = () => {
         const result = await axios.get(
           "http://localhost:4000/reportes"
         );
-
         setReportes(result.data);
+        console.log(reportes[0].fecha.$date);
     };
 
     const [wordEntered, setWordEntered] = useState("");
@@ -64,10 +97,16 @@ export const Historial = () => {
             <div className='max-w-[1240px] mx-auto text-black relative mb-10'>
                 <div className='grid grid-cols-1 lg:grid-cols-1 relative gap-y-10 px-4 pt-20 justify-items-center'>
                     <div className='w-full'>
-                        <button className="btn btn-primary bg-[#F25C29] border-0 hover:bg-[#D15226]">
-                            <FontAwesomeIcon icon={faFilter} className="buttonIcon"/>
-                            Filtros
-                        </button>
+                        <div>
+                            <button className="btn btn-primary bg-[#F25C29] border-0 hover:bg-[#D15226]" onClick={handleClick}>
+                                <FontAwesomeIcon icon={faCalendarDays} className="buttonIcon"/>
+                                Filtrar
+                            </button>
+                            {isMenuOpen && ( 
+                            <div className='absolute m-auto text-center' ref={ref}>
+                            <CalendarFilterDropdown initDate={initDate} endDate={endDate} setInitDate={setInitDate} setEndDate={setEndDate} inputValueStart = {inputValueStart} setInputValueStart = {setInputValueStart} inputValueEnd = {inputValueEnd} setInputValueEnd = {setInputValueEnd}/>
+                            </div>)}
+                        </div>
                         <p className='text-black font-bold text-center text-xl'>CONSULTAR</p>
                         <p className='text-black font-normal text-center text-xl pb-3'>Navega por los reportes generados anteriormente</p>
                         <form action="/" method="get" className='text-center'>
@@ -82,9 +121,15 @@ export const Historial = () => {
                             />
                         </form>
                     </div>
-                     {
+                     { //if(today >= from && today <= to)
                         reportes.filter((value) => {
-                            return value.name.toLowerCase().includes(wordEntered.toLowerCase())
+                            if(initDate == null || endDate == null){
+                                return value.name.toLowerCase().includes(wordEntered.toLowerCase());
+                            }else{
+                                let reportDate = new Date(value.fecha.$date);
+                                return reportDate >= initDate && reportDate <= endDate && value.name.toLowerCase().includes(wordEntered.toLowerCase());
+                            }
+                            
                         }).map( reporte => {
                             return(
                                 <div key={reporte["_id"]["$oid"]} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>
