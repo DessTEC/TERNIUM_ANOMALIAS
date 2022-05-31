@@ -1,9 +1,11 @@
 import React from "react";
 import Calendar from "react-calendar/dist/umd/Calendar";
 import './CalendarStyles.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 
-export default function CalendarFilterDropdown(props){
+export default function CalendarFilterDropdown({initDate, endDate, setInitDate, setEndDate, inputValueStart, inputValueEnd, setInputValueStart, setInputValueEnd}){
 
     const startDateField = document.getElementsByClassName('startDate');
     const endDateField = document.getElementsByClassName('endDate');
@@ -11,19 +13,20 @@ export default function CalendarFilterDropdown(props){
     const [selectedStart, setSelectedStart] = React.useState(false);
     const [selectedEnd, setSelectedEnd] = React.useState(false);
 
-    const [inputValueStart, setInputValueStart] = React.useState('');
-    const [inputValueEnd, setInputValueEnd] = React.useState('');
+    //const [inputValueStart, setInputValueStart] = React.useState('');
+    //const [inputValueEnd, setInputValueEnd] = React.useState('');
 
-    const [initDate, setInitDate] = React.useState(new Date());
+    //const [initDate, setInitDate] = React.useState(null);
 
     function onChangeStart(nextValue) {
         setInitDate(nextValue);
         setInputValueStart(getFormatedDate(nextValue));
     }
 
-    const [endDate, setEndDate] = React.useState(new Date());
+    //const [endDate, setEndDate] = React.useState(null);
 
     function onChangeEnd(nextValue) {
+        nextValue.setHours(23, 59, 59, 999);
         setEndDate(nextValue);
         setInputValueEnd(getFormatedDate(nextValue));
     }
@@ -78,7 +81,7 @@ export default function CalendarFilterDropdown(props){
 
     const handleKeyUpStart = (event) => {
         if (event.key === 'Enter') {
-        console.log('do validate')
+        //console.log('do validate')
         var date = new Date(inputValueStart);
         date.setDate(date.getDate()+1);
             if (!isNaN(date)) {
@@ -89,13 +92,20 @@ export default function CalendarFilterDropdown(props){
 
     const handleKeyUpEnd = (event) => {
         if (event.key === 'Enter') {
-        console.log('do validate')
+        //console.log('do validate')
         var date = new Date(inputValueEnd);
         date.setDate(date.getDate()+1);
             if (!isNaN(date)) {
                 setEndDate(date);
             }
         }
+    }
+
+    function resetDates() {
+        setInitDate(null);
+        setEndDate(null);
+        setInputValueStart('');
+        setInputValueEnd('');
     }
    
     return(
@@ -118,6 +128,11 @@ export default function CalendarFilterDropdown(props){
                     </ul>
                     <div>
                         <Calendar minDetail="month" onChange={selectDates} value={[initDate,endDate]}/>
+                    </div>
+                    <div>
+                        <button className="buttonResetDate" onClick={resetDates}>
+                            <FontAwesomeIcon icon={faTrashCan} className="pr-2"></FontAwesomeIcon> 
+                            Limpiar fechas </button>
                     </div>
                 </div>
             </div>

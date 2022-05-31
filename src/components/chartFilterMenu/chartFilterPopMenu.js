@@ -20,6 +20,9 @@ export default function ChartFilterPopMenu(props){
 
     const ref = useRef();
 
+    const [initDate, setInitDate] = React.useState(null);
+    const [endDate, setEndDate] = React.useState(null);
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
   
     const handleClick = () => {
@@ -45,7 +48,7 @@ export default function ChartFilterPopMenu(props){
     const options = [
         <>
             <DropDownMenuOption iconLeft={faArrowsRotate} subMenu={<VariableFilterDropdown atributos={props.atributos} analysis={props.analysisType} chartType={props.chartType} dataModelo={props.dataModelo} setCharts = {props.setCharts} id={props.id} charts={props.charts} minValAnomalias={props.minValAnomalias} maxValAnomalias={props.maxValAnomalias} varX = {props.varX} varY={props.varY} valY={props.valY}/>} textDisplay="Cambiar variables" expandable={true}/>
-            <DropDownMenuOption iconLeft={faCalendarDays} subMenu={<CalendarFilterDropdown/>} textDisplay="Fecha" expandable={true}/>
+            <DropDownMenuOption iconLeft={faCalendarDays} subMenu={<CalendarFilterDropdown initDate={initDate} endDate={endDate} setInitDate={setInitDate} setEndDate={setEndDate}/>} textDisplay="Fecha" expandable={true}/>
             <DropDownMenuOption iconLeft={faCog} subMenu={<RangeFilterDropdown atributos={props.atributos} analysis={props.analysisType} chartType={props.chartType} dataModelo={props.dataModelo} setCharts = {props.setCharts} id={props.id} charts={props.charts} minValAnomalias={props.minValAnomalias} maxValAnomalias={props.maxValAnomalias} varX = {props.varX} varY={props.varY} valY={props.valY}/>} textDisplay="Rango de anomalía" expandable={true}/>
             <DropDownMenuOption iconLeft={faXmark} subMenu={<></>} textDisplay="Quitar" expandable={false} chartIndex={props.chartIndex} charts={props.charts} setCharts={props.setCharts} id={props.id}/>
         </>
