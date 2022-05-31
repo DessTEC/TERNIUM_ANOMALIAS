@@ -26,6 +26,7 @@ export default function CalendarFilterDropdown({initDate, endDate, setInitDate, 
     //const [endDate, setEndDate] = React.useState(null);
 
     function onChangeEnd(nextValue) {
+        nextValue.setHours(23, 59, 59, 999);
         setEndDate(nextValue);
         setInputValueEnd(getFormatedDate(nextValue));
     }
