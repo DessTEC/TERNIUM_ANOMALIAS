@@ -19,7 +19,6 @@ const RelacionarColumnas = () =>{
     const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
 
     const handlePrimero = () => {
-        setDataCsv(undefined);
         setColumnas(undefined);
         setActInt([]);
         setActExt([]);

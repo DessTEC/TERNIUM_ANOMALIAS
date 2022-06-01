@@ -38,7 +38,6 @@ const SubirDatos = () =>{
                 },
             });
 
-            setDataCsv(result["data"]["data"]);
             setColumnas(result["data"]["columnas"]);
             
         }

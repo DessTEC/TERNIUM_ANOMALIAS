@@ -22,12 +22,17 @@ export const Cargas_1 = () => {
     if(inputValue === ""){
       setShowModal(true);
     }else{
-      const result = await axios.post("http://localhost:4000/uploadFile", {
-        "name": inputValue, 
-        "dataCsv": dataCsv,
-        "actoresInternos": actInt,
-        "actoresExternos": actExt,
-        "fecha": fecha
+      const formData = new FormData();
+      formData.append("csv", file);
+      formData.append("name", inputValue);
+      formData.append("actoresInternos", JSON.stringify(actInt));
+      formData.append("actoresExternos", JSON.stringify(actExt));
+      formData.append("fecha", fecha);
+
+      const result = await axios.post("http://localhost:4000/uploadFile", formData, {
+          headers: {
+            "Content-Type": 'multipart/form-data',
+          },
       });
 
       setReporteId(result["data"]["id"]);
