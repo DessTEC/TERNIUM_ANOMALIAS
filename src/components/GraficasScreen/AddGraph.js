@@ -60,8 +60,9 @@ export default function AddGraph(props) {
   const subirGrafica = async(grafica) => {
 
     const result = await axios.put(
-        "http://localhost:4000/addGrafica", {params: {id: modeloId, newGrafica: grafica }}, 
+        "http://localhost:4000/addGrafica", {params: {id: modeloId, newGrafica: grafica}}, 
     );
+    console.log(result);
    
 }
 
@@ -111,8 +112,8 @@ export default function AddGraph(props) {
 
   const handleCreateChart = () => {
     setIsMenuOpen(false);
-    const id = _uniqueId('id-');
-
+    const id = props.graficaId;
+    props.setGraficaId(id + 1);
     const optionsCharts = createOptionsCharts(analysisType, varX, varY, valueY);
 
     let arrayForChart = createArrayForChart(props.dataModelo, analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias);

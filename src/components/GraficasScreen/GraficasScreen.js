@@ -16,6 +16,7 @@ export const GraficasScreen = () => {
   const [selectCharts, setSelectCharts] = useState([]);
   const params = useParams();
   const [modeloId, setReporteId] = useState(params.modeloId);
+  const [graficaId, setGraficaId] = useState(0)
 
 
   useEffect(() => {
@@ -27,7 +28,8 @@ export const GraficasScreen = () => {
           "http://localhost:4000/getGraficas", {params: {id: modeloId }}, 
       );
       setCharts(result["data"]["graficas"])
-     
+      setGraficaId(result["data"]["idCounter"])
+      console.log(result);
   }
 
   return (
@@ -40,6 +42,8 @@ export const GraficasScreen = () => {
         <AddGraph 
           text="Agregar gráfica"
           setCharts = {setCharts}
+          graficaId = {graficaId}
+          setGraficaId = {setGraficaId}
           dataModelo = {dataModelo}
           atributos = {atributos}
         />
