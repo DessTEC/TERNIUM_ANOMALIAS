@@ -7,7 +7,7 @@ import { useState } from 'react';
 
 const Steps = () =>{
 
-    const [file, setFile] = useState();
+    const [file, setFile] = useState(undefined);
     const [dataCsv, setDataCsv] = useState(undefined);
     const [columnas, setColumnas] = useState(undefined);
     const [actInt, setActInt] = useState([]);

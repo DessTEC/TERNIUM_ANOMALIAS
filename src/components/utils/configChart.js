@@ -48,7 +48,7 @@ export function createConf(conf, analysisType, chartType, varX, varY, valueY){
 
       if(analysisType === "Correlación General"){
         conf["scales"]["y"]["title"]["text"] = varY;
-      }else{
+      }else if(analysisType === "Correlación Puntual"){
         conf["scales"]["y"]["title"]["text"] = `${varY}:${valueY}`;
       }
 

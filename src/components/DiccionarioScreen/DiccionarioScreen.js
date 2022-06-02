@@ -22,7 +22,7 @@ export const DiccionarioScreen = () => {
         <div className='grid grid-cols-3 gap-2 mt-3'>
             {
                 Object.entries(diccionario).map(([key, dict], i) => 
-                    <div>
+                    <div className="tablaDict">
                         <h5>{getTitle(key)}</h5>
                         <div className="table-container">
                             <table className="table">

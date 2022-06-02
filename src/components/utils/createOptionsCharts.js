@@ -19,6 +19,10 @@ export default function createOptionsCharts(analysisType, varX, varY, valueY){
                 enabled: true
               }
             },
+            limits: {
+              x: {min: 0, max: 'original'},
+              y: {min: 0, max: 'original'}
+            },
           }
         },
         scales: {
@@ -100,6 +104,10 @@ export default function createOptionsCharts(analysisType, varX, varY, valueY){
               wheel: {
                 enabled: true
               }
+            },
+            limits: {
+              x: {min: 0, max: 'original'},
+              y: {min: 0, max: 'original'}
             },
           },
           tooltip: {
