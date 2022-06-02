@@ -8,6 +8,8 @@ import Divider from "../GraficasScreen/Divider";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
+import { Bars } from 'react-loading-icons'
+
 import axios from "axios";
 
 export const Cargas_1 = () => {
@@ -17,17 +19,21 @@ export const Cargas_1 = () => {
   const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual, fecha, setFecha] = useOutletContext();
 
   const [reporteId, setReporteId] = useState(undefined);
+  const [loading, setLoading] = useState(false);
 
   const handleClick = async() => {
     if(inputValue === ""){
       setShowModal(true);
     }else{
+      setLoading(true);
       const formData = new FormData();
       formData.append("csv", file);
-      formData.append("name", inputValue);
-      formData.append("actoresInternos", JSON.stringify(actInt));
-      formData.append("actoresExternos", JSON.stringify(actExt));
-      formData.append("fecha", fecha);
+      formData.append("detalles", JSON.stringify({
+        "name": inputValue,
+        "actoresInternos": actInt,
+        "actoresExternos": actExt,
+        "fecha": fecha
+      }))
 
       const result = await axios.post("http://localhost:4000/uploadFile", formData, {
           headers: {
@@ -41,7 +47,7 @@ export const Cargas_1 = () => {
 
   useEffect(() => {
     if(reporteId !== undefined){
-      console.log("Navega a nuevo modelo")
+      setLoading(false);
       navigate(`/dashboard/consultar/${reporteId}/nuevoModelo`);
     }
   }, [reporteId])
@@ -90,7 +96,7 @@ export const Cargas_1 = () => {
             <div className="bg-white rounded-lg w-5/6 mt-8">
               <p className="text-gray-400 pl-12 pt-3">Fecha de referencia</p>
               <Divider borColor="border-slate-400" />
-              <p className="font-semibold pl-12 pt-2 pb-3">{fecha}</p>
+              <p className="font-semibold pl-12 pt-2 pb-3">{fecha.length === 0 ? "No se eligió una fecha": fecha}</p>
             </div>
           </div>
 
@@ -145,6 +151,20 @@ export const Cargas_1 = () => {
       </div>
       <div className="container">
           <button className="btn btn-outline-danger botonInline" onClick={handleCambio}>Cambiar relaciones</button>
+      </div>
+      <div className={!loading ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
+          <div className="relative mx-auto w-1/3 mt-72">
+              <div className="relative bg-white rounded-lg shadow h-64">
+                  <div className="flex flex-col items-center w-full">
+                      <div className="mt-8">
+                          <Bars stroke="#ffffff" fill="#1D2533"/>
+                      </div>
+                      <div className="mt-2">
+                          <h2>Cargando</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
       <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
                 <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">
