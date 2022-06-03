@@ -48,7 +48,8 @@ const SubirDatos = () =>{
     useEffect(() => {
         if(columnas !== undefined){
             if(columnas.length === 0){
-                setModalError("Archivo vacío");
+                setModalError("El archivo debe tener al menos dos columnas y dos filas");
+                setLoading(false);
                 setShowModal(true);
             }else{
                 setLoading(false);
