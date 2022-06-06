@@ -21,7 +21,7 @@ export const TablaScreen = () => {
         console.log(dataModelo);
     }
 
-    let atributosConAnom = [...atributos, "anomaly", "scores"];
+    let atributosConAnom = [...atributos, "fecha", "anomaly", "scores"];
 
     const getCsvFileName = () => {
         const today = new Date();

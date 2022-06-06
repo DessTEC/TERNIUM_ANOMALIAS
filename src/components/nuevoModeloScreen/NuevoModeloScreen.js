@@ -31,6 +31,8 @@ export const NuevoModeloScreen = () => {
     const [modalError, setModalError] = useState("");
     const [errorTittle, setErrorTitle] = useState("");
 
+    const [fechaRelModel, setFechaRelModel] = useState("");
+
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
@@ -44,6 +46,7 @@ export const NuevoModeloScreen = () => {
         resultRequest.current = result["data"]["data"];
         setDataCsv(resultRequest.current.map((item) => item));
         setAtributos([...result["data"]["fechaRelacion"], ...result["data"]["actoresInternos"], ...result["data"]["actoresExternos"]]);
+        setFechaRelModel(result["data"]["fechaRelacion"][0]);
     }
 
     const [inputValue, setInputValue] = useState('')
@@ -59,7 +62,8 @@ export const NuevoModeloScreen = () => {
                     name: inputValue,
                     variables: atributos,
                     data: dataCsv,
-                    selectedVars: selectedVars
+                    selectedVars: selectedVars,
+                    fechaRelacion: fechaRelModel
                 }
             );
             setModeloId(result["data"]["id"]);

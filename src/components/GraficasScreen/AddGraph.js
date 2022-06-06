@@ -116,7 +116,7 @@ export default function AddGraph(props) {
     props.setGraficaId(id + 1);
     const optionsCharts = createOptionsCharts(analysisType, varX, varY, valueY);
 
-    let arrayForChart = createArrayForChart(props.dataModelo, analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias);
+    let arrayForChart = createArrayForChart(props.dataModelo, analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias, null, null);
 
     let conf = createConf({...optionsCharts[chartType]}, analysisType, chartType, varX, varY, valueY);
 
@@ -132,7 +132,9 @@ export default function AddGraph(props) {
       maxValAnomalias: maxValAnomalias,
       varX: varX,
       varY:varY,
-      valY:valueY
+      valY:valueY,
+      minDate: null,
+      maxDate: null
     }])
 
     subirGrafica({
@@ -145,7 +147,9 @@ export default function AddGraph(props) {
       maxValAnomalias: maxValAnomalias,
       varX: varX,
       varY:varY,
-      valY:valueY
+      valY:valueY,
+      minDate: null,
+      maxDate: null
     })
   }
 

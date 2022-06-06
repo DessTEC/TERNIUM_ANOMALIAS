@@ -53,6 +53,7 @@ export const GraficasScreen = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 justify-evenly justify-items-center" id="reporte">
           {
             charts.map( (chart, index) => {
+              //console.log(chart.analysis)
                 return(
                         <ChartWrapper 
                         key = {chart.id}
@@ -71,6 +72,8 @@ export const GraficasScreen = () => {
                         varX = {chart.varX}
                         varY = {chart.varY}
                         valY = {chart.valY}
+                        minDate = {chart.minDate}
+                        maxDate = {chart.maxDate}
                       />
                 );
             })

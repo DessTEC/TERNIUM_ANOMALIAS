@@ -7,8 +7,8 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
 export default function CalendarFilterDropdown({initDate, endDate, setInitDate, setEndDate, inputValueStart, inputValueEnd, setInputValueStart, setInputValueEnd}){
 
-    const startDateField = document.getElementsByClassName('startDate');
-    const endDateField = document.getElementsByClassName('endDate');
+    //setInputValueStart(getFormatedDate(inputValueStart));
+    //setInputValueEnd(getFormatedDate(inputValueEnd));
 
     const [selectedStart, setSelectedStart] = React.useState(false);
     const [selectedEnd, setSelectedEnd] = React.useState(false);
@@ -64,8 +64,6 @@ export default function CalendarFilterDropdown({initDate, endDate, setInitDate, 
             newDate+="0";
         }
         newDate+=oldDate.getDate();
-
-        console.log(newDate);
         return newDate;
     }
 

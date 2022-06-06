@@ -8,33 +8,34 @@ import { createArrayDonaCorrGen } from "../utils/createArrayDonaCorrGen";
 import { createArrayBarrasCorrGen } from "../utils/createArrayBarrasCorrGen";
 
 //analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias, updateCharts
-export function createArrayForChart(dataModelo, analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias){
+export function createArrayForChart(dataModelo, analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias, minValDate, maxValDate){
     let arrayForChart;
-
+    //console.log(minValDate);
+    //console.log(maxValDate);
     //Crear información según tipo de gráfica y tipo de análisis
     if(analysisType === 'Anomalías'){
         if(chartType === "barras"){
-          arrayForChart = createArrayBarrasAnom(dataModelo, varX, minValAnomalias, maxValAnomalias);
+          arrayForChart = createArrayBarrasAnom(dataModelo, varX, minValAnomalias, maxValAnomalias, minValDate, maxValDate);
         }
         if(chartType === "dona"){
-          arrayForChart = createArrayDonaAnom(dataModelo, varX, minValAnomalias, maxValAnomalias);
+          arrayForChart = createArrayDonaAnom(dataModelo, varX, minValAnomalias, maxValAnomalias, minValDate, maxValDate);
         }
       }else if(analysisType === "Correlación Puntual"){
         if(chartType === "barras"){
-          arrayForChart = createArrayBarrasCorrPun(dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
+          arrayForChart = createArrayBarrasCorrPun(dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias, minValDate, maxValDate);
         }
         if(chartType === "dona"){
-          arrayForChart = createArrayDonaCorrPun(dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias);
+          arrayForChart = createArrayDonaCorrPun(dataModelo, varX, varY, valueY, minValAnomalias, maxValAnomalias, minValDate, maxValDate);
         }
       }else{
         if(chartType === "barras"){
-          arrayForChart = createArrayBarrasCorrGen(dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
+          arrayForChart = createArrayBarrasCorrGen(dataModelo, varX, varY, minValAnomalias, maxValAnomalias, minValDate, maxValDate);
         }
         if(chartType === "dona"){
-          arrayForChart = createArrayDonaCorrGen(dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
+          arrayForChart = createArrayDonaCorrGen(dataModelo, varX, varY, minValAnomalias, maxValAnomalias, minValDate, maxValDate);
         }
         if(chartType === "burbuja"){
-          arrayForChart = createArrayBurbuja(dataModelo, varX, varY, minValAnomalias, maxValAnomalias);
+          arrayForChart = createArrayBurbuja(dataModelo, varX, varY, minValAnomalias, maxValAnomalias, minValDate, maxValDate);
         }     
       }
     return arrayForChart;
