@@ -12,7 +12,7 @@ import createOptionsCharts from "../utils/createOptionsCharts";
 import createDataForChart from '../utils/createDataForChart';
 
 export default function VariableFilterDropdown(props){
-  
+  console.log(props.analysis)
   const [varX, setVarX] = useState(props.varX == null ? props.atributos[0] : props.varX);
   const [varY, setVarY] = useState(props.varY == null ? props.atributos[0] : props.varY);
 
@@ -74,10 +74,13 @@ export default function VariableFilterDropdown(props){
     return(
         <div className ="subMenu">
             <ul className ="subMenu--list">
-            {props.analysis === "Anomalías" ?
+            
+            {
+            props.analysis === "Anomalías" ?
             <li>
             <GraphForm text="Eje X" atributos={props.atributos} valueSelect={varX} handleSelect={handleVarXForm}/>
             </li>
+            
             :
             <>
                 <li>

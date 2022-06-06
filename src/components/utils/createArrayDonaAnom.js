@@ -1,20 +1,45 @@
 
-export const createArrayDonaAnom = (data, varInterest, minVal, maxVal) => {
+export const createArrayDonaAnom = (data, varInterest, minVal, maxVal, minDate, maxDate) => {
 
     let valuesOfVar = {};
 
     for(let i=0; i < data.length; i++){
         const objElem = data[i];
-
-        // Sumar 1 a llave existente al campo correspondiente
-        if(valuesOfVar.hasOwnProperty(objElem[varInterest])){
-            if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
-                valuesOfVar[objElem[varInterest]]["anomalias"]++
-            }         
-        }else{ // Instanciar nueva entrada del objeto con nuevo valor de la variable de interés 
-            if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
-                valuesOfVar[objElem[varInterest]] = {
-                    anomalias: 1
+        let hasPassed = true;
+        
+        if(minDate != null && maxDate != null){
+            if(minDate < new Date(objElem["fecha"]) && new Date(objElem["fecha"]) < maxDate){
+                hasPassed = true;
+            }else{
+                hasPassed = false;
+            }
+        }else{
+            if(minDate == null){
+                if(maxDate < new Date(objElem["fecha"])){
+                    hasPassed *= false;
+                }
+            }
+            if(maxDate == null){
+                if(minDate < new Date(objElem["fecha"])){
+                    hasPassed *= false;
+                }
+            }
+            if(minDate == null && maxDate == null){
+                hasPassed = true;
+            }
+        }
+        
+        if(hasPassed){
+            // Sumar 1 a llave existente al campo correspondiente
+            if(valuesOfVar.hasOwnProperty(objElem[varInterest])){
+                if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
+                    valuesOfVar[objElem[varInterest]]["anomalias"]++
+                }         
+            }else{ // Instanciar nueva entrada del objeto con nuevo valor de la variable de interés 
+                if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
+                    valuesOfVar[objElem[varInterest]] = {
+                        anomalias: 1
+                    }
                 }
             }
         }

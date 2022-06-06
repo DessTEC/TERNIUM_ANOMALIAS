@@ -1,5 +1,5 @@
 
-export const createArrayBarrasCorrGen = (data, varXInterest, varYInterest, minVal, maxVal) => {
+export const createArrayBarrasCorrGen = (data, varXInterest, varYInterest, minVal, maxVal, minDate, maxDate) => {
 
     let valuesOfVar = {};
 
@@ -30,13 +30,37 @@ export const createArrayBarrasCorrGen = (data, varXInterest, varYInterest, minVa
         const objElem = data[i];
         const valueX= objElem[varXInterest];
         const valueY= objElem[varYInterest];
-        
-        const llaveElem = `${varXInterest}:${valueX.toString()},${varYInterest}:${valueY.toString()}`;
+        let hasPassed = true;
 
-        if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
-            valuesOfVar[llaveElem]["anomalias"]+=1;
+        if(minDate != null && maxDate != null){
+            if(minDate < new Date(objElem["fecha"]) && new Date(objElem["fecha"]) < maxDate){
+                hasPassed = true;
+            }else{
+                hasPassed = false;
+            }
         }else{
-            valuesOfVar[llaveElem]["normales"]+=1;
+            if(minDate == null){
+                if(maxDate < new Date(objElem["fecha"])){
+                    hasPassed *= false;
+                }
+            }
+            if(maxDate == null){
+                if(minDate < new Date(objElem["fecha"])){
+                    hasPassed *= false;
+                }
+            }
+            if(minDate == null && maxDate == null){
+                hasPassed = true;
+            }
+        }
+        if(hasPassed){
+            const llaveElem = `${varXInterest}:${valueX.toString()},${varYInterest}:${valueY.toString()}`;
+
+            if(objElem["scores"] >= minVal && objElem["scores"] <= maxVal){
+                valuesOfVar[llaveElem]["anomalias"]+=1;
+            }else{
+                valuesOfVar[llaveElem]["normales"]+=1;
+            }
         }
     }
 
