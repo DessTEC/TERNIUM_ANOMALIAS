@@ -1,3 +1,4 @@
+import isDateInRange from '../utils/dateInRange'
 
 export const createArrayBurbuja = (data, varXInterest, varYInterest, minVal, maxVal, minDate, maxDate) => {
 
@@ -37,29 +38,7 @@ export const createArrayBurbuja = (data, varXInterest, varYInterest, minVal, max
         const objElem = data[i];
         const valueX= objElem[varXInterest];
         const valueY= objElem[varYInterest];
-        let hasPassed = true;
-
-        if(minDate != null && maxDate != null){
-            if(minDate < new Date(objElem["fecha"]) && new Date(objElem["fecha"]) < maxDate){
-                hasPassed = true;
-            }else{
-                hasPassed = false;
-            }
-        }else{
-            if(minDate == null){
-                if(maxDate < new Date(objElem["fecha"])){
-                    hasPassed *= false;
-                }
-            }
-            if(maxDate == null){
-                if(minDate < new Date(objElem["fecha"])){
-                    hasPassed *= false;
-                }
-            }
-            if(minDate == null && maxDate == null){
-                hasPassed = true;
-            }
-        }
+        let hasPassed =  isDateInRange(objElem["fecha"],minDate,maxDate);
         if(hasPassed){
             const llaveElem = `${varXInterest}:${valueX.toString()},${varYInterest}:${valueY.toString()}`;
 

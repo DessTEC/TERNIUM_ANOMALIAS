@@ -46,7 +46,9 @@ export const NuevoModeloScreen = () => {
         resultRequest.current = result["data"]["data"];
         setDataCsv(resultRequest.current.map((item) => item));
         setAtributos([...result["data"]["fechaRelacion"], ...result["data"]["actoresInternos"], ...result["data"]["actoresExternos"]]);
-        setFechaRelModel(result["data"]["fechaRelacion"][0]);
+        if(result["data"]["fechaRelacion"].length > 0){
+            setFechaRelModel(result["data"]["fechaRelacion"][0]);
+        }
     }
 
     const [inputValue, setInputValue] = useState('')

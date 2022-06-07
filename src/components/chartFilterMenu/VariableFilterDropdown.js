@@ -12,7 +12,6 @@ import createOptionsCharts from "../utils/createOptionsCharts";
 import createDataForChart from '../utils/createDataForChart';
 
 export default function VariableFilterDropdown(props){
-  console.log(props.analysis)
   const [varX, setVarX] = useState(props.varX == null ? props.atributos[0] : props.varX);
   const [varY, setVarY] = useState(props.varY == null ? props.atributos[0] : props.varY);
 
