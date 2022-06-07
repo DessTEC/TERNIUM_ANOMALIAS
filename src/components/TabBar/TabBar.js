@@ -15,9 +15,13 @@ export const TabBar = () => {
     const [diccionario, setDiccionario] = useState(undefined);
     const [actInt, setActInt] = useState(undefined);
     const [actExt, setActExt] = useState(undefined);
+    const [calendarMin, setCalendarMin ] = useState(undefined);
+    const [calendarMax, setCalendarMax] = useState(undefined);
 
     useEffect(() => {
         getModelo();
+        console.log(calendarMax);
+        console.log(calendarMin);
      }, [])
  
      const getModelo = async() => {
@@ -31,6 +35,8 @@ export const TabBar = () => {
          setDiccionario(result["data"]["diccionario"]);
          setActInt(result["data"]["actoresInternos"]);
          setActExt(result["data"]["actoresExternos"]);
+         setCalendarMin(result["data"]["minDate"]);
+         setCalendarMax(result["data"]["maxDate"]);
      }
 
     return (
@@ -72,7 +78,7 @@ export const TabBar = () => {
                 <div className='w-full'>
                     {
                         atributos === undefined || dataModelo === undefined ? <></>:
-                        <Outlet context={[dataModelo, atributos, nombreModelo, diccionario, actInt, actExt]}/>
+                        <Outlet context={[dataModelo, atributos, nombreModelo, diccionario, actInt, actExt, calendarMin, calendarMax]}/>
                     }
                 </div>
             </div>  

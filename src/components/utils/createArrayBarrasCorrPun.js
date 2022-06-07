@@ -1,3 +1,4 @@
+import isDateInRange from '../utils/dateInRange'
 
 export const createArrayBarrasCorrPun = (data, varXInterest, varYInterest, valueYInterest, minVal, maxVal, minDate, maxDate) => {
 
@@ -7,29 +8,7 @@ export const createArrayBarrasCorrPun = (data, varXInterest, varYInterest, value
 
     for(let i=0; i < data.length; i++){
         const objElem = data[i];
-        let hasPassed = true;
-        
-        if(minDate != null && maxDate != null){
-            if(minDate < new Date(objElem["fecha"]) && new Date(objElem["fecha"]) < maxDate){
-                hasPassed = true;
-            }else{
-                hasPassed = false;
-            }
-        }else{
-            if(minDate == null){
-                if(maxDate < new Date(objElem["fecha"])){
-                    hasPassed *= false;
-                }
-            }
-            if(maxDate == null){
-                if(minDate < new Date(objElem["fecha"])){
-                    hasPassed *= false;
-                }
-            }
-            if(minDate == null && maxDate == null){
-                hasPassed = true;
-            }
-        }
+        let hasPassed = isDateInRange(objElem["fecha"],minDate,maxDate);
         
         if(hasPassed){
         //Checar si en el registro sale el valor solicitado de la variable Y

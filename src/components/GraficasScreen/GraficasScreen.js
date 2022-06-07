@@ -10,8 +10,7 @@ import { useParams } from "react-router-dom";
 
 export const GraficasScreen = () => {
 
-  const [dataModelo, atributos] = useOutletContext();
-
+  const [dataModelo, atributos, nombreModelo, diccionario, actInt, actExt, calendarMin, calendarMax] = useOutletContext();
   const [charts, setCharts] = useState([]);
   const [selectCharts, setSelectCharts] = useState([]);
   const params = useParams();
@@ -74,6 +73,8 @@ export const GraficasScreen = () => {
                         valY = {chart.valY}
                         minDate = {chart.minDate}
                         maxDate = {chart.maxDate}
+                        calendarMin = {calendarMin}
+                        calendarMax = {calendarMax}
                       />
                 );
             })

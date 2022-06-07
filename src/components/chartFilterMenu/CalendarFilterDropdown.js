@@ -4,9 +4,20 @@ import './CalendarStyles.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons';
 
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    console.log(date);
+    return date;
+}
 
-export default function CalendarFilterDropdown({initDate, endDate, setInitDate, setEndDate, inputValueStart, inputValueEnd, setInputValueStart, setInputValueEnd}){
+Date.prototype.subtractDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() - days);
+    return date;
+}
 
+export default function CalendarFilterDropdown({initDate, endDate, setInitDate, setEndDate, inputValueStart, inputValueEnd, setInputValueStart, setInputValueEnd, minCalendarVal, maxCalendarVal}){
     //setInputValueStart(getFormatedDate(inputValueStart));
     //setInputValueEnd(getFormatedDate(inputValueEnd));
 
@@ -124,8 +135,13 @@ export default function CalendarFilterDropdown({initDate, endDate, setInitDate, 
                             </div>
                         </li>    
                     </ul>
+                    {
+                        (maxCalendarVal != null || minCalendarVal != null) ?
+                        <Calendar defaultActiveStartDate={new Date(minCalendarVal["$date"])} minDetail="month" onChange={selectDates} value={[initDate,endDate]} minDate={new Date(minCalendarVal["$date"]).subtractDays(1)} maxDate={new Date(maxCalendarVal["$date"]).addDays(1)} />
+                        :
+                        <Calendar minDetail="month" onChange={selectDates} value={[initDate,endDate]} />
+                    }
                     <div>
-                        <Calendar minDetail="month" onChange={selectDates} value={[initDate,endDate]}/>
                     </div>
                     <div>
                         <button className="buttonResetDate" onClick={resetDates}>
