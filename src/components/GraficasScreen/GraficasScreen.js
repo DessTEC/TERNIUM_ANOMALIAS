@@ -6,6 +6,7 @@ import axios from "axios";
 import { exportMultipleChartsToPdf } from "../utils/exportPdf";
 import { useOutletContext } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { Bars } from 'react-loading-icons'
 
 
 export const GraficasScreen = () => {
@@ -15,7 +16,8 @@ export const GraficasScreen = () => {
   const [selectCharts, setSelectCharts] = useState([]);
   const params = useParams();
   const [modeloId, setReporteId] = useState(params.modeloId);
-  const [graficaId, setGraficaId] = useState(0)
+  const [graficaId, setGraficaId] = useState(0);
+  const [loading, setLoading] = useState(true);
 
 
   useEffect(() => {
@@ -28,6 +30,7 @@ export const GraficasScreen = () => {
       );
       setCharts(result["data"]["graficas"])
       setGraficaId(result["data"]["idCounter"])
+      setLoading(false)
       console.log(result);
   }
 
@@ -85,6 +88,20 @@ export const GraficasScreen = () => {
           <h2>Agrega una gráfica</h2>
         </div>
       }
+      <div className={!loading ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>
+          <div className="relative mx-auto w-1/3 mt-72">
+              <div className="relative bg-white rounded-lg shadow h-64">
+                  <div className="flex flex-col items-center w-full">
+                      <div className="mt-8">
+                          <Bars stroke="#ffffff" fill="#1D2533"/>
+                      </div>
+                      <div className="mt-2">
+                          <h2>Cargando</h2>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import "./TablaScreen.css"
 import Tabla from "../tabla/Tabla";
+import "../SubirArchivo/SubirDatos.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFileArrowDown, faXmark } from "@fortawesome/free-solid-svg-icons";
 
@@ -41,7 +42,7 @@ export const TablaScreen = () => {
                     Eliminar Filtros
                 </button>
                 <h1>{nombreModelo}</h1>
-                <CSVLink className="btn btn-outline-primary" data={filteredData} filename={csvFileName} asyncOnClick={true} onClick={getCsvFileName} >
+                <CSVLink className="btn btn-outline-danger botonInline" data={filteredData} filename={csvFileName} asyncOnClick={true} onClick={getCsvFileName} >
                     <FontAwesomeIcon icon={faFileArrowDown} className="buttonIcon"/>
                     Descargar
                 </CSVLink>
