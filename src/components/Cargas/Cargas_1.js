@@ -54,10 +54,11 @@ export const Cargas_1 = () => {
   
 
   const handleCambio = () => {
-    const colOriginal = [...columnas,...actInt, ...actExt]
+    const colOriginal = [...columnas,...actInt, ...actExt, ...fecha]
     setColumnas(colOriginal);
     setActExt([]);
     setActInt([]);
+    setFecha([])
     setStepActual(2);
     setFecha([])
     navigate('/dashboard/subir/parametros');
