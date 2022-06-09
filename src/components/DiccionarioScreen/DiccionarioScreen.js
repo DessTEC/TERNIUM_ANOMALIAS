@@ -48,10 +48,13 @@ export const DiccionarioScreen = () => {
 
     return(
         <div>
-            <CSVLink className="btn btn-outline-danger botonInline" data={csvData} filename={nombreModelo}>
-                    <FontAwesomeIcon icon={faFileArrowDown} className="buttonIcon"/>
-                    Descargar
-            </CSVLink>
+            <div className="flex justify-end">
+                <CSVLink className="btn btn-outline-danger botonInline " data={csvData} filename={nombreModelo}>
+                        <FontAwesomeIcon icon={faFileArrowDown} className="buttonIcon"/>
+                        Descargar
+                </CSVLink>
+            </div>
+
             <div className='grid grid-cols-3 gap-2 mt-3'>
                 {
                     Object.entries(diccionario).map(([key, dict], i) => 
