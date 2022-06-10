@@ -1,7 +1,8 @@
 .container-buttons {
     margin-top: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content:space-between;
+    align-items: center;
 }
 
 .btn-primary {
@@ -20,4 +21,20 @@
 
 .buttonIcon{
     margin-right: 10px;
+}
+
+.eliminar-filtros-button{
+    border-radius: 25px;
+}
+
+@media (max-width: 850px) {
+    .eliminar-filtros-button{
+        margin-top: 50px;
+    }
+    .container-buttons {
+        margin-top: 20px;
+        display: flex;
+        justify-content:space-between;
+        align-items: baseline;
+    }
 }

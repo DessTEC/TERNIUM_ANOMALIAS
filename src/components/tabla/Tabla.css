@@ -1,15 +1,49 @@
-td {
+td, th {
     text-align: center !important;
-}
-
-th {
-    text-align: center !important;
+    margin-right: 10px !important;
+    padding-right: 30px !important;
+    /* border-right: 10px solid black;
+    border-right-color: transparent; */
 }
 
 .table {
-    margin-top: 20px !important;
+    margin-top: 0px !important;
+}
+
+.table-container{
+    margin-top: 2vw;
+    height: 40vw !important;
+    overflow: scroll;
 }
 
 .header {
     display: inline;
+}
+
+.filterIcon {
+    margin-left: 10px;
+}
+
+.filterApplied {
+    color: #F25C29;
+}
+
+.table-responsive {
+    position:sticky;
+    top: 0;
+    background-color: white;
+}
+
+
+.table-container::-webkit-scrollbar {
+    width: .6vw;               /* width of the entire scrollbar */
+    height: .6vw;
+}
+.table-container::-webkit-scrollbar-track {
+background: #F3F6FF;        /* color of the tracking area */
+}
+.table-container::-webkit-scrollbar-thumb {
+background-color: #1D2533;    /* color of the scroll thumb */
+border-radius: 1vw;
+height: .3vw;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */
 }

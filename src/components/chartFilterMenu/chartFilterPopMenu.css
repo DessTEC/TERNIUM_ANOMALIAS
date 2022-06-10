@@ -1,13 +1,10 @@
 .masterMenu{
-    white-space: nowrap;
-    position: absolute;
-    place-items: start;
+position: absolute;
 }
 
 .filterMenu{
-    position: relative;
-    z-index: 2;
-    display: inline-table;
+    position: absolute;
+    display: block;
     width: 180px;
     max-width: 200px;
     min-width: 180px;
@@ -20,11 +17,16 @@
 }
 
 .filterMenu--list{
+    position: relative;
     text-indent: 3px;
     margin: 0; padding: 0;
 }
-
-.filterMenu--list > li{
+.filterMenu--listItem{
+    position: relative;
+        
+}
+.filterMenu--option{
+    position: relative;
     text-align: left;
     margin: 0;
     padding: 5px 10px 5px 10px;
@@ -33,18 +35,25 @@
     line-height: 20px;
     letter-spacing: -0.02em;
     color: #000000;
+
+    -webkit-user-select: none; /* Safari */        
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
-.filterMenu--list > li:hover {
+.filterMenu--option:hover {
     background-color: rgba(0, 0, 0, 0.14);
     cursor: pointer;
   }
 
 .subMenu{
-    position: relative;
-    z-index: 2;
-    display: inline-table;
-    width: 180px;
-    max-width: 200px;
+    /*float: right;*/
+    position: absolute;
+    list-style: none;
+    left: 100%;
+    top: 0%;
+    display: inline-block;
+    max-width: 350px;
     min-width: 180px;
     margin: 0; 
     padding: 0;
@@ -55,6 +64,7 @@
 }
 
 .subMenu--list{
+    display: inline-block;
     text-indent: 3px;
     margin: 0; padding: 0;
 }
@@ -62,7 +72,7 @@
 .subMenu--list > li{
     text-align: left;
     margin: 0;
-    padding: 5px 10px 5px 10px;
+    padding: 0;
     font-weight: 400;
     font-size: 12px;
     line-height: 20px;
@@ -71,6 +81,7 @@
 }
 
 .axisVariableSection{
+    padding: 5px 10px 5px 10px;
     color: #667080;
 }
 
@@ -79,10 +90,34 @@
     border: 1px solid #667080;
     box-sizing: border-box;
     border-radius: 6px;
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
     padding: 5px;
     margin: 0px;
+}
+
+.calendar--label{
+    text-align: left;
+    place-self: start;
+    font-size: 10px;
+    color: #667080;
+}
+.dateSelector >input{
+    width:110px;
+    padding: 3px;
+    border: 2px solid #ECF0F1;
+    border-radius: 5px;
+    color: #667080;
+    font-size: 11px;
+    text-indent: 3px;
+}
+.dateSelector > input::-webkit-calendar-picker-indicator{
+	display: none;
+}
+
+.buttonResetDate{
+    align-content: center;
+    font-size: 13px;
+    background-color: #ECF0F1;
+    border: 2px solid #ECF0F1;
+    padding: 5px 10px;
+    border-radius: 5px;
 }

@@ -1,0 +1,1893 @@
+[1mdiff --git a/package-lock.json b/package-lock.json[m
+[1mindex d5ac47d..a8c930d 100644[m
+[1m--- a/package-lock.json[m
+[1m+++ b/package-lock.json[m
+[36m@@ -22,7 +22,6 @@[m
+         "jspdf": "^2.5.1",[m
+         "lodash.uniqueid": "^4.0.1",[m
+         "react": "^17.0.2",[m
+[31m-        "react-beautiful-dnd": "^13.1.0",[m
+         "react-calendar": "^3.7.0",[m
+         "react-chartjs-2": "^4.0.1",[m
+         "react-dom": "^17.0.2",[m
+[36m@@ -3177,15 +3176,6 @@[m
+         "@types/node": "*"[m
+       }[m
+     },[m
+[31m-    "node_modules/@types/hoist-non-react-statics": {[m
+[31m-      "version": "3.3.1",[m
+[31m-      "resolved": "https://registry.npmjs.org/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz",[m
+[31m-      "integrity": "sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==",[m
+[31m-      "dependencies": {[m
+[31m-        "@types/react": "*",[m
+[31m-        "hoist-non-react-statics": "^3.3.0"[m
+[31m-      }[m
+[31m-    },[m
+     "node_modules/@types/html-minifier-terser": {[m
+       "version": "6.1.0",[m
+       "resolved": "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz",[m
+[36m@@ -3303,17 +3293,6 @@[m
+         "@types/react": "*"[m
+       }[m
+     },[m
+[31m-    "node_modules/@types/react-redux": {[m
+[31m-      "version": "7.1.24",[m
+[31m-      "resolved": "https://registry.npmjs.org/@types/react-redux/-/react-redux-7.1.24.tgz",[m
+[31m-      "integrity": "sha512-7FkurKcS1k0FHZEtdbbgN8Oc6b+stGSfZYjQGicofJ0j4U0qIn/jaSvnP2pLwZKiai3/17xqqxkkrxTgN8UNbQ==",[m
+[31m-      "dependencies": {[m
+[31m-        "@types/hoist-non-react-statics": "^3.3.0",[m
+[31m-        "@types/react": "*",[m
+[31m-        "hoist-non-react-statics": "^3.3.0",[m
+[31m-        "redux": "^4.0.0"[m
+[31m-      }[m
+[31m-    },[m
+     "node_modules/@types/resolve": {[m
+       "version": "1.17.1",[m
+       "resolved": "https://registry.npmjs.org/@types/resolve/-/resolve-1.17.1.tgz",[m
+[36m@@ -5260,14 +5239,6 @@[m
+         "postcss": "^8.4"[m
+       }[m
+     },[m
+[31m-    "node_modules/css-box-model": {[m
+[31m-      "version": "1.2.1",[m
+[31m-      "resolved": "https://registry.npmjs.org/css-box-model/-/css-box-model-1.2.1.tgz",[m
+[31m-      "integrity": "sha512-a7Vr4Q/kd/aw96bnJG332W9V9LkJO69JRcaCYDUqjp6/z0w6VcZjgAcTbgFxEPfBgdnAwlh3iwu+hLopa+flJw==",[m
+[31m-      "dependencies": {[m
+[31m-        "tiny-invariant": "^1.0.6"[m
+[31m-      }[m
+[31m-    },[m
+     "node_modules/css-declaration-sorter": {[m
+       "version": "6.2.2",[m
+       "resolved": "https://registry.npmjs.org/css-declaration-sorter/-/css-declaration-sorter-6.2.2.tgz",[m
+[36m@@ -7342,6 +7313,19 @@[m
+       "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz",[m
+       "integrity": "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="[m
+     },[m
+[32m+[m[32m    "node_modules/fsevents": {[m
+[32m+[m[32m      "version": "2.3.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==",[m
+[32m+[m[32m      "hasInstallScript": true,[m
+[32m+[m[32m      "optional": true,[m
+[32m+[m[32m      "os": [[m
+[32m+[m[32m        "darwin"[m
+[32m+[m[32m      ],[m
+[32m+[m[32m      "engines": {[m
+[32m+[m[32m        "node": "^8.16.0 || ^10.6.0 || >=11.0.0"[m
+[32m+[m[32m      }[m
+[32m+[m[32m    },[m
+     "node_modules/function-bind": {[m
+       "version": "1.1.1",[m
+       "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz",[m
+[36m@@ -7622,19 +7606,6 @@[m
+         "@babel/runtime": "^7.7.6"[m
+       }[m
+     },[m
+[31m-    "node_modules/hoist-non-react-statics": {[m
+[31m-      "version": "3.3.2",[m
+[31m-      "resolved": "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz",[m
+[31m-      "integrity": "sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==",[m
+[31m-      "dependencies": {[m
+[31m-        "react-is": "^16.7.0"[m
+[31m-      }[m
+[31m-    },[m
+[31m-    "node_modules/hoist-non-react-statics/node_modules/react-is": {[m
+[31m-      "version": "16.13.1",[m
+[31m-      "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",[m
+[31m-      "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="[m
+[31m-    },[m
+     "node_modules/hoopy": {[m
+       "version": "0.1.4",[m
+       "resolved": "https://registry.npmjs.org/hoopy/-/hoopy-0.1.4.tgz",[m
+[36m@@ -9507,11 +9478,6 @@[m
+         "node": ">= 4.0.0"[m
+       }[m
+     },[m
+[31m-    "node_modules/memoize-one": {[m
+[31m-      "version": "5.2.1",[m
+[31m-      "resolved": "https://registry.npmjs.org/memoize-one/-/memoize-one-5.2.1.tgz",[m
+[31m-      "integrity": "sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q=="[m
+[31m-    },[m
+     "node_modules/merge-class-names": {[m
+       "version": "1.4.2",[m
+       "resolved": "https://registry.npmjs.org/merge-class-names/-/merge-class-names-1.4.2.tgz",[m
+[36m@@ -11632,11 +11598,6 @@[m
+         "performance-now": "^2.1.0"[m
+       }[m
+     },[m
+[31m-    "node_modules/raf-schd": {[m
+[31m-      "version": "4.0.3",[m
+[31m-      "resolved": "https://registry.npmjs.org/raf-schd/-/raf-schd-4.0.3.tgz",[m
+[31m-      "integrity": "sha512-tQkJl2GRWh83ui2DiPTJz9wEiMN20syf+5oKfB03yYP7ioZcJwsIK8FjrtLwH1m7C7e+Tt2yYBlrOpdT+dyeIQ=="[m
+[31m-    },[m
+     "node_modules/randombytes": {[m
+       "version": "2.1.0",[m
+       "resolved": "https://registry.npmjs.org/randombytes/-/randombytes-2.1.0.tgz",[m
+[36m@@ -11714,24 +11675,6 @@[m
+         "node": ">=14"[m
+       }[m
+     },[m
+[31m-    "node_modules/react-beautiful-dnd": {[m
+[31m-      "version": "13.1.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/react-beautiful-dnd/-/react-beautiful-dnd-13.1.0.tgz",[m
+[31m-      "integrity": "sha512-aGvblPZTJowOWUNiwd6tNfEpgkX5OxmpqxHKNW/4VmvZTNTbeiq7bA3bn5T+QSF2uibXB0D1DmJsb1aC/+3cUA==",[m
+[31m-      "dependencies": {[m
+[31m-        "@babel/runtime": "^7.9.2",[m
+[31m-        "css-box-model": "^1.2.0",[m
+[31m-        "memoize-one": "^5.1.1",[m
+[31m-        "raf-schd": "^4.0.2",[m
+[31m-        "react-redux": "^7.2.0",[m
+[31m-        "redux": "^4.0.4",[m
+[31m-        "use-memo-one": "^1.1.1"[m
+[31m-      },[m
+[31m-      "peerDependencies": {[m
+[31m-        "react": "^16.8.5 || ^17.0.0",[m
+[31m-        "react-dom": "^16.8.5 || ^17.0.0"[m
+[31m-      }[m
+[31m-    },[m
+     "node_modules/react-calendar": {[m
+       "version": "3.7.0",[m
+       "resolved": "https://registry.npmjs.org/react-calendar/-/react-calendar-3.7.0.tgz",[m
+[36m@@ -11824,30 +11767,6 @@[m
+       "resolved": "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz",[m
+       "integrity": "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w=="[m
+     },[m
+[31m-    "node_modules/react-redux": {[m
+[31m-      "version": "7.2.8",[m
+[31m-      "resolved": "https://registry.npmjs.org/react-redux/-/react-redux-7.2.8.tgz",[m
+[31m-      "integrity": "sha512-6+uDjhs3PSIclqoCk0kd6iX74gzrGc3W5zcAjbrFgEdIjRSQObdIwfx80unTkVUYvbQ95Y8Av3OvFHq1w5EOUw==",[m
+[31m-      "dependencies": {[m
+[31m-        "@babel/runtime": "^7.15.4",[m
+[31m-        "@types/react-redux": "^7.1.20",[m
+[31m-        "hoist-non-react-statics": "^3.3.2",[m
+[31m-        "loose-envify": "^1.4.0",[m
+[31m-        "prop-types": "^15.7.2",[m
+[31m-        "react-is": "^17.0.2"[m
+[31m-      },[m
+[31m-      "peerDependencies": {[m
+[31m-        "react": "^16.8.3 || ^17 || ^18"[m
+[31m-      },[m
+[31m-      "peerDependenciesMeta": {[m
+[31m-        "react-dom": {[m
+[31m-          "optional": true[m
+[31m-        },[m
+[31m-        "react-native": {[m
+[31m-          "optional": true[m
+[31m-        }[m
+[31m-      }[m
+[31m-    },[m
+     "node_modules/react-refresh": {[m
+       "version": "0.11.0",[m
+       "resolved": "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz",[m
+[36m@@ -12010,14 +11929,6 @@[m
+         "node": ">=8"[m
+       }[m
+     },[m
+[31m-    "node_modules/redux": {[m
+[31m-      "version": "4.2.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/redux/-/redux-4.2.0.tgz",[m
+[31m-      "integrity": "sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==",[m
+[31m-      "dependencies": {[m
+[31m-        "@babel/runtime": "^7.9.2"[m
+[31m-      }[m
+[31m-    },[m
+     "node_modules/regenerate": {[m
+       "version": "1.4.2",[m
+       "resolved": "https://registry.npmjs.org/regenerate/-/regenerate-1.4.2.tgz",[m
+[36m@@ -13415,11 +13326,6 @@[m
+       "resolved": "https://registry.npmjs.org/thunky/-/thunky-1.1.0.tgz",[m
+       "integrity": "sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA=="[m
+     },[m
+[31m-    "node_modules/tiny-invariant": {[m
+[31m-      "version": "1.2.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/tiny-invariant/-/tiny-invariant-1.2.0.tgz",[m
+[31m-      "integrity": "sha512-1Uhn/aqw5C6RI4KejVeTg6mIS7IqxnLJ8Mv2tV5rTc0qWobay7pDUz6Wi392Cnc8ak1H0F2cjoRzb2/AW4+Fvg=="[m
+[31m-    },[m
+     "node_modules/tmpl": {[m
+       "version": "1.0.5",[m
+       "resolved": "https://registry.npmjs.org/tmpl/-/tmpl-1.0.5.tgz",[m
+[36m@@ -13705,14 +13611,6 @@[m
+         "punycode": "^2.1.0"[m
+       }[m
+     },[m
+[31m-    "node_modules/use-memo-one": {[m
+[31m-      "version": "1.1.2",[m
+[31m-      "resolved": "https://registry.npmjs.org/use-memo-one/-/use-memo-one-1.1.2.tgz",[m
+[31m-      "integrity": "sha512-u2qFKtxLsia/r8qG0ZKkbytbztzRb317XCkT7yP8wxL0tZ/CzK2G+WWie5vWvpyeP7+YoPIwbJoIHJ4Ba4k0oQ==",[m
+[31m-      "peerDependencies": {[m
+[31m-        "react": "^16.8.0 || ^17.0.0"[m
+[31m-      }[m
+[31m-    },[m
+     "node_modules/util-deprecate": {[m
+       "version": "1.0.2",[m
+       "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",[m
+[36m@@ -16843,15 +16741,6 @@[m
+         "@types/node": "*"[m
+       }[m
+     },[m
+[31m-    "@types/hoist-non-react-statics": {[m
+[31m-      "version": "3.3.1",[m
+[31m-      "resolved": "https://registry.npmjs.org/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz",[m
+[31m-      "integrity": "sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==",[m
+[31m-      "requires": {[m
+[31m-        "@types/react": "*",[m
+[31m-        "hoist-non-react-statics": "^3.3.0"[m
+[31m-      }[m
+[31m-    },[m
+     "@types/html-minifier-terser": {[m
+       "version": "6.1.0",[m
+       "resolved": "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-6.1.0.tgz",[m
+[36m@@ -16969,17 +16858,6 @@[m
+         "@types/react": "*"[m
+       }[m
+     },[m
+[31m-    "@types/react-redux": {[m
+[31m-      "version": "7.1.24",[m
+[31m-      "resolved": "https://registry.npmjs.org/@types/react-redux/-/react-redux-7.1.24.tgz",[m
+[31m-      "integrity": "sha512-7FkurKcS1k0FHZEtdbbgN8Oc6b+stGSfZYjQGicofJ0j4U0qIn/jaSvnP2pLwZKiai3/17xqqxkkrxTgN8UNbQ==",[m
+[31m-      "requires": {[m
+[31m-        "@types/hoist-non-react-statics": "^3.3.0",[m
+[31m-        "@types/react": "*",[m
+[31m-        "hoist-non-react-statics": "^3.3.0",[m
+[31m-        "redux": "^4.0.0"[m
+[31m-      }[m
+[31m-    },[m
+     "@types/resolve": {[m
+       "version": "1.17.1",[m
+       "resolved": "https://registry.npmjs.org/@types/resolve/-/resolve-1.17.1.tgz",[m
+[36m@@ -18424,14 +18302,6 @@[m
+         "postcss-selector-parser": "^6.0.9"[m
+       }[m
+     },[m
+[31m-    "css-box-model": {[m
+[31m-      "version": "1.2.1",[m
+[31m-      "resolved": "https://registry.npmjs.org/css-box-model/-/css-box-model-1.2.1.tgz",[m
+[31m-      "integrity": "sha512-a7Vr4Q/kd/aw96bnJG332W9V9LkJO69JRcaCYDUqjp6/z0w6VcZjgAcTbgFxEPfBgdnAwlh3iwu+hLopa+flJw==",[m
+[31m-      "requires": {[m
+[31m-        "tiny-invariant": "^1.0.6"[m
+[31m-      }[m
+[31m-    },[m
+     "css-declaration-sorter": {[m
+       "version": "6.2.2",[m
+       "resolved": "https://registry.npmjs.org/css-declaration-sorter/-/css-declaration-sorter-6.2.2.tgz",[m
+[36m@@ -19945,6 +19815,12 @@[m
+       "resolved": "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz",[m
+       "integrity": "sha1-FQStJSMVjKpA20onh8sBQRmU6k8="[m
+     },[m
+[32m+[m[32m    "fsevents": {[m
+[32m+[m[32m      "version": "2.3.2",[m
+[32m+[m[32m      "resolved": "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz",[m
+[32m+[m[32m      "integrity": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==",[m
+[32m+[m[32m      "optional": true[m
+[32m+[m[32m    },[m
+     "function-bind": {[m
+       "version": "1.1.1",[m
+       "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz",[m
+[36m@@ -20146,21 +20022,6 @@[m
+         "@babel/runtime": "^7.7.6"[m
+       }[m
+     },[m
+[31m-    "hoist-non-react-statics": {[m
+[31m-      "version": "3.3.2",[m
+[31m-      "resolved": "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz",[m
+[31m-      "integrity": "sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==",[m
+[31m-      "requires": {[m
+[31m-        "react-is": "^16.7.0"[m
+[31m-      },[m
+[31m-      "dependencies": {[m
+[31m-        "react-is": {[m
+[31m-          "version": "16.13.1",[m
+[31m-          "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",[m
+[31m-          "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="[m
+[31m-        }[m
+[31m-      }[m
+[31m-    },[m
+     "hoopy": {[m
+       "version": "0.1.4",[m
+       "resolved": "https://registry.npmjs.org/hoopy/-/hoopy-0.1.4.tgz",[m
+[36m@@ -21539,11 +21400,6 @@[m
+         "fs-monkey": "1.0.3"[m
+       }[m
+     },[m
+[31m-    "memoize-one": {[m
+[31m-      "version": "5.2.1",[m
+[31m-      "resolved": "https://registry.npmjs.org/memoize-one/-/memoize-one-5.2.1.tgz",[m
+[31m-      "integrity": "sha512-zYiwtZUcYyXKo/np96AGZAckk+FWWsUdJ3cHGGmld7+AhvcWmQyGCYUh1hc4Q/pkOhb65dQR/pqCyK0cOaHz4Q=="[m
+[31m-    },[m
+     "merge-class-names": {[m
+       "version": "1.4.2",[m
+       "resolved": "https://registry.npmjs.org/merge-class-names/-/merge-class-names-1.4.2.tgz",[m
+[36m@@ -22923,11 +22779,6 @@[m
+         "performance-now": "^2.1.0"[m
+       }[m
+     },[m
+[31m-    "raf-schd": {[m
+[31m-      "version": "4.0.3",[m
+[31m-      "resolved": "https://registry.npmjs.org/raf-schd/-/raf-schd-4.0.3.tgz",[m
+[31m-      "integrity": "sha512-tQkJl2GRWh83ui2DiPTJz9wEiMN20syf+5oKfB03yYP7ioZcJwsIK8FjrtLwH1m7C7e+Tt2yYBlrOpdT+dyeIQ=="[m
+[31m-    },[m
+     "randombytes": {[m
+       "version": "2.1.0",[m
+       "resolved": "https://registry.npmjs.org/randombytes/-/randombytes-2.1.0.tgz",[m
+[36m@@ -22989,20 +22840,6 @@[m
+         "whatwg-fetch": "^3.6.2"[m
+       }[m
+     },[m
+[31m-    "react-beautiful-dnd": {[m
+[31m-      "version": "13.1.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/react-beautiful-dnd/-/react-beautiful-dnd-13.1.0.tgz",[m
+[31m-      "integrity": "sha512-aGvblPZTJowOWUNiwd6tNfEpgkX5OxmpqxHKNW/4VmvZTNTbeiq7bA3bn5T+QSF2uibXB0D1DmJsb1aC/+3cUA==",[m
+[31m-      "requires": {[m
+[31m-        "@babel/runtime": "^7.9.2",[m
+[31m-        "css-box-model": "^1.2.0",[m
+[31m-        "memoize-one": "^5.1.1",[m
+[31m-        "raf-schd": "^4.0.2",[m
+[31m-        "react-redux": "^7.2.0",[m
+[31m-        "redux": "^4.0.4",[m
+[31m-        "use-memo-one": "^1.1.1"[m
+[31m-      }[m
+[31m-    },[m
+     "react-calendar": {[m
+       "version": "3.7.0",[m
+       "resolved": "https://registry.npmjs.org/react-calendar/-/react-calendar-3.7.0.tgz",[m
+[36m@@ -23078,19 +22915,6 @@[m
+       "resolved": "https://registry.npmjs.org/react-is/-/react-is-17.0.2.tgz",[m
+       "integrity": "sha512-w2GsyukL62IJnlaff/nRegPQR94C/XXamvMWmSHRJ4y7Ts/4ocGRmTHvOs8PSE6pB3dWOrD/nueuU5sduBsQ4w=="[m
+     },[m
+[31m-    "react-redux": {[m
+[31m-      "version": "7.2.8",[m
+[31m-      "resolved": "https://registry.npmjs.org/react-redux/-/react-redux-7.2.8.tgz",[m
+[31m-      "integrity": "sha512-6+uDjhs3PSIclqoCk0kd6iX74gzrGc3W5zcAjbrFgEdIjRSQObdIwfx80unTkVUYvbQ95Y8Av3OvFHq1w5EOUw==",[m
+[31m-      "requires": {[m
+[31m-        "@babel/runtime": "^7.15.4",[m
+[31m-        "@types/react-redux": "^7.1.20",[m
+[31m-        "hoist-non-react-statics": "^3.3.2",[m
+[31m-        "loose-envify": "^1.4.0",[m
+[31m-        "prop-types": "^15.7.2",[m
+[31m-        "react-is": "^17.0.2"[m
+[31m-      }[m
+[31m-    },[m
+     "react-refresh": {[m
+       "version": "0.11.0",[m
+       "resolved": "https://registry.npmjs.org/react-refresh/-/react-refresh-0.11.0.tgz",[m
+[36m@@ -23213,14 +23037,6 @@[m
+         "strip-indent": "^3.0.0"[m
+       }[m
+     },[m
+[31m-    "redux": {[m
+[31m-      "version": "4.2.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/redux/-/redux-4.2.0.tgz",[m
+[31m-      "integrity": "sha512-oSBmcKKIuIR4ME29/AeNUnl5L+hvBq7OaJWzaptTQJAntaPvxIJqfnjbaEiCzzaIz+XmVILfqAM3Ob0aXLPfjA==",[m
+[31m-      "requires": {[m
+[31m-        "@babel/runtime": "^7.9.2"[m
+[31m-      }[m
+[31m-    },[m
+     "regenerate": {[m
+       "version": "1.4.2",[m
+       "resolved": "https://registry.npmjs.org/regenerate/-/regenerate-1.4.2.tgz",[m
+[36m@@ -24250,11 +24066,6 @@[m
+       "resolved": "https://registry.npmjs.org/thunky/-/thunky-1.1.0.tgz",[m
+       "integrity": "sha512-eHY7nBftgThBqOyHGVN+l8gF0BucP09fMo0oO/Lb0w1OF80dJv+lDVpXG60WMQvkcxAkNybKsrEIE3ZtKGmPrA=="[m
+     },[m
+[31m-    "tiny-invariant": {[m
+[31m-      "version": "1.2.0",[m
+[31m-      "resolved": "https://registry.npmjs.org/tiny-invariant/-/tiny-invariant-1.2.0.tgz",[m
+[31m-      "integrity": "sha512-1Uhn/aqw5C6RI4KejVeTg6mIS7IqxnLJ8Mv2tV5rTc0qWobay7pDUz6Wi392Cnc8ak1H0F2cjoRzb2/AW4+Fvg=="[m
+[31m-    },[m
+     "tmpl": {[m
+       "version": "1.0.5",[m
+       "resolved": "https://registry.npmjs.org/tmpl/-/tmpl-1.0.5.tgz",[m
+[36m@@ -24466,12 +24277,6 @@[m
+         "punycode": "^2.1.0"[m
+       }[m
+     },[m
+[31m-    "use-memo-one": {[m
+[31m-      "version": "1.1.2",[m
+[31m-      "resolved": "https://registry.npmjs.org/use-memo-one/-/use-memo-one-1.1.2.tgz",[m
+[31m-      "integrity": "sha512-u2qFKtxLsia/r8qG0ZKkbytbztzRb317XCkT7yP8wxL0tZ/CzK2G+WWie5vWvpyeP7+YoPIwbJoIHJ4Ba4k0oQ==",[m
+[31m-      "requires": {}[m
+[31m-    },[m
+     "util-deprecate": {[m
+       "version": "1.0.2",[m
+       "resolved": "https://registry.npmjs.org/util-deprecate/-/util-deprecate-1.0.2.tgz",[m
+[1mdiff --git a/package.json b/package.json[m
+[1mindex dfe6ff4..e14b7a2 100644[m
+[1m--- a/package.json[m
+[1m+++ b/package.json[m
+[36m@@ -17,7 +17,6 @@[m
+     "jspdf": "^2.5.1",[m
+     "lodash.uniqueid": "^4.0.1",[m
+     "react": "^17.0.2",[m
+[31m-    "react-beautiful-dnd": "^13.1.0",[m
+     "react-calendar": "^3.7.0",[m
+     "react-chartjs-2": "^4.0.1",[m
+     "react-dom": "^17.0.2",[m
+[1mdiff --git a/src/components/Cargas/Cargas.css b/src/components/Cargas/Cargas.css[m
+[1mnew file mode 100644[m
+[1mindex 0000000..afbb93f[m
+[1m--- /dev/null[m
+[1m+++ b/src/components/Cargas/Cargas.css[m
+[36m@@ -0,0 +1,80 @@[m
+[32m+[m[32m.divrec{[m
+[32m+[m[32m    width: 600px;[m
+[32m+[m[32m    height: 600px;[m
+[32m+[m[32m    background-color: #F3F6FF;[m
+[32m+[m[32m    border-radius: 20px;[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    .divfon{[m
+[32m+[m[32m      width: 500px;[m
+[32m+[m[32m      height: 100px;[m
+[32m+[m[32m      top: 20px;[m
+[32m+[m[32m      left:40px;[m
+[32m+[m[32m      background-color: white;[m
+[32m+[m[32m      position: relative;[m
+[32m+[m[32m      border-radius: 10px;[m
+[32m+[m[32m      text-align: left;[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    .divfon2{[m
+[32m+[m[32m      width: 500px;[m
+[32m+[m[32m      height: 300px;[m
+[32m+[m[32m      top: 80px;[m
+[32m+[m[32m      left:40px;[m
+[32m+[m[32m      background-color: white;[m
+[32m+[m[32m      position: relative;[m
+[32m+[m[32m      border-radius: 10px;[m
+[32m+[m[32m      text-align: left;[m
+[32m+[m[41m    [m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    .positionlabeltable{[m
+[32m+[m[41m    [m
+[32m+[m[32m      font-size: 16px;[m
+[32m+[m[32m      position: relative;[m
+[32m+[m[32m      top: 100px;[m
+[32m+[m[32m      left: 60px;[m
+[32m+[m[41m    [m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    .ingresanombre{[m
+[32m+[m[32m      width: 300px;[m
+[32m+[m[32m      height: 50px;[m
+[32m+[m[32m      position: relative;[m
+[32m+[m[32m      top: 55px;[m
+[32m+[m[32m      left: 210px;[m
+[32m+[m[32m      border-radius: 10px;[m
+[32m+[m[32m      background-color: white;[m
+[32m+[m[41m    [m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    .circlecarga{[m
+[32m+[m[32m      width: 500px;[m
+[32m+[m[32m      height: 500px;[m
+[32m+[m[32m      line-height: 100px;[m
+[32m+[m[32m      border-radius: 50%;[m
+[32m+[m[32m      font-size: 50px;[m
+[32m+[m[32m      color: #F25C29;[m
+[32m+[m[32m      text-align: center;[m
+[32m+[m[32m      background: white;[m
+[32m+[m[32m      box-shadow: 0 1px 2px rgba(0,0,0,.5);[m
+[32m+[m[32m      position: fixed;[m
+[32m+[m[32m      top:120px;[m
+[32m+[m[32m      left: 1000px;[m
+[32m+[m[32m      background-color: #F25C29;[m
+[32m+[m[41m    [m
+[32m+[m[32m    }[m
+[32m+[m[32m    .img{[m
+[32m+[m[32m    position: absolute;[m
+[32m+[m[32m     top: 0;[m
+[32m+[m[32m     right: 0;[m
+[32m+[m[32m     bottom: 0;[m
+[32m+[m[32m     left: 0;[m
+[32m+[m[32m     margin: auto;[m
+[32m+[m[32m     max-width: 10px;[m
+[32m+[m[32m     max-height: 10px;[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    .titulo{[m
+[32m+[m[32m      text-align: center;[m
+[32m+[m[32m    }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/components/Cargas/Cargas_1.js b/src/components/Cargas/Cargas_1.js[m
+[1mindex 0b5739c..5236bd8 100644[m
+[1m--- a/src/components/Cargas/Cargas_1.js[m
+[1m+++ b/src/components/Cargas/Cargas_1.js[m
+[36m@@ -1,102 +1,30 @@[m
+[31m-import { useState } from "react";[m
+[31m-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";[m
+[31m-import { faMagnifyingGlassChart } from "@fortawesome/free-solid-svg-icons";[m
+[31m-import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons";[m
+[31m-import Divider from "../GraficasScreen/Divider";[m
+[32m+[m[32mimport lupa from '../../assets/lupa.png'[m
+[32m+[m[32mimport './Cargas.css'[m
+ [m
+ export const Cargas_1 = () => {[m
+[31m-  const [isButtonClicked, setIsButtonClicked] = useState(false);[m
+ [m
+[31m-  const nombreArchivo = "Reporte de plantas Enero-Febrero.xls";[m
+[31m-  const actoresInternos = [[m
+[31m-    "Planta Portería 1",[m
+[31m-    "Planta Portería 2",[m
+[31m-    "Planta Portería 3",[m
+[31m-    "Planta Portería 4",[m
+[31m-  ];[m
+[31m-  [m
+[31m-  const actoresExternos = [[m
+[31m-    "Planta Portería 1",[m
+[31m-    "Planta Portería 2",[m
+[31m-    "Planta Portería 3",[m
+[31m-    "Planta Portería 4",[m
+[31m-  ];[m
+[31m-[m
+[31m-  const handleClick = () => {[m
+[31m-    setIsButtonClicked(!isButtonClicked);[m
+[31m-  };[m
+[32m+[m[32m    return([m
+[32m+[m[32m    <><div className="">[m
+[32m+[m[32m            <h2 className="titulo"> CARGAR DATOS</h2>[m
+[32m+[m[32m            <p className="titulo"> Confirmar la configuración del archivo</p>[m
+[32m+[m[32m        </div><div className="divrec">[m
+[32m+[m[32m                <div className="divfon">[m
+[32m+[m[32m                    <p> Archivo a cargar</p>[m
+[32m+[m[32m                </div>[m
+ [m
+[31m-  return ([m
+[31m-    <div>[m
+[31m-      <div className="">[m
+[31m-        <h2 className="text-center">CARGAR DATOS</h2>[m
+[31m-        <p className="text-center">Confirmar la configuración del archivo</p>[m
+[31m-      </div>[m
+[32m+[m[32m                <div className="divfon2">[m
+[32m+[m[32m                    Parametros de analisis[m
+[32m+[m[32m                </div>[m
+ [m
+[31m-      <div className="grid grid-rows-1 grid-cols-2 items-center px-36 my-4">[m
+[31m-        <div className="flex flex-col bg-[#E9EEFF] rounded-lg">[m
+[31m-          <div className="flex flex-row justify-center">[m
+[31m-            <div className="bg-white rounded-lg w-5/6 mt-8">[m
+[31m-              <p className="text-gray-400 pl-12 pt-3">Archivo a cargar</p>[m
+[31m-              <Divider borColor="border-slate-400" />[m
+[31m-              <p className="font-semibold pl-12 pt-2 pb-3">{nombreArchivo}</p>[m
+[31m-            </div>[m
+[31m-          </div>[m
+[32m+[m[32m                <h2 className="positionlabeltable">Nombre de Archivo:[m
+ [m
+[31m-          <div className="flex flex-row justify-center">[m
+[31m-            <div className="bg-white rounded-lg w-5/6 mt-8">[m
+[31m-              <p className="text-gray-400 pl-12 pt-3">Parametros de analisis</p>[m
+[31m-              <Divider borColor="border-slate-400" />[m
+[31m-              <div className="grid grid-row-2 grid-cols-2 items-start pl-12 pt-2">[m
+[31m-                <p className="text-gray-400 py-2">Actores internos</p>[m
+[31m-                <p className="text-gray-400 py-2">Actores externos</p>[m
+[31m-              </div>[m
+[31m-              <div className="grid grid-row-1 grid-cols-2 overflow-auto items-start h-48 pl-12 pb-3">[m
+[31m-                <div>[m
+[31m-                  {actoresInternos.map((actor) => {[m
+[31m-                    return <p className="font-semibold py-2">{actor}</p>;[m
+[31m-                  })}[m
+[32m+[m[32m                </h2>[m
+[32m+[m[32m                <div className="ingresanombre">[m
+                 </div>[m
+[31m-                <div>[m
+[31m-                  {actoresExternos.map((actor) => {[m
+[31m-                    return <p className="font-semibold py-2">{actor}</p>;[m
+[31m-                  })}[m
+[32m+[m[32m            </div><div className="circlecarga">[m
+[32m+[m[32m                <img src={lupa} alt="sample"/>[m
+                 </div>[m
+[31m-              </div>[m
+[31m-            </div>[m
+[31m-          </div>[m
+[31m-[m
+[31m-          <div className="flex flex-row justify-center items-center py-8">[m
+[31m-            <p className="font-semibold pr-8">Nombre del Reporte:</p>[m
+[31m-            <input[m
+[31m-              className="rounded-lg w-2/6 py-1 px-3 text-center outline-0"[m
+[31m-              placeholder="Reporte 1"[m
+[31m-            ></input>[m
+[31m-          </div>[m
+[31m-        </div>[m
+[32m+[m[32m                </>[m[41m [m
+ [m
+[31m-        <div className="flex justify-end">[m
+[31m-          <button className="flex flex-col items-center justify-center w-96 h-96 bg-[#F25C29] shadow-xl rounded-full text-sm font-medium text-white hover:bg-[#D35124]" onClick={handleClick}>[m
+[31m-            {isButtonClicked === false ?[m
+[31m-            <div>[m
+[31m-              <FontAwesomeIcon[m
+[31m-                icon={faMagnifyingGlassChart}[m
+[31m-                className="w-52 h-52 mr-2 ml-1"[m
+[31m-              />[m
+[31m-              <p className="font-bold text-4xl">Cargar</p>[m
+[31m-            </div>[m
+[31m-            :[m
+[31m-            <div>[m
+[31m-              <FontAwesomeIcon[m
+[31m-                icon={faClipboardCheck}[m
+[31m-                className="w-52 h-52 mr-2 ml-1"[m
+[31m-              />[m
+[31m-              <p className="font-bold text-4xl mt-4">Completado</p>[m
+[31m-            </div>[m
+[31m-            }[m
+[31m-          </button>[m
+[31m-        </div>[m
+[31m-      </div>[m
+[31m-    </div>[m
+[31m-  );[m
+[31m-};[m
+[32m+[m[32m    )[m
+[32m+[m[32m}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/components/GraficasScreen/AddGraph.js b/src/components/GraficasScreen/AddGraph.js[m
+[1mindex f99005c..9243e9c 100644[m
+[1m--- a/src/components/GraficasScreen/AddGraph.js[m
+[1m+++ b/src/components/GraficasScreen/AddGraph.js[m
+[36m@@ -119,6 +119,27 @@[m [mexport default function AddGraph(props) {[m
+       },[m
+       options: optionsCharts[chartType][m
+     }])[m
+[32m+[m
+[32m+[m[32m    {/*props.setCharts(prevCharts => [...prevCharts, {[m
+[32m+[m[32m      id: id,[m
+[32m+[m[32m      type: chartType,[m
+[32m+[m[32m      data: {[m
+[32m+[m[32m        labels: UserData.map((data) => data.planta),[m
+[32m+[m[32m        datasets: [[m
+[32m+[m[32m          {[m
+[32m+[m[32m            label: "Relaciones Normales",[m
+[32m+[m[32m            data: UserData.map((data) => data.normales),[m
+[32m+[m[32m            backgroundColor: ["#FAAD42"],[m
+[32m+[m[32m          },[m
+[32m+[m[32m          {[m
+[32m+[m[32m            label: "Relaciones Anómalas",[m
+[32m+[m[32m            data: UserData.map((data) => data.anomalias),[m
+[32m+[m[32m            backgroundColor: ["#F25C29"],[m
+[32m+[m[32m          },[m
+[32m+[m[32m        ],[m
+[32m+[m[32m      },[m
+[32m+[m[32m      options: optionsCharts[chartType][m
+[32m+[m[32m    }])*/}[m
+   }[m
+ [m
+   return ([m
+[36m@@ -149,7 +170,7 @@[m [mexport default function AddGraph(props) {[m
+           >[m
+             <div class="py-1" role="none">[m
+               <h4 className="text-lg font-bold pl-5">Tipo de gráfica</h4>[m
+[31m-              <Divider borColor="border-black"/>[m
+[32m+[m[32m              <Divider />[m
+               <div className="flex justify-center py-3 px-3">[m
+                 <ButtonGroupCharts[m
+                   setChartType={setChartType}[m
+[36m@@ -158,7 +179,7 @@[m [mexport default function AddGraph(props) {[m
+               </div>[m
+ [m
+               <h4 className="text-lg font-bold pl-5 pt-2">Comparativa</h4>[m
+[31m-              <Divider borColor="border-black"/>[m
+[32m+[m[32m              <Divider />[m
+               <div className="flex justify-start items-center py-3 px-3">[m
+                 <ButtonGroupCor[m
+                   setAnalysisType={setAnalysisType}[m
+[36m@@ -167,7 +188,7 @@[m [mexport default function AddGraph(props) {[m
+               </div>[m
+ [m
+               <h4 className="text-lg font-bold pl-5 pt-2">Variable (s)</h4>[m
+[31m-              <Divider borColor="border-black"/>[m
+[32m+[m[32m              <Divider />[m
+               {analysisType === "Anomalías" ?[m
+                 <div className="grid grid-cols-2 pt-3 px-3">[m
+                   <GraphForm text="Eje X" />[m
+[36m@@ -181,7 +202,7 @@[m [mexport default function AddGraph(props) {[m
+               }[m
+ [m
+               <h4 className="text-lg font-bold pl-5 pt-2">Rango de anomalía</h4>[m
+[31m-              <Divider borColor="border-black"/>[m
+[32m+[m[32m              <Divider />[m
+               <div className="flex items-center justify-center pb-4">[m
+                 <RangeSlider [m
+                   min={-100}[m
+[1mdiff --git a/src/components/GraficasScreen/Divider.js b/src/components/GraficasScreen/Divider.js[m
+[1mindex 49500be..c00c814 100644[m
+[1m--- a/src/components/GraficasScreen/Divider.js[m
+[1m+++ b/src/components/GraficasScreen/Divider.js[m
+[36m@@ -1,7 +1,7 @@[m
+[31m-export default function Devider(props) {[m
+[32m+[m[32mexport default function Devider() {[m
+   return ([m
+[31m-    <div class="py-2 flex items-center justify-center">[m
+[31m-      <div class={`w-11/12 border-t ${props.borColor}`}></div>[m
+[32m+[m[32m    <div class="py-3 flex items-center justify-center">[m
+[32m+[m[32m      <div class="w-11/12 border-t border-black"></div>[m
+     </div>[m
+   );[m
+ }[m
+[1mdiff --git a/src/components/Historial/Historial.js b/src/components/Historial/Historial.js[m
+[1mindex 62a40fd..fd4043c 100644[m
+[1m--- a/src/components/Historial/Historial.js[m
+[1m+++ b/src/components/Historial/Historial.js[m
+[36m@@ -46,7 +46,7 @@[m [mexport const Historial = () => {[m
+                             return([m
+                                 <Link key={reporte.id} to={reporte.name} className='bg-[#F3F6FF] rounded-t-xl rounded-b-xl pb-2 w-2/3'>[m
+                                     <div className='p-4 w-full'>[m
+[31m-                                        <p className='text-black font-bold text-left text-xl'>{reporte.name}</p>[m
+[32m+[m[32m                                        <p className='text-black font-bold text-left text-xl'>{reporte.titulo}</p>[m
+                                         <p className='text-black font-normal text-left text-l'>{`${reporte.modelos} modelos`}</p>[m
+                                     </div>[m
+                                 </Link>[m
+[1mdiff --git a/src/components/SubirArchivo/CargarArchivo/BotonesInferior.js b/src/components/SubirArchivo/CargarArchivo/BotonesInferior.js[m
+[1mindex 304e380..0897b2a 100644[m
+[1m--- a/src/components/SubirArchivo/CargarArchivo/BotonesInferior.js[m
+[1m+++ b/src/components/SubirArchivo/CargarArchivo/BotonesInferior.js[m
+[36m@@ -5,8 +5,12 @@[m [mconst BotonesInferior = (props) =>{[m
+ [m
+     return([m
+         <div className="container">[m
+[31m-            <button className="btn btn-outline-danger botonInline" onClick={props.handlePrimero}>{props.primerBoton}</button>[m
+[31m-            <button className="btn btn-danger botonInline" onClick={props.handleSegundo}>{props.segundoBoton}</button>[m
+[32m+[m[32m                <Link to={props.linkPrimero}>[m
+[32m+[m[32m                    <button className="btn btn-outline-danger botonInline">{props.primerBoton}</button>[m
+[32m+[m[32m                </Link>[m
+[32m+[m[32m                <Link to={props.linkSegundo}>[m
+[32m+[m[32m                    <button className="btn btn-danger botonInline">{props.segundoBoton}</button>[m
+[32m+[m[32m                </Link>[m
+         </div>[m
+     )[m
+ }[m
+[1mdiff --git a/src/components/SubirArchivo/CargarArchivo/ContenedorArchivos.js b/src/components/SubirArchivo/CargarArchivo/ContenedorArchivos.js[m
+[1mindex 13e0c11..2ca81b3 100644[m
+[1m--- a/src/components/SubirArchivo/CargarArchivo/ContenedorArchivos.js[m
+[1m+++ b/src/components/SubirArchivo/CargarArchivo/ContenedorArchivos.js[m
+[36m@@ -1,83 +1,19 @@[m
+ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'[m
+[31m-import { faUpload, faFileCsv, faFile } from '@fortawesome/free-solid-svg-icons'[m
+[31m-import { useRef, useState } from 'react';[m
+[31m-[m
+[31m-const ContenedorArchivos = ({file, setFile}) =>{[m
+[31m-[m
+[31m-    const wrapperRef = useRef(null);[m
+[31m-    const iconRef = useRef(null);[m
+[31m-[m
+[31m-    const onDragEnter = () => {[m
+[31m-        wrapperRef.current.classList.add('containerDrag');[m
+[31m-        iconRef.current.classList.add('iconoSubidaActive');[m
+[31m-    }[m
+[31m-[m
+[31m-    const onDragLeave = () => {[m
+[31m-        wrapperRef.current.classList.remove('containerDrag');[m
+[31m-        iconRef.current.classList.remove('iconoSubidaActive');[m
+[31m-    }[m
+[31m-[m
+[31m-    const onDrop = () => {[m
+[31m-        wrapperRef.current.classList.remove('containerDrag');[m
+[31m-        iconRef.current.classList.remove('iconoSubidaActive');[m
+[31m-    }[m
+[31m-[m
+[31m-    const onFileDrop = (e) => {[m
+[31m-        const newFile = e.target.files[0];[m
+[31m-        if (newFile) {[m
+[31m-            setFile(newFile);[m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+[31m-    const fileRemove = () => {[m
+[31m-        setFile();[m
+[31m-    }[m
+[32m+[m[32mimport { faUpload } from '@fortawesome/free-solid-svg-icons'[m
+ [m
+[32m+[m[32mconst ContenedorArchivos = () =>{[m
+     return([m
+[31m-        <div [m
+[31m-            className="containerArchivos"  [m
+[31m-            ref={wrapperRef}[m
+[31m-            onDragEnter={onDragEnter}[m
+[31m-            onDragLeave={onDragLeave}[m
+[31m-            onDrop={onDrop}[m
+[31m-        >[m
+[31m-            {[m
+[31m-                file === undefined ? [m
+[31m-                <>[m
+[31m-                    <div id="containerIcono">[m
+[31m-                        <div ref={iconRef}>[m
+[31m-                            <FontAwesomeIcon icon={faUpload} className="iconoSubida"/>[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                    <h5 className="text" id="texto-archivo">Arrastra los archivos aquí</h5>[m
+[31m-[m
+[31m-                    <input type="file" accept=".csv" onChange={onFileDrop} className="inputFile"/>[m
+[31m-                </>[m
+[31m-                : [m
+[31m-                <div className='h-full flex flex-col center justify-between'>[m
+[31m-                    {[m
+[31m-                        file.type.includes("csv") ? [m
+[31m-                        <>[m
+[31m-                            <FontAwesomeIcon icon={faFileCsv} className="text-[#006C3B] w-full h-1/3 mb-3 mt-4"/>[m
+[31m-                            <p className='text-center'>{file.name}</p>[m
+[31m-                            <p className='text-center'>{file.size} B</p>[m
+[31m-                        </>[m
+[31m-                        :[m
+[31m-                        <>[m
+[31m-                            <FontAwesomeIcon icon={faFile} className="text-[#CCCCCC] w-full h-1/3 mb-3 mt-4"/>[m
+[31m-                            <p className='text-center'>{file.name}</p>[m
+[31m-                            <p className='text-center'>{file.size} B</p>[m
+[31m-                            <p className='text-center text-sm'>Sólo se permiten archivos con extensión csv</p>[m
+[31m-                        </>[m
+[31m-                    }[m
+[31m-                    [m
+[31m-                    <button [m
+[31m-                        className="text-slate-50 font-medium rounded-3xl text-lg text-center hover:text-slate-50 bg-[#FF3502] border-none hover:bg-[#c62901] py-1.5 mb-4"[m
+[31m-                        onClick={fileRemove}[m
+[31m-                    >Cancelar</button>[m
+[31m-                </div>[m
+[31m-            }[m
+[31m-            [m
+[32m+[m[32m        <div className="rounded containerArchivos">[m
+[32m+[m[32m            <div id="containerIcono">[m
+[32m+[m[32m                <button>[m
+[32m+[m[32m                    <FontAwesomeIcon icon={faUpload} className="iconoSubida"/>[m
+[32m+[m[32m                </button>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m            <h5 className="text">Arrastra los archivos aqui</h5>[m
+[32m+[m[32m            <h5 className="text">O</h5>[m
+[32m+[m[32m            <div className="container">[m
+[32m+[m[32m                <button className="btn btn-warning" id="white">Buscar Archivos</button>[m
+[32m+[m[32m            </div>[m
+         </div>[m
+     )[m
+ }[m
+[1mdiff --git a/src/components/SubirArchivo/CargarArchivo/SubirDatos.js b/src/components/SubirArchivo/CargarArchivo/SubirDatos.js[m
+[1mindex 46b4bc2..4cce212 100644[m
+[1m--- a/src/components/SubirArchivo/CargarArchivo/SubirDatos.js[m
+[1m+++ b/src/components/SubirArchivo/CargarArchivo/SubirDatos.js[m
+[36m@@ -2,94 +2,13 @@[m [mimport Steps from "../Pasos/Steps"[m
+ import ContenedorArchivos from "./ContenedorArchivos"[m
+ import BotonesInferior from "./BotonesInferior"[m
+ import "../SubirDatos.css"[m
+[31m-[m
+[31m-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';[m
+[31m-import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';[m
+[31m-[m
+[31m-[m
+[31m-import { useState, useEffect } from 'react';[m
+[31m-import axios from "axios";[m
+[31m-[m
+[31m-import { useOutletContext, useNavigate } from "react-router-dom";[m
+[31m-[m
+[31m-[m
+ const SubirDatos = () =>{[m
+[31m-    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();[m
+[31m-[m
+[31m-    const navigate = useNavigate()[m
+[31m-    const [showModal, setShowModal] = useState(false);[m
+[31m-    const [modalError, setModalError] = useState("");[m
+[31m-[m
+[31m-    const handlePrimero = () => {[m
+[31m-        navigate('/');[m
+[31m-    }[m
+[31m-[m
+[31m-    const handleSegundo = async (e) => {[m
+[31m-        if(file === undefined || !file.type.includes("csv")){[m
+[31m-            setModalError("El formato del archivo no es válido");[m
+[31m-            setShowModal(true);[m
+[31m-        }else{[m
+[31m-            const formData = new FormData();[m
+[31m-            formData.append("csv", file);[m
+[31m-            formData.append("name", "Reporte de prueba")[m
+[31m-            const result = await axios.post("http://localhost:4000/readFile", formData, {[m
+[31m-                headers: {[m
+[31m-                  "Content-Type": 'multipart/form-data',[m
+[31m-                },[m
+[31m-            });[m
+[31m-[m
+[31m-            setDataCsv(result["data"]["data"]);[m
+[31m-            setColumnas(result["data"]["columnas"]);[m
+[31m-            [m
+[31m-        }[m
+[31m-    }[m
+[31m-[m
+[31m-    useEffect(() => {[m
+[31m-        if(columnas !== undefined){[m
+[31m-            if(columnas.length === 0){[m
+[31m-                setModalError("Archivo vacío");[m
+[31m-                setShowModal(true);[m
+[31m-            }else{[m
+[31m-                setStepActual(2);[m
+[31m-                navigate('/dashboard/subir/parametros');[m
+[31m-            }[m
+[31m-        } [m
+[31m-    }, [columnas])[m
+[31m-[m
+[31m-[m
+[31m-    [m
+[31m-    const handleClose = () => {[m
+[31m-        setShowModal(false);[m
+[31m-    }[m
+[31m-[m
+[31m-[m
+     return ([m
+         <div>[m
+             <h2 className="text">SUBIR ARCHIVO</h2>[m
+             <h3 className="text">Sube el archivo que deseas analizar</h3>[m
+[31m-            <ContenedorArchivos file={file} setFile={setFile}/>[m
+[31m-            <BotonesInferior primerBoton="Cancelar" segundoBoton="Configurar parametros" handlePrimero = {handlePrimero} handleSegundo = {handleSegundo}/>[m
+[31m-[m
+[31m-            <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>[m
+[31m-                <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">[m
+[31m-                    <div className="relative bg-white rounded-lg shadow h-64">[m
+[31m-                        <div className="flex flex-col center p-3 rounded-t w-full">[m
+[31m-                            <div className="flex flex-row justify-end">[m
+[31m-                                <button onClick={handleClose} className="bg-slate-50 hover:bg-slate-300 rounded-lg p-1.5 ml-auto inline-flex items-center text-gray-400 hover:text-gray-900">[m
+[31m-                                    <FontAwesomeIcon icon={faXmark} className='w-5' />[m
+[31m-                                </button>[m
+[31m-                            </div>[m
+[31m-                            <FontAwesomeIcon icon={faCircleExclamation} className='w-full h-1/3 text-[#F6A000]'/>[m
+[31m-                            <h3 className="text-center mt-4">[m
+[31m-                                Por favor sube un archivo válido[m
+[31m-                            </h3>[m
+[31m-                            <h5 className="text-center mt-4">[m
+[31m-                                {modalError}[m
+[31m-                            </h5>[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                </div>[m
+[31m-            </div>[m
+[32m+[m[32m            <ContenedorArchivos/>[m
+[32m+[m[32m            <BotonesInferior primerBoton="Cancelar" segundoBoton="Configurar parametros" linkPrimero='/' linkSegundo='/dashboard/subir/parametros'/>[m
+         </div>[m
+     )[m
+ }[m
+[1mdiff --git a/src/components/SubirArchivo/Pasos/PasosCirculos.js b/src/components/SubirArchivo/Pasos/PasosCirculos.js[m
+[1mindex 48fff1b..7f5453e 100644[m
+[1m--- a/src/components/SubirArchivo/Pasos/PasosCirculos.js[m
+[1m+++ b/src/components/SubirArchivo/Pasos/PasosCirculos.js[m
+[36m@@ -1,11 +1,8 @@[m
+ import "../SubirDatos.css"[m
+[31m-import { useOutletContext } from "react-router-dom";[m
+ [m
+ const PasosCirculos = (props) => {[m
+[31m-    [m
+[31m-[m
+[31m-    let textColor = props.stepActual === props.number ? "white" : "black"[m
+[31m-    let backgroundNaranja = props.stepActual === props.number ? "backgroundNaranja" : ""[m
+[32m+[m[32m    let textColor = props.textColor[m
+[32m+[m[32m    let backgroundNaranja = props.backgroundColor[m
+     let clases = "shadow p-3 mb-5 bg-white rounded rounded-circle circle " + backgroundNaranja[m
+     return ([m
+             <div className={clases}>[m
+[1mdiff --git a/src/components/SubirArchivo/Pasos/Steps.js b/src/components/SubirArchivo/Pasos/Steps.js[m
+[1mindex c2feb05..b07158a 100644[m
+[1m--- a/src/components/SubirArchivo/Pasos/Steps.js[m
+[1m+++ b/src/components/SubirArchivo/Pasos/Steps.js[m
+[36m@@ -3,32 +3,21 @@[m [mimport LineaPunteada from "./LineaPunteada"[m
+ import StepText from "./StepsText"[m
+ import { Outlet } from "react-router-dom"[m
+ [m
+[31m-import { useState } from 'react';[m
+[31m-[m
+ const Steps = () =>{[m
+[31m-[m
+[31m-    const [file, setFile] = useState();[m
+[31m-    const [dataCsv, setDataCsv] = useState(undefined);[m
+[31m-    const [columnas, setColumnas] = useState(undefined);[m
+[31m-    const [actInt, setActInt] = useState([]);[m
+[31m-    const [actExt, setActExt] = useState([]);[m
+[31m-[m
+[31m-    const [stepActual, setStepActual] = useState(1);[m
+[31m-[m
+     return([m
+             <div>[m
+                 <div className="d-flex justify-content-between containerDatos">[m
+[31m-                    <PasosCirculos number={1} stepActual={stepActual}/>[m
+[32m+[m[32m                    <PasosCirculos number={1} textColor="white" backgroundColor="backgroundNaranja"/>[m
+                     <StepText text={"Sube un archivo"}/>[m
+                     <LineaPunteada/>[m
+[31m-                    <PasosCirculos number={2} stepActual={stepActual}/>[m
+[32m+[m[32m                    <PasosCirculos number={2} textColor="black" backgroundColor={false}/>[m
+                     <StepText text={"Configura los parámetros"}/>[m
+                     <LineaPunteada/>[m
+[31m-                    <PasosCirculos number={3} stepActual={stepActual}/>[m
+[32m+[m[32m                    <PasosCirculos number={3} textColor="black" backgroundColor={false}/>[m
+                     <StepText text={"Cargar Datos"}/>[m
+                 </div>[m
+ [m
+[31m-                <Outlet context={[file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual]}/>[m
+[32m+[m[32m                <Outlet/>[m
+             </div>[m
+     )[m
+ }[m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/AtributosColumna.js b/src/components/SubirArchivo/Relacionar/AtributosColumna.js[m
+[1mindex 151e8f8..3107519 100644[m
+[1m--- a/src/components/SubirArchivo/Relacionar/AtributosColumna.js[m
+[1m+++ b/src/components/SubirArchivo/Relacionar/AtributosColumna.js[m
+[36m@@ -1,100 +1,35 @@[m
+ import BloqueSubido from "./BloqueSubido"[m
+ import { Buscar } from "./Buscar"[m
+ import './Relacionar.css'[m
+[31m-import {useState} from "react"[m
+[31m-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"[m
+ [m
+[31m-const ArtibutosColumnas = () => {[m
+[31m-[m
+[31m-    [m
+[31m-    const atributosIniciales = [[m
+[31m-        {[m
+[31m-            id: "1",[m
+[31m-            text: "Planta Transportista 1"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "2",[m
+[31m-            text: "Planta Transportista 2"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "3",[m
+[31m-            text: "Planta Transportista 3"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "4",[m
+[31m-            text: "Planta Transportista 4"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "5",[m
+[31m-            text: "Planta Transportista 5"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "6",[m
+[31m-            text: "Planta Transportista 6"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "7",[m
+[31m-            text: "Planta Transportista 7"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "8",[m
+[31m-            text: "Planta Transportista 8"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "9",[m
+[31m-            text: "Planta Transportista 9"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "10",[m
+[31m-            text: "Planta Transportista 10"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "11",[m
+[31m-            text: "Planta Transportista 11"[m
+[31m-        },[m
+[31m-        {[m
+[31m-            id: "12",[m
+[31m-            text: "Planta Transportista 12"[m
+[31m-        },[m
+[31m-    ][m
+[31m-[m
+[31m-[m
+[31m-    const reorder = (list, startIndex, endIndex) => {[m
+[31m-        const result = [...list];[m
+[31m-        const [removed] = result.splice(startIndex,1);[m
+[31m-        result.splice(endIndex,0,removed);[m
+[31m-        return result[m
+[31m-    }[m
+[31m-[m
+[31m-[m
+[31m-    const [atributos, setAtributos] = useState(atributosIniciales)[m
+ [m
+[32m+[m[32mconst ArtibutosColumnas = () => {[m
+     return ([m
+         <div>[m
+[31m-[m
+             <h5 className="centrarTexto">Columnas del archivo subido</h5>[m
+             <Buscar/>[m
+[31m-                <Droppable droppableId="subidos">[m
+[31m-                    { (droppableProvided) => ([m
+[31m-                    <ul className="columnaMedia overflow-auto"[m
+[31m-                        {...droppableProvided.droppableProps}[m
+[31m-                        ref={droppableProvided.innerRef}[m
+[31m-                    >[m
+[31m-                         {atributos.map((atributo, index) => ([m
+[31m-                            <Draggable key={atributo.id} draggableId={atributo.id} index={index}>[m
+[31m-                                 {(draggableProvided) => ([m
+[31m-                                    <li [m
+[31m-                                    {...draggableProvided.draggableProps}[m
+[31m-                                    ref={draggableProvided.innerRef}[m
+[31m-                                    {...draggableProvided.dragHandleProps}[m
+[31m-                                    ><BloqueSubido nombreAtributo={atributo.text}/></li>[m
+[31m-                                 )}[m
+[31m-                            </Draggable>[m
+[31m-                        ))}[m
+[31m-                        {droppableProvided.placeholder}[m
+[31m-                    </ul>[m
+[31m-                    )}[m
+[31m-                </Droppable>[m
+[32m+[m[32m            <div className="columnaMedia overflow-auto">[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            <BloqueSubido/>[m
+[32m+[m[32m            </div>[m
+         </div>[m
+     )[m
+ }[m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/BloqueAtributo.js b/src/components/SubirArchivo/Relacionar/BloqueAtributo.js[m
+[1mindex b803ac7..be4407a 100644[m
+[1m--- a/src/components/SubirArchivo/Relacionar/BloqueAtributo.js[m
+[1m+++ b/src/components/SubirArchivo/Relacionar/BloqueAtributo.js[m
+[36m@@ -1,36 +1,16 @@[m
+[31m-import { Droppable, Draggable} from "react-beautiful-dnd"[m
+[31m-import BloqueSubido from "./BloqueSubido"[m
+[32m+[m
+ [m
+ const BloqueAtributo = (props) =>{[m
+ [m
+     let classes = "rounded containerRelacionar " + props.color[m
+[31m-[m
+[32m+[m[41m    [m
+     return([m
+         <div className={classes}>[m
+[31m-                        <div className="container">[m
+[31m-                            <Droppable droppableId={props.id}>[m
+[31m-                                { (droppableProvided) => ([m
+[31m-                                <ul className="rounded containerDotted overflow-auto"[m
+[31m-                                    {...droppableProvided.droppableProps}[m
+[31m-                                    ref={droppableProvided.innerRef}[m
+[31m-                                >[m
+[31m-                                    {props.arregloAtributos.map((atributo, index) => ([m
+[31m-                                        <Draggable key={atributo} draggableId={atributo} index={index}>[m
+[31m-                                            {(draggableProvided) => ([m
+[31m-                                                <li [m
+[31m-                                                {...draggableProvided.draggableProps}[m
+[31m-                                                ref={draggableProvided.innerRef}[m
+[31m-                                                {...draggableProvided.dragHandleProps}[m
+[31m-                                                ><BloqueSubido nombreAtributo={atributo} espacio=" containerSeleccionado"/></li>[m
+[31m-                                            )}[m
+[31m-                                        </Draggable>[m
+[31m-                                    ))}[m
+[31m-                                    {droppableProvided.placeholder}[m
+[31m-                                </ul>[m
+[31m-                                )}[m
+[31m-                            </Droppable>[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[32m+[m[32m            <p className="tituloAtributo">{props.titulo}</p>[m
+[32m+[m[32m            <div className="container">[m
+[32m+[m[32m                <div className="rounded containerDotted"></div>[m
+[32m+[m[32m            </div>[m
+[32m+[m[32m        </div>[m
+     )[m
+ }[m
+ [m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/BloqueSubido.js b/src/components/SubirArchivo/Relacionar/BloqueSubido.js[m
+[1mindex be24843..a6196c8 100644[m
+[1m--- a/src/components/SubirArchivo/Relacionar/BloqueSubido.js[m
+[1m+++ b/src/components/SubirArchivo/Relacionar/BloqueSubido.js[m
+[36m@@ -1,10 +1,9 @@[m
+ [m
+ [m
+[31m-const BloqueSubido = (props) =>{[m
+[31m-    const espacio = "rounded border border-secondary shadow p-3 mb-5 bg-white rounded text" + props.espacio;[m
+[32m+[m[32mconst BloqueSubido = () =>{[m
+     return([m
+         <div>[m
+[31m-                <div className={espacio}><p>{props.nombreAtributo}</p></div>[m
+[32m+[m[32m                <div className="rounded border border-secondary containerSubido shadow p-3 mb-5 bg-white rounded text"><p>Planta Transportista Ternium </p></div>[m
+         </div>[m
+     )[m
+ }[m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/Buscar.js b/src/components/SubirArchivo/Relacionar/Buscar.js[m
+[1mindex ac9d3b4..16bec59 100644[m
+[1m--- a/src/components/SubirArchivo/Relacionar/Buscar.js[m
+[1m+++ b/src/components/SubirArchivo/Relacionar/Buscar.js[m
+[36m@@ -7,7 +7,7 @@[m [mexport const Buscar = () =>{[m
+     return([m
+         <div className="buscar">[m
+             <div className="input-group rounded">[m
+[31m-                <input type="search" className="form-control rounded" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" />[m
+[32m+[m[32m                <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Search" aria-describedby="search-addon" />[m
+                     <span className="input-group-text border-0" id="search-addon">[m
+                         <button>[m
+                         <FontAwesomeIcon icon={faMagnifyingGlass}/>[m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/Contenedor.js b/src/components/SubirArchivo/Relacionar/Contenedor.js[m
+[1mdeleted file mode 100644[m
+[1mindex 933077c..0000000[m
+[1m--- a/src/components/SubirArchivo/Relacionar/Contenedor.js[m
+[1m+++ /dev/null[m
+[36m@@ -1,18 +0,0 @@[m
+[31m-[m
+[31m-import Externos from "./Externos"[m
+[31m-import Internos from "./Internos"[m
+[31m-import ArtibutosColumnas from "./AtributosColumna"[m
+[31m-import { DragDropContext} from "react-beautiful-dnd"[m
+[31m-import { faReorder } from "@fortawesome/free-solid-svg-icons"[m
+[31m-const ContenedorRelacionar = () => {[m
+[31m-    return ([m
+[31m-        [m
+[31m-            <div className="d-flex justify-content-between containerColumnas">[m
+[31m-                <Externos/>[m
+[31m-                <ArtibutosColumnas/>[m
+[31m-                <Internos/>[m
+[31m-            </div>[m
+[31m-    )[m
+[31m-}[m
+[31m-[m
+[31m-export default ContenedorRelacionar[m
+\ No newline at end of file[m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/ContenedorRelacionar.js b/src/components/SubirArchivo/Relacionar/ContenedorRelacionar.js[m
+[1mindex 6b76379..6504c64 100644[m
+[1m--- a/src/components/SubirArchivo/Relacionar/ContenedorRelacionar.js[m
+[1m+++ b/src/components/SubirArchivo/Relacionar/ContenedorRelacionar.js[m
+[36m@@ -1,129 +1,16 @@[m
+[31m-import { DragDropContext, Droppable, Draggable} from "react-beautiful-dnd"[m
+[31m-import BloqueAtributo from "./BloqueAtributo"[m
+[31m-import {useState} from "react"[m
+[31m-import BloqueSubido from "./BloqueSubido"[m
+[31m-import { Buscar } from "./Buscar"[m
+[31m-import { useOutletContext } from "react-router-dom";[m
+ [m
+[32m+[m[32mimport Externos from "./Externos"[m
+[32m+[m[32mimport Internos from "./Internos"[m
+[32m+[m[32mimport ArtibutosColumnas from "./AtributosColumna"[m
+ [m
+[31m-const Contenedor = () => {[m
+[31m-[m
+[31m-    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();[m
+[31m-  [m
+[31m-    const [atributos, setAtributos] = useState(columnas);[m
+[31m-[m
+[31m-    const onDragEnd = (result) => {[m
+[31m-[m
+[31m-        // console.log(result)[m
+[31m-        const {source, destination} = result;[m
+[31m-        if(!destination) return;[m
+[31m-[m
+[31m-        if(destination.droppableId === source.droppableId && source.index === destination.index) return[m
+[31m-    [m
+[31m-        let add, arregloExternos = actExt, subidos = atributos, arregloInternos = actInt;[m
+[31m-        [m
+[31m-[m
+[31m-        //-------------SOURCE LOGIC------------------------[m
+[31m-[m
+[31m-        //Para subidos[m
+[31m-        if(source.droppableId === "subidos"){[m
+[31m-            add = subidos[source.index];[m
+[31m-            subidos.splice(source.index,1);[m
+[31m-            console.log("el bloque sale de subidos")[m
+[31m-        }[m
+[31m-[m
+[31m-        //---------EXTERNOS------------[m
+[31m-        else if(source.droppableId === "externos"){[m
+[31m-                add = arregloExternos[source.index][m
+[31m-                arregloExternos.splice(source.index,1)[m
+[31m-                console.log("el bloque sale de externos 1")[m
+[31m-        }[m
+[31m-[m
+[31m-[m
+[31m-        //---------INTERNOS------------[m
+[31m-        else if(source.droppableId === "internos"){[m
+[31m-            add = arregloInternos[source.index][m
+[31m-            arregloInternos.splice(source.index,1)[m
+[31m-            console.log("el bloque sale de internos 1")[m
+[31m-        }[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-        //-------------DESTINATION LOGIC------------------------[m
+[31m-        if(destination.droppableId === "subidos"){[m
+[31m-            subidos.splice(destination.index,0,add)[m
+[31m-            console.log("el bloque llega a subidos")[m
+[31m-        }[m
+[31m-        else if(destination.droppableId === "externos"){[m
+[31m-            arregloExternos.splice(destination.index,0,add)[m
+[31m-            console.log("el bloque llega a externos y el tamaño del arreglo ahora es de 1")[m
+[31m-        }[m
+[31m-[m
+[31m-        //-----------INTERNOS------------[m
+[31m-[m
+[31m-        else if(destination.droppableId === "internos"){[m
+[31m-            arregloInternos.splice(destination.index,0,add)[m
+[31m-            console.log("el bloque llega a internos y el tamaño del arreglo ahora es de 1")[m
+[31m-        }[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-        [m
+[31m-        console.log("EXTERNOS:")[m
+[31m-        console.log(actExt)[m
+[31m-        console.log("INTERNOS")[m
+[31m-        console.log(actInt)[m
+[31m-        setAtributos(subidos)[m
+[31m-        setActExt(arregloExternos)[m
+[31m-        setActInt(arregloInternos)[m
+[31m-        [m
+[31m-    }[m
+[31m-[m
+[31m-    //se necesita desplegar en draggables los componentes de externos1[m
+[32m+[m[32mconst ContenedorRelacionar = () => {[m
+     return ([m
+[31m-        <DragDropContext onDragEnd={onDragEnd}>[m
+[31m-            <div className="d-flex justify-content-between containerColumnas">[m
+[31m-                {/* Columna de actores externos */}[m
+[31m-                <div className="columna">[m
+[31m-                    <h5>Actores externos</h5>[m
+[31m-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externos" arregloAtributos ={actExt}/>[m
+[31m-                </div>[m
+[31m-[m
+[31m-                <div className="columna">[m
+[31m-[m
+[31m-                <h5 className="centrarTexto">Columnas del archivo subido</h5>[m
+[31m-                <Buscar/>[m
+[31m-                    <Droppable droppableId="subidos">[m
+[31m-                        { (droppableProvided) => ([m
+[31m-                        <ul className="columnaMedia overflow-auto"[m
+[31m-                            {...droppableProvided.droppableProps}[m
+[31m-                            ref={droppableProvided.innerRef}[m
+[31m-                        >[m
+[31m-                            {atributos.map((atributo, index) => ([m
+[31m-                                <Draggable key={atributo} draggableId={atributo} index={index}>[m
+[31m-                                    {(draggableProvided) => ([m
+[31m-                                        <li [m
+[31m-                                        {...draggableProvided.draggableProps}[m
+[31m-                                        ref={draggableProvided.innerRef}[m
+[31m-                                        {...draggableProvided.dragHandleProps}[m
+[31m-                                        ><BloqueSubido nombreAtributo={atributo} espacio=" containerSubido"/></li>[m
+[31m-                                    )}[m
+[31m-                                </Draggable>[m
+[31m-                            ))}[m
+[31m-                            {droppableProvided.placeholder}[m
+[31m-                        </ul>[m
+[31m-                        )}[m
+[31m-                    </Droppable>[m
+[31m-                </div>[m
+[31m-[m
+[31m-[m
+[31m-                <div className="columna">[m
+[31m-                    <h5 className="alinearDerecha">Actores internos</h5>[m
+[31m-                    <BloqueAtributo titulo="Planta Transportista" color="backgroundAmarilloClaro" id="internos" arregloAtributos={actInt}/>[m
+[31m-                </div>[m
+[32m+[m[32m            <div class="d-flex justify-content-between containerColumnas">[m
+[32m+[m[32m                <Externos/>[m
+[32m+[m[32m                <ArtibutosColumnas/>[m
+[32m+[m[32m                <Internos/>[m
+             </div>[m
+[31m-        </DragDropContext>[m
+     )[m
+ }[m
+ [m
+[31m-export default Contenedor[m
+\ No newline at end of file[m
+[32m+[m[32mexport default ContenedorRelacionar[m
+\ No newline at end of file[m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/Externos.js b/src/components/SubirArchivo/Relacionar/Externos.js[m
+[1mindex 37258d4..2e1f6f7 100644[m
+[1m--- a/src/components/SubirArchivo/Relacionar/Externos.js[m
+[1m+++ b/src/components/SubirArchivo/Relacionar/Externos.js[m
+[36m@@ -5,11 +5,11 @@[m [mconst Externos = () => {[m
+     return ([m
+         <div className="columna">[m
+             <h5>Actores externos</h5>[m
+[31m-            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo1"/>[m
+[31m-            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo2"/>[m
+[31m-            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo3"/>[m
+[31m-            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo4"/>[m
+[31m-            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro" id="externo5"/>[m
+[32m+[m[32m            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro"/>[m
+[32m+[m[32m            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro"/>[m
+[32m+[m[32m            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro"/>[m
+[32m+[m[32m            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro"/>[m
+[32m+[m[32m            <BloqueAtributo titulo="Planta Transportista" color="backgroundNaranjaClaro"/>[m
+         </div>[m
+     )[m
+ }[m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/Relacionar.css b/src/components/SubirArchivo/Relacionar/Relacionar.css[m
+[1mindex d3494b2..58a12ec 100644[m
+[1m--- a/src/components/SubirArchivo/Relacionar/Relacionar.css[m
+[1m+++ b/src/components/SubirArchivo/Relacionar/Relacionar.css[m
+[36m@@ -4,7 +4,7 @@[m
+ }[m
+ [m
+ .columnaMedia{[m
+[31m-    margin-top: .8vw;[m
+[32m+[m[32m    margin-top: 1vw;[m
+     width: 30vw;[m
+     height: 45vw;[m
+ }[m
+[36m@@ -12,17 +12,15 @@[m
+ .containerRelacionar{[m
+     margin-top: 2vw;[m
+     margin-bottom: 2vw;[m
+[31m-    height: 50vw;[m
+[32m+[m[32m    height: 8vw;[m
+     width: 30vw;[m
+ }[m
+ [m
+ .containerDotted{[m
+     background-color: white;[m
+     border: dotted;[m
+[31m-    height: 44vw;[m
+[31m-    width: 23vw;[m
+[31m-    margin:auto;[m
+[31m-    margin-top: 3vw;[m
+[32m+[m[32m    height: 3vw;[m
+[32m+[m[32m    width: 22vw;[m
+ }[m
+ [m
+ .tituloAtributo{[m
+[36m@@ -36,17 +34,9 @@[m
+     margin-top: 2vw !important;[m
+     margin-bottom: 2vw !important;[m
+     background-color: #F9F9F9 !important;[m
+[31m-    padding-top: 2px !important;[m
+[31m-    height: 3vw;[m
+[31m-    width: 22vw;[m
+[31m-}[m
+[31m-[m
+[31m-.containerSeleccionado{[m
+[31m-    margin:auto;[m
+[31m-    margin-top: 0vw !important;[m
+[31m-    margin-bottom: 1vw !important;[m
+[32m+[m[32m    padding-top: 2px;[m
+     height: 3vw;[m
+[31m-    width: 22vw;[m
+[32m+[m[32m    width: 25vw;[m
+ }[m
+ [m
+ .centrarTexto{[m
+[36m@@ -84,7 +74,7 @@[m [mh5{[m
+ }[m
+ [m
+ .columnaMedia::-webkit-scrollbar {[m
+[31m-    width: .2vw;               /* width of the entire scrollbar */[m
+[32m+[m[32m    width: .3vw;               /* width of the entire scrollbar */[m
+ }[m
+ .columnaMedia::-webkit-scrollbar-track {[m
+ background: #F3F6FF;        /* color of the tracking area */[m
+[36m@@ -92,19 +82,4 @@[m [mbackground: #F3F6FF;        /* color of the tracking area */[m
+ .columnaMedia::-webkit-scrollbar-thumb {[m
+ background-color: #1D2533;    /* color of the scroll thumb */[m
+ border-radius: 20px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */[m
+[31m-}[m
+[31m-[m
+[31m-.containerDotted::-webkit-scrollbar {[m
+[31m-    width: .2vw;               /* width of the entire scrollbar */[m
+[31m-}[m
+[31m-.containerDotted::-webkit-scrollbar-track {[m
+[31m-background: #F3F6FF;        /* color of the tracking area */[m
+[31m-}[m
+[31m-.containerDotted::-webkit-scrollbar-thumb {[m
+[31m-background-color: #DFDFDE;    /* color of the scroll thumb */[m
+[31m-border-radius: 10px;       /* roundness of the scroll thumb */  /* creates padding around scroll thumb */[m
+[31m-}[m
+[31m-[m
+[31m-ul{[m
+[31m-    list-style-type: none;[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/components/SubirArchivo/Relacionar/RelacionarColumnas.js b/src/components/SubirArchivo/Relacionar/RelacionarColumnas.js[m
+[1mindex 0f451b1..7904782 100644[m
+[1m--- a/src/components/SubirArchivo/Relacionar/RelacionarColumnas.js[m
+[1m+++ b/src/components/SubirArchivo/Relacionar/RelacionarColumnas.js[m
+[36m@@ -5,68 +5,14 @@[m [mimport "./Relacionar.css"[m
+ import ContenedorRelacionar from "./ContenedorRelacionar"[m
+ import BotonesInferior from "../CargarArchivo/BotonesInferior"[m
+ [m
+[31m-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';[m
+[31m-import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons';[m
+[31m-[m
+[31m-import { useOutletContext, useNavigate } from "react-router-dom";[m
+[31m-import { useState, useEffect } from "react";[m
+ [m
+ const RelacionarColumnas = () =>{[m
+[31m-[m
+[31m-    const navigate = useNavigate();[m
+[31m-    const [showModal, setShowModal] = useState(false);[m
+[31m-[m
+[31m-    const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();[m
+[31m-[m
+[31m-    const handlePrimero = () => {[m
+[31m-        setDataCsv(undefined);[m
+[31m-        setColumnas(undefined);[m
+[31m-        setStepActual(1);[m
+[31m-        navigate('/dashboard/subir');[m
+[31m-    }[m
+[31m-[m
+[31m-    const handleSegundo = () => {[m
+[31m-        if(columnas.length !== 0){[m
+[31m-            console.log(actInt)[m
+[31m-            console.log(actExt)[m
+[31m-            console.log(columnas)[m
+[31m-[m
+[31m-            setShowModal(true);[m
+[31m-        }else{[m
+[31m-            setStepActual(3);[m
+[31m-            navigate('/dashboard/subir/cargar');[m
+[31m-        }[m
+[31m-        [m
+[31m-    }[m
+[31m-[m
+[31m-    const handleClose = () => {[m
+[31m-        setShowModal(false);[m
+[31m-    }[m
+[31m-[m
+     return([m
+         <div>[m
+             <h2 className="text">RELACIONAR COLUMNAS</h2>[m
+             <h3 className="text">Seleccione la columna a utilizar para cada uno de los parámetros del modelo</h3>[m
+             <ContenedorRelacionar/>[m
+[31m-            <BotonesInferior primerBoton="Cambiar archivo" segundoBoton="Aplicar modelo" handlePrimero = {handlePrimero} handleSegundo={handleSegundo}/>[m
+[31m-[m
+[31m-            <div className={!showModal ? 'hidden' : "overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 md:h-full bg-[#1D2533]/30"}>[m
+[31m-                <div className="relative p-4 w-1/3 max-w-7xl h-full mx-auto mt-64">[m
+[31m-                    <div className="relative bg-white rounded-lg shadow h-64">[m
+[31m-                        <div className="flex flex-col center p-3 rounded-t w-full">[m
+[31m-                            <div className="flex flex-row justify-end">[m
+[31m-                                <button onClick={handleClose} className="bg-slate-50 hover:bg-slate-300 rounded-lg p-1.5 ml-auto inline-flex items-center text-gray-400 hover:text-gray-900">[m
+[31m-                                    <FontAwesomeIcon icon={faXmark} className='w-5' />[m
+[31m-                                </button>[m
+[31m-                            </div>[m
+[31m-                            <FontAwesomeIcon icon={faCircleExclamation} className='w-full h-1/3 text-[#F6A000]'/>[m
+[31m-                            <h3 className="text-center mt-4">[m
+[31m-                                Por favor relaciona todas las columnas[m
+[31m-                            </h3>[m
+[31m-                        </div>[m
+[31m-                    </div>[m
+[31m-                </div>[m
+[31m-            </div>[m
+[32m+[m[32m            <BotonesInferior primerBoton="Cambiar archivo" segundoBoton="Aplicar modelo" linkPrimero='/dashboard/subir' linkSegundo='/dashboard/subir/cargar'/>[m
+         </div>[m
+     )[m
+ }[m
+[1mdiff --git a/src/components/SubirArchivo/SubirDatos.css b/src/components/SubirArchivo/SubirDatos.css[m
+[1mindex 7dde842..c90890e 100644[m
+[1m--- a/src/components/SubirArchivo/SubirDatos.css[m
+[1m+++ b/src/components/SubirArchivo/SubirDatos.css[m
+[36m@@ -44,21 +44,14 @@[m
+ }[m
+ [m
+ .containerArchivos{[m
+[31m-    display: flex;[m
+[31m-    flex-direction: column;[m
+[31m-    justify-content: center;[m
+     margin: auto;[m
+[32m+[m[32m    padding-top: 30px;[m
+     height: 25vw;[m
+     width:25vw;[m
+     margin-top: 3vw;[m
+     margin-bottom: 3vw;[m
+[31m-    border-radius: 12px;[m
+[31m-    position: relative;[m
+     background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23333' stroke-width='2' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");[m
+[31m-}[m
+[31m-[m
+[31m-.containerDrag{[m
+[31m-    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='12' ry='12' stroke='%23F25C29' stroke-width='2' stroke-dasharray='6%2c 14' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");[m
+[32m+[m[32m    border-radius: 12px;[m
+ }[m
+ [m
+ .center{[m
+[36m@@ -116,20 +109,10 @@[m
+     margin-bottom: 2vw;[m
+ }[m
+ [m
+[31m-.iconoSubidaActive{[m
+[32m+[m[32m.iconoSubida:hover{[m
+     color: #F25C29 !important;[m
+ }[m
+ [m
+[31m-.inputFile {[m
+[31m-    opacity: 0;[m
+[31m-    position: absolute;[m
+[31m-    top: 0;[m
+[31m-    left: 0;[m
+[31m-    width: 100%;[m
+[31m-    height: 100%;[m
+[31m-    cursor: pointer;[m
+[31m-}[m
+[31m-[m
+ h1{[m
+     font-size: 2.5em !important;[m
+     font-weight: 600 !important;[m
+[1mdiff --git a/src/components/TablaScreen/Filtro.css b/src/components/TablaScreen/Filtro.css[m
+[1mdeleted file mode 100644[m
+[1mindex c09a304..0000000[m
+[1m--- a/src/components/TablaScreen/Filtro.css[m
+[1m+++ /dev/null[m
+[36m@@ -1,23 +0,0 @@[m
+[31m-.filterBox{[m
+[31m-    position: absolute;[m
+[31m-    background: #ffffff;[m
+[31m-    box-shadow: -2px 4px 4px rgba(0, 0, 0, 0.25);[m
+[31m-    border-width: 2px;[m
+[31m-    border-radius: 5px;[m
+[31m-    width: 180px;[m
+[31m-    max-width: 200px;[m
+[31m-    min-width: 180px;[m
+[31m-    z-index: 5;[m
+[31m-}[m
+[31m-[m
+[31m-li{[m
+[31m-    display: flex;[m
+[31m-    justify-content: space-between;[m
+[31m-    padding-inline: 10px;[m
+[31m-    vertical-align: middle;[m
+[31m-    margin-block: 4px;[m
+[31m-}[m
+[31m-[m
+[31m-.aplicar-filtro {[m
+[31m-    margin: 10px;[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/components/TablaScreen/Filtro.js b/src/components/TablaScreen/Filtro.js[m
+[1mdeleted file mode 100644[m
+[1mindex 7349e7e..0000000[m
+[1m--- a/src/components/TablaScreen/Filtro.js[m
+[1m+++ /dev/null[m
+[36m@@ -1,59 +0,0 @@[m
+[31m-import React, { useState, useEffect, useRef } from "react";[m
+[31m-import { Data } from "../../data/Data";[m
+[31m-import "./Filtro.css"[m
+[31m-[m
+[31m-[m
+[31m-export const Filtro = (props) => {[m
+[31m-    const atributo = props.atributo;[m
+[31m-    const setFilteredData = props.filterFunction;[m
+[31m-    var valuesChecked = useRef([]);   [m
+[31m-[m
+[31m-    function getUniqueData(value, index, self) {[m
+[31m-        return self.indexOf(value) === index;[m
+[31m-    }[m
+[31m-[m
+[31m-    function aplicarFiltro(valores) {[m
+[31m-        setFilteredData(prevData => [m
+[31m-            prevData.filter((value,index) => {return valores.current.includes(value[atributo])})[m
+[31m-        )[m
+[31m-        props.filterAppliedFunction();[m
+[31m-    }[m
+[31m-[m
+[31m-    var column = Data.map((value,index) => {return value[atributo]});[m
+[31m-    column = column.filter(getUniqueData);[m
+[31m-[m
+[31m-    const [checkedState, setCheckedState] = useState([m
+[31m-        new Array(column.length).fill(false)[m
+[31m-    );[m
+[31m-[m
+[31m-    function handleCheckboxChange(position, value) {[m
+[31m-        const updatedCheckedState = checkedState.map((item, index) =>[m
+[31m-        index === position ? !item : item[m
+[31m-        );[m
+[31m-[m
+[31m-        setCheckedState(updatedCheckedState);[m
+[31m-[m
+[31m-        if (updatedCheckedState[position]) {[m
+[31m-            valuesChecked.current.push(value);[m
+[31m-        } [m
+[31m-        else {[m
+[31m-            valuesChecked.current.splice(valuesChecked.current.indexOf(value),1);[m
+[31m-        }[m
+[31m-    }[m
+[31m-    [m
+[31m-    return([m
+[31m-        <div className="filterBox">[m
+[31m-            <ul>[m
+[31m-                {column.map((value, index) =>[m
+[31m-                                <li>[m
+[31m-                                    <input type="checkbox" checked={checkedState[index]} onChange={() => {handleCheckboxChange(index, value)}}/>[m
+[31m-                                    {value}[m
+[31m-                                </li>[m
+[31m-                        )}[m
+[31m-            </ul>[m
+[31m-[m
+[31m-            <button className="btn btn-primary aplicar-filtro" onClick={() => aplicarFiltro(valuesChecked)}>Aplicar</button>[m
+[31m-[m
+[31m-        </div>[m
+[31m-    );[m
+[31m-}[m
+\ No newline at end of file[m
+[1mdiff --git a/src/components/TablaScreen/TablaScreen.css b/src/components/TablaScreen/TablaScreen.css[m
+[1mindex b9fa528..1d5a47a 100644[m
+[1m--- a/src/components/TablaScreen/TablaScreen.css[m
+[1m+++ b/src/components/TablaScreen/TablaScreen.css[m
+[36m@@ -1,7 +1,7 @@[m
+ .container-buttons {[m
+     margin-top: 20px;[m
+     display: flex;[m
+[31m-    justify-content: flex-end;[m
+[32m+[m[32m    justify-content: space-between;[m
+ }[m
+ [m
+ .btn-primary {[m
+[1mdiff --git a/src/components/TablaScreen/TablaScreen.js b/src/components/TablaScreen/TablaScreen.js[m
+[1mindex 75ed59e..854677e 100644[m
+[1m--- a/src/components/TablaScreen/TablaScreen.js[m
+[1m+++ b/src/components/TablaScreen/TablaScreen.js[m
+[36m@@ -3,13 +3,16 @@[m [mimport Tabla from "../tabla/Tabla";[m
+ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'[m
+ import { faFilter } from "@fortawesome/free-solid-svg-icons";[m
+ import { faFileArrowDown } from "@fortawesome/free-solid-svg-icons";[m
+[31m-import { Filtro } from "./Filtro";[m
+ [m
+ export const TablaScreen = () => {[m
+ [m
+     return([m
+         <div>[m
+             <div className="container-buttons">[m
+[32m+[m[32m                <button className="btn btn-primary">[m
+[32m+[m[32m                    <FontAwesomeIcon icon={faFilter} className="buttonIcon"/>[m
+[32m+[m[32m                    Filtros[m
+[32m+[m[32m                </button>[m
+                 <button className="btn btn-outline-primary">[m
+                     <FontAwesomeIcon icon={faFileArrowDown} className="buttonIcon"/>[m
+                     Descargar[m
+[1mdiff --git a/src/components/tabla/Tabla.css b/src/components/tabla/Tabla.css[m
+[1mindex b1de08f..d76f229 100644[m
+[1m--- a/src/components/tabla/Tabla.css[m
+[1m+++ b/src/components/tabla/Tabla.css[m
+[36m@@ -12,12 +12,4 @@[m [mth {[m
+ [m
+ .header {[m
+     display: inline;[m
+[31m-}[m
+[31m-[m
+[31m-.filterIcon {[m
+[31m-    margin-left: 10px;[m
+[31m-}[m
+[31m-[m
+[31m-.filterApplied {[m
+[31m-    color: #F25C29;[m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/src/components/tabla/Tabla.js b/src/components/tabla/Tabla.js[m
+[1mindex 5924754..c2c0b38 100644[m
+[1m--- a/src/components/tabla/Tabla.js[m
+[1m+++ b/src/components/tabla/Tabla.js[m
+[36m@@ -1,32 +1,19 @@[m
+[31m-import React, { useState, useEffect } from "react";[m
+ import { Atributos } from "../../data/Data";[m
+ import { Data } from "../../data/Data";[m
+[31m-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'[m
+[31m-import { faFilter } from "@fortawesome/free-solid-svg-icons";[m
+[31m-[m
+ import "./Tabla.css"[m
+[31m-import { Filtro } from "../TablaScreen/Filtro";[m
+ [m
+ const Tabla = (props) => {[m
+[31m-[m
+     const hasCheckboxes = props.hasCheckboxes;[m
+[31m-    const [filteredData, setFilteredData] = useState(Data);[m
+[31m-[m
+[31m-    // useEffect(() => {[m
+[31m-    //     console.log(filteredData);[m
+[31m-    //   return;[m
+[31m-    // }, [filteredData])[m
+[31m-[m
+     return([m
+         <div class="table-responsive">[m
+             <table class="table">[m
+             <thead>[m
+[31m-                {Atributos.map((header,index) =>[m
+[31m-                            <Header hasCheckboxes={hasCheckboxes} data={header} index={index} filterFunction={setFilteredData}/>[m
+[32m+[m[32m                {Atributos.map(header =>[m
+[32m+[m[32m                            <Header hasCheckboxes={hasCheckboxes} data={header}/>[m
+                     )}[m
+             </thead>[m
+             <tbody>[m
+[31m-                {filteredData.map(row => <Row row = {row}/>)}[m
+[32m+[m[32m                {Data.map(row => <Row row = {row}/>)}[m
+             </tbody>[m
+             </table>[m
+         </div>[m
+[36m@@ -36,27 +23,11 @@[m [mconst Tabla = (props) => {[m
+ const Header = (props) => {[m
+     const hasCheckboxes = props.hasCheckboxes;[m
+     const data = props.data;[m
+[31m-    const index = props.index;[m
+[31m-[m
+[31m-    const [isOpenFilter, setIsOpenFilter] = React.useState(false);[m
+[31m-    const [isFilterApplied, setIsFilterApplied] = useState(false);[m
+[31m-[m
+[31m-    function toggleFilter(){[m
+[31m-        setIsOpenFilter(isOpenFilter => !isOpenFilter);[m
+[31m-    }[m
+[31m-[m
+[31m-    function filterApplied(){[m
+[31m-        toggleFilter();[m
+[31m-        setIsFilterApplied(true);[m
+[31m-    }[m
+[31m-[m
+     return([m
+         <th>[m
+             <div className="header">[m
+                 <p>{data}</p>[m
+                 {hasCheckboxes ? <input type="checkbox"/> : <></>}[m
+[31m-                <FontAwesomeIcon icon={faFilter} className={isFilterApplied ? "filterIcon filterApplied" : "filterIcon"} onClick={toggleFilter}/>[m
+[31m-                {isOpenFilter && <Filtro atributo={index} filterFunction={props.filterFunction} filterAppliedFunction={filterApplied}/>}[m
+             </div>[m
+         </th>[m
+     );[m
+[1mdiff --git a/src/data/Data.js b/src/data/Data.js[m
+[1mindex 43dadea..b5f9510 100644[m
+[1m--- a/src/data/Data.js[m
+[1m+++ b/src/data/Data.js[m
+[36m@@ -76,32 +76,21 @@[m [mexport const Data = [[m
+   [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+   [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+   [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "Red", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "Red", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "Red", "David Juarez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "Ana Perez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "Ana Perez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "Ana Perez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "Ana Perez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "Ana Perez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [2, "FedEx", "Ana Perez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[31m-  [m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+[32m+[m[32m  [1, "DHL", "Juan Martínez", 345, "Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez","Pedro Sanchez", 0.87],[m
+ ];[m
+\ No newline at end of file[m

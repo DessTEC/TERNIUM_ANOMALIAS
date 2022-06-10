@@ -5,12 +5,8 @@ const BotonesInferior = (props) =>{
 
     return(
         <div className="container">
-                <Link to={props.linkPrimero}>
-                    <button className="btn btn-outline-danger botonInline">{props.primerBoton}</button>
-                </Link>
-                <Link to={props.linkSegundo}>
-                    <button className="btn btn-danger botonInline">{props.segundoBoton}</button>
-                </Link>
+            <button className="btn btn-outline-danger botonInline" onClick={props.handlePrimero}>{props.primerBoton}</button>
+            <button id="configurar" className="btn btn-danger botonInline" onClick={props.handleSegundo}>{props.segundoBoton}</button>
         </div>
     )
 }

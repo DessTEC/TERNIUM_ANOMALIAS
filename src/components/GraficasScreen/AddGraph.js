@@ -8,9 +8,30 @@ import RangeSlider from "./RangeSlider";
 import {ButtonGroupCharts} from "./ButtonGroupCharts";
 import { ButtonGroupCor } from "./ButtonGroupCor";
 
-import { UserData } from "../../data/Data";
-import { UserData2 } from "../../data/Data2";
 import _uniqueId from 'lodash/uniqueId';
+
+import { createArrayBarrasAnom } from "../utils/createArrayBarrasAnom";
+import { createArrayBarrasCorrPun } from "../utils/createArrayBarrasCorrPun";
+import { createArrayBurbuja } from "../utils/createArrayBurbuja";
+import { createArrayDonaAnom } from "../utils/createArrayDonaAnom";
+import { getValuesOfVar } from "../utils/getValuesOfVar";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { createArrayDonaCorrPun } from "../utils/createArrayDonaCorrPun";
+import { createArrayDonaCorrGen } from "../utils/createArrayDonaCorrGen";
+
+import {Chart} from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+import zoomPlugin  from 'chartjs-plugin-zoom';
+
+import { createArrayBarrasCorrGen } from "../utils/createArrayBarrasCorrGen";
+
+import {createArrayForChart, createConf} from '../utils/configChart'
+import createDataForChart from '../utils/createDataForChart'
+import createOptionsCharts from "../utils/createOptionsCharts";
+
+Chart.register(ChartDataLabels);
+Chart.register(zoomPlugin);
 
 
 export default function AddGraph(props) {
@@ -21,64 +42,59 @@ export default function AddGraph(props) {
   //Selección de gráficas
 
   //Variables de configuración
-  const [chartType, setChartType] = useState("barrasV");
+  const [chartType, setChartType] = useState("barras");
   const [analysisType, setAnalysisType] = useState('Anomalías');
+
+  const [varX, setVarX] = useState(props.atributos[0]);
+  const [varY, setVarY] = useState(props.atributos[0]);
+
+  const [optionsValueY, setOptionsValueY] = useState(getValuesOfVar(props.dataModelo, varY));
+  const [valueY, setValueY] = useState(optionsValueY[0]);
+
   const [minValAnomalias, setMinValAnomalias] = useState(-100);
   const [maxValAnomalias, setMaxValAnomalias] = useState(100);
+  const params = useParams();
+  const [modeloId, setReporteId] = useState(params.modeloId);
 
-  const optionsCharts = {
-    barrasV: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'Anomalías 2019',
-        },
-      },
-      responsive: true,
-      maintainAspectRatio: true,
-      scales: {
-        x: {
-          stacked: true,
-        },
-        y: {
-          stacked: true,
-        },
-      },
-    },
-    barrasH: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'Anomalías 2019',
-        },
-      },
-      responsive: true,
-      indexAxis: 'y',
-      maintainAspectRatio: true,
-      scales: {
-        x: {
-          stacked: true,
-        },
-        y: {
-          stacked: true,
-        },
-      },
-    },
-    burbuja: {
-      plugins: {
-        title: {
-          display: true,
-          text: 'Anomalías 2019',
-        },
-      },
-      responsive: true,
-      maintainAspectRatio: true,
-    }
-  }
+
+  const subirGrafica = async(grafica) => {
+
+    const result = await axios.put(
+        "http://localhost:4000/addGrafica", {params: {id: modeloId, newGrafica: grafica}}, 
+    );
+    console.log(result);
+   
+}
 
   const handleClick = () => {
     setIsMenuOpen(true);
   };
+
+  const handleVarXForm = (value) => {
+    setVarX(value);
+  };
+
+  const handleVarYForm = (value) => {
+    setVarY(value);
+  };
+
+  useEffect(() => {
+    setOptionsValueY(getValuesOfVar(props.dataModelo, varY));
+  }, [varY])
+  
+  useEffect(() => {
+    setValueY(optionsValueY[0]);
+  }, [optionsValueY])
+
+  useEffect(() => {
+    if(chartType === "burbuja"){
+      setAnalysisType("Correlación General");
+    }
+  }, [chartType])
+
+  const handleValueYForm = (value) => {
+    setValueY(value);
+  }
 
   useEffect(() => {
     const checkClickOutside = (e) => {
@@ -96,55 +112,50 @@ export default function AddGraph(props) {
 
   const handleCreateChart = () => {
     setIsMenuOpen(false);
-    const id = _uniqueId('id-');
-    console.log(id);
+    const id = props.graficaId;
+    props.setGraficaId(id + 1);
+    const optionsCharts = createOptionsCharts(analysisType, varX, varY, valueY);
+
+    let arrayForChart = createArrayForChart(props.dataModelo, analysisType, chartType, varX, varY, valueY, minValAnomalias, maxValAnomalias, null, null);
+
+    let conf = createConf({...optionsCharts[chartType]}, analysisType, chartType, varX, varY, valueY);
+
+    let dataChart = createDataForChart(chartType, arrayForChart);
 
     props.setCharts(prevCharts => [...prevCharts, {
       id: id,
       type: chartType,
-      data: {
-        labels: UserData2.map((data) => data.planta),
-        datasets: [
-          {
-            label: "Relaciones Normales",
-            data: UserData2.map((data) => data.normales),
-            backgroundColor: ["#FAAD42"],
-          },
-          {
-            label: "Relaciones Anómalas",
-            data: UserData2.map((data) => data.anomalias),
-            backgroundColor: ["#F25C29"],
-          },
-        ],
-      },
-      options: optionsCharts[chartType]
+      data: dataChart,
+      options: conf,
+      analysis: analysisType,
+      minValAnomalias: minValAnomalias,
+      maxValAnomalias: maxValAnomalias,
+      varX: varX,
+      varY:varY,
+      valY:valueY,
+      minDate: null,
+      maxDate: null
     }])
 
-    {/*props.setCharts(prevCharts => [...prevCharts, {
+    subirGrafica({
       id: id,
       type: chartType,
-      data: {
-        labels: UserData.map((data) => data.planta),
-        datasets: [
-          {
-            label: "Relaciones Normales",
-            data: UserData.map((data) => data.normales),
-            backgroundColor: ["#FAAD42"],
-          },
-          {
-            label: "Relaciones Anómalas",
-            data: UserData.map((data) => data.anomalias),
-            backgroundColor: ["#F25C29"],
-          },
-        ],
-      },
-      options: optionsCharts[chartType]
-    }])*/}
+      data: dataChart,
+      options: conf,
+      analysis: analysisType,
+      minValAnomalias: minValAnomalias,
+      maxValAnomalias: maxValAnomalias,
+      varX: varX,
+      varY:varY,
+      valY:valueY,
+      minDate: null,
+      maxDate: null
+    })
   }
 
   return (
     <div>
-      <div class="relative inline-block text-left">
+      <div className="relative inline-block text-left">
         <div>
           <button
             onClick={handleClick}
@@ -170,7 +181,7 @@ export default function AddGraph(props) {
           >
             <div class="py-1" role="none">
               <h4 className="text-lg font-bold pl-5">Tipo de gráfica</h4>
-              <Divider />
+              <Divider borColor="border-black"/>
               <div className="flex justify-center py-3 px-3">
                 <ButtonGroupCharts
                   setChartType={setChartType}
@@ -179,37 +190,46 @@ export default function AddGraph(props) {
               </div>
 
               <h4 className="text-lg font-bold pl-5 pt-2">Comparativa</h4>
-              <Divider />
+              <Divider borColor="border-black"/>
               <div className="flex justify-start items-center py-3 px-3">
                 <ButtonGroupCor
                   setAnalysisType={setAnalysisType}
                   analysisType={analysisType}
+                  chartType = {chartType}
                 />
               </div>
 
               <h4 className="text-lg font-bold pl-5 pt-2">Variable (s)</h4>
-              <Divider />
+              <Divider borColor="border-black"/>
               {analysisType === "Anomalías" ?
                 <div className="grid grid-cols-2 pt-3 px-3">
-                  <GraphForm text="Eje X" />
+                  <GraphForm text="Eje X" atributos={props.atributos} valueSelect={varX} handleSelect={handleVarXForm}/>
                 </div>
                 :
                 <div className="grid grid-cols-2 pt-3 px-3">
-                  <GraphForm text="Eje X" />
-                  <GraphForm text="Valor" />
-                  <GraphForm text="Eje Y" />
+                  <GraphForm text="Eje X" atributos={props.atributos} valueSelect={varX} handleSelect={handleVarXForm}/>
+                  <GraphForm text="Eje Y" atributos={props.atributos} valueSelect={varY} handleSelect={handleVarYForm}/>
+                  {chartType !== "burbuja" & analysisType === "Correlación Puntual" ?  
+                    <div className="col-start-2">
+                      <GraphForm text="Valor Y" atributos={optionsValueY} valueSelect={valueY} handleSelect={handleValueYForm}/>
+                    </div>
+                    :
+                    <></>
+                  } 
                 </div>
               }
 
               <h4 className="text-lg font-bold pl-5 pt-2">Rango de anomalía</h4>
-              <Divider />
+              <Divider borColor="border-black"/>
               <div className="flex items-center justify-center pb-4">
                 <RangeSlider 
+                  startMinVal={-100}
+                  startMaxVal = {0}
                   min={-100}
                   max={100}
                   onChange={({ min, max }) => {
-                    setMinValAnomalias(min)
-                    setMaxValAnomalias(max)
+                    setMinValAnomalias(min/100)
+                    setMaxValAnomalias(max/100)
                   }}
                 />
               </div>

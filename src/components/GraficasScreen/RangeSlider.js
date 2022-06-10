@@ -2,16 +2,16 @@ import React, { useCallback, useEffect, useState, useRef } from "react";
 import PropTypes from "prop-types";
 import "./RangeSlider.css";
 
-const RangeSlider = ({ min, max, onChange }) => {
-  const [minVal, setMinVal] = useState(min);
-  const [maxVal, setMaxVal] = useState(max);
-  const minValRef = useRef(min);
-  const maxValRef = useRef(max);
+const RangeSlider = ({ startMinVal, startMaxVal, min, max, onChange }) => {
+  const [minVal, setMinVal] = useState(startMinVal);
+  const [maxVal, setMaxVal] = useState(startMaxVal);
+  const minValRef = useRef(startMinVal);
+  const maxValRef = useRef(startMaxVal);
   const range = useRef(null);
 
   // Convert to percentage
   const getPercent = useCallback(
-    (value) => Math.round(((value - min) / (max - min)) * 100),
+    (value) => ((value - min) / (max - min)) * 100,
     [min, max]
   );
 
@@ -72,8 +72,8 @@ const RangeSlider = ({ min, max, onChange }) => {
       <div className="slider">
         <div className="slider__track" />
         <div ref={range} className="slider__range" />
-        <div className="slider__left-value">{minVal}</div>
-        <div className="slider__right-value">{maxVal}</div>
+        <div className="slider__left-value">{minVal/100}</div>
+        <div className="slider__right-value">{maxVal/100}</div>
       </div>
     </div>
   );

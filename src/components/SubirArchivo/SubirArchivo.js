@@ -5,6 +5,5 @@ export const SubirArchivo = () => {
 
     return(
         <SubirDatos/>
-        // <RelacionarColumnas/>
     );
 }

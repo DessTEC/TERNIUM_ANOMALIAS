@@ -7,9 +7,11 @@ import ChartFilterPopMenu from "../chartFilterMenu/chartFilterPopMenu";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import { BubbleChart } from "./BubbleChart";
+import { data } from "autoprefixer";
+import { DonaChart } from "./DonaChart";
 
-export const ChartWrapper = ({ chartId, chartData, options, type, setSelectCharts }) => {
-
+export const ChartWrapper = ({ chartId, chartData, options, type, setSelectCharts, analysisType, atributos, dataModelo, setCharts, charts, minValAnomalias, maxValAnomalias, varX, varY, valY, minDate, maxDate, calendarMin, calendarMax }) => {
+    //console.log(analysisType)
     const [isOpen, setIsOpen] = React.useState(false);
 
     const [isChecked, setIsChecked] = useState(false);
@@ -47,21 +49,20 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                     onClick={handleCheck}
                 />
             </div>
-            <div className="w-full" id={chartId}>
+            <div className="w-full h-80" id={chartId}>
                 {
                     type === 'burbuja' ? 
                     <BubbleChart options = {options} chartData={chartData} />
-                    :
+                    : type === 'barras' ?
                     <BarChart options = {options} chartData={chartData} />
+                    : 
+                    <DonaChart options = {options} chartData={chartData} />
                 }
             </div>
                     
             <div className="w-8">
                 <div className="flex flex-column justify-content-start">
-                    <button className="w-full mb-2 rounded-t-md rounded-b-md border border-gray-200 shadow-md bg-[#F5F5F5]" onClick={toggle}><FontAwesomeIcon icon={faEllipsisVertical} className="color-black" /></button>
-                    <div>
-                        {isOpen && (<ChartFilterPopMenu closeClick={toggle}/>)}
-                    </div>
+                    <ChartFilterPopMenu atributos={atributos} analysisType={analysisType} chartType={type} dataModelo={dataModelo} setCharts = {setCharts} id={chartId} charts={charts} minValAnomalias={minValAnomalias} maxValAnomalias={maxValAnomalias} varX={varX} varY={varY} valY={valY} minDate={minDate} maxDate={maxDate} calendarMin={calendarMin} calendarMax={calendarMax}/>
                     <button className="w-full mb-2 rounded-t-md rounded-b-md border border-gray-200 shadow-md bg-[#F5F5F5]" onClick={handleZoom}><FontAwesomeIcon icon={faMagnifyingGlass} className="color-black w-4/6"/></button>
                 </div>
             </div>
@@ -80,7 +81,14 @@ export const ChartWrapper = ({ chartId, chartData, options, type, setSelectChart
                         </div>
 
                         <div class="p-6 space-y-6">
+                        {
+                            type === 'burbuja' ? 
+                            <BubbleChart options = {options} chartData={chartData} />
+                            : type === 'barras' ?
                             <BarChart options = {options} chartData={chartData} />
+                            : 
+                            <DonaChart options = {options} chartData={chartData} />
+                        }
                         </div>
                     </div>
                 </div>

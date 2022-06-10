@@ -9,7 +9,7 @@
     margin-top: 30px;
     position: relative;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     vertical-align: middle;
 }
 
@@ -18,13 +18,21 @@
     color: #F25C29 !important;
     width: 140px;
     height: 40px;
-    position: absolute;
-    right: 0;
 }
 
 h1{
     font-size: 2em !important;
 
+}
+
+.nombre-modelo-row{
+    margin-top: 30px;
+    display: flex;
+}
+
+.nombre-modelo{
+    font-size: 1.5em !important;
+    margin-right: 20px;
 }
 
 @media (max-width: 850px) {

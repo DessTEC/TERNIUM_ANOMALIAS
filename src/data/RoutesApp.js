@@ -11,6 +11,7 @@ import SubirDatos from '../components/SubirArchivo/CargarArchivo/SubirDatos';
 import RelacionarColumnas from '../components/SubirArchivo/Relacionar/RelacionarColumnas';
 import Steps from '../components/SubirArchivo/Pasos/Steps';
 import {Cargas_1} from '../components/Cargas/Cargas_1';
+import { DiccionarioScreen } from '../components/DiccionarioScreen/DiccionarioScreen';
 
 export const RoutesApp = [
     {path: "/", element: <HomeScreen />},
@@ -35,19 +36,20 @@ export const RoutesApp = [
           element: <Historial/>,
         },
         {
-          path: "/dashboard/consultar/:nombre", 
+          path: "/dashboard/consultar/:reporteId", 
           element: <ModelosCorrida/>,
         },
         {
-          path: "/dashboard/consultar/:nombre/nuevoModelo", 
+          path: "/dashboard/consultar/:reporteId/nuevoModelo", 
           element: <NuevoModeloScreen/>,
         },
         {
-          path: "/dashboard/consultar/:nombre/:modelo", 
+          path: "/dashboard/consultar/:reporteId/:modeloId", 
           element: <TabBar/>,
           children: [
-            {path: "/dashboard/consultar/:nombre/:modelo", element: <TablaScreen/>},
-            {path: "/dashboard/consultar/:nombre/:modelo/graficas", element: <GraficasScreen/>}
+            {path: "/dashboard/consultar/:reporteId/:modeloId", element: <TablaScreen/>},
+            {path: "/dashboard/consultar/:reporteId/:modeloId/graficas", element: <GraficasScreen/>},
+            {path: "/dashboard/consultar/:reporteId/:modeloId/diccionario", element: <DiccionarioScreen/>}
           ]
         },
       ]
