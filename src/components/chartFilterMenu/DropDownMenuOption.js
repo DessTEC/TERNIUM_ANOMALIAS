@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
+import { route } from "../../data/routeBack";
 
 export default function DropDownMenuOption(props){
 
@@ -37,7 +38,7 @@ export default function DropDownMenuOption(props){
 
     const updateGraficas = async(graficas) => {
         const result = await axios.put(
-            "http://localhost:4000/updateGraficas", {params: {id: modeloId, newGraficas: graficas }}, 
+            `${route}updateGraficas`, {params: {id: modeloId, newGraficas: graficas }}, 
         );
        
     }

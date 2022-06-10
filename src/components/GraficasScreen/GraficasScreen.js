@@ -7,6 +7,7 @@ import { exportMultipleChartsToPdf } from "../utils/exportPdf";
 import { useOutletContext } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { Bars } from 'react-loading-icons'
+import { route } from "../../data/routeBack";
 
 
 export const GraficasScreen = () => {
@@ -26,7 +27,7 @@ export const GraficasScreen = () => {
 
   const getGraficas = async() => {
       const result = await axios.get(
-          "http://localhost:4000/getGraficas", {params: {id: modeloId }}, 
+          `${route}getGraficas`, {params: {id: modeloId }}, 
       );
       setCharts(result["data"]["graficas"])
       setGraficaId(result["data"]["idCounter"])

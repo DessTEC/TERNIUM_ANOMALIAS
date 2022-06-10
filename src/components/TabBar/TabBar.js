@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
+import { route } from '../../data/routeBack';
+
 export const TabBar = () => {
 
     const params = useParams();
@@ -26,7 +28,7 @@ export const TabBar = () => {
  
      const getModelo = async() => {
          const result = await axios.get(
-             "http://localhost:4000/getModeloById", {params: {id: params.modeloId}}, 
+            `${route}getModeloById`, {params: {id: params.modeloId}}, 
          );
          console.log(result);
          setDataModelo(result["data"]["results"]);

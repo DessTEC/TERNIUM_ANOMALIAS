@@ -20,7 +20,7 @@ export const TableFooter = ({ range, setPage, page, setRowsPerPage, rowsPerPage,
     }
 
     return (
-      <div className="mb-3">
+      <div className="flex justify-center items-baseline mb-3">
         <button onClick={() => setPage(1)} disabled={canPreviousPage} className={styleControlButton}>
           {'<<'}
         </button>

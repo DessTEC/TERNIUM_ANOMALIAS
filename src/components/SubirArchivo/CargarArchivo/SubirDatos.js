@@ -13,6 +13,8 @@ import axios from "axios";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { Bars } from 'react-loading-icons'
 
+import { route } from "../../../data/routeBack";
+
 
 const SubirDatos = () =>{
     const [file, setFile, dataCsv, setDataCsv, columnas, setColumnas, actInt, setActInt, actExt, setActExt, stepActual, setStepActual] = useOutletContext();
@@ -34,7 +36,7 @@ const SubirDatos = () =>{
             setLoading(true);
             const formData = new FormData();
             formData.append("csv", file);
-            const result = await axios.post("http://localhost:4000/readFile", formData, {
+            const result = await axios.post(`${route}readFile`, formData, {
                 headers: {
                   "Content-Type": 'multipart/form-data',
                 },

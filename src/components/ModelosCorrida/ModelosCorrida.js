@@ -19,6 +19,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 
+import { route } from "../../data/routeBack";
+
 export const ModelosCorrida = () => {
 
     const ref = useRef();
@@ -64,7 +66,7 @@ export const ModelosCorrida = () => {
     const fetchModelos = async () => {
         console.log(params.reporteId);
         const result = await axios.get(
-            "http://localhost:4000/getAllModelosByReporteId", {params: {
+            `${route}getAllModelosByReporteId`, {params: {
                 reporteId: params.reporteId 
             }});
 
@@ -75,7 +77,7 @@ export const ModelosCorrida = () => {
     const fetchNombreReporte = async () => {
         console.log("Fetch nombre reporte");
         const result = await axios.get(
-            "http://localhost:4000/getReporteById", {params: {
+            `${route}getReporteById`, {params: {
                 id: params.reporteId,
                 reporteId: params.reporteId 
             }});
@@ -91,7 +93,7 @@ export const ModelosCorrida = () => {
 
     const deleteModelo =  async () => {
         await axios.delete(
-            "http://localhost:4000/deleteModelo", {params: {
+            `${route}deleteModelo`, {params: {
                 id: modeloToDelete
         }});
         setShowModal(false);

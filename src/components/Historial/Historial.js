@@ -19,6 +19,8 @@ import { faXmark, faCircleExclamation } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect, useRef} from "react";
 import moment from 'moment';
 
+import { route } from '../../data/routeBack';
+
 export const Historial = () => {
 
     const ref = useRef();
@@ -59,7 +61,7 @@ export const Historial = () => {
     const fetchReportes = async () => {
         console.log("Consultando");
         const result = await axios.get(
-          "http://localhost:4000/reportes"
+            `${route}reportes`
         );
         setReportes(result.data);
         console.log(reportes[0].fecha.$date);
@@ -86,7 +88,7 @@ export const Historial = () => {
 
     const deleteReporte =  async () => {
         await axios.delete(
-            "http://localhost:4000/deleteReporte", {params: {
+            `${route}deleteReporte`, {params: {
                 id: reporteToDelete
         }});
         setShowModal(false);

@@ -30,9 +30,10 @@ import {createArrayForChart, createConf} from '../utils/configChart'
 import createDataForChart from '../utils/createDataForChart'
 import createOptionsCharts from "../utils/createOptionsCharts";
 
+import { route } from "../../data/routeBack";
+
 Chart.register(ChartDataLabels);
 Chart.register(zoomPlugin);
-
 
 export default function AddGraph(props) {
   const ref = useRef();
@@ -60,7 +61,7 @@ export default function AddGraph(props) {
   const subirGrafica = async(grafica) => {
 
     const result = await axios.put(
-        "http://localhost:4000/addGrafica", {params: {id: modeloId, newGrafica: grafica}}, 
+        `${route}addGrafica`, {params: {id: modeloId, newGrafica: grafica}}, 
     );
     console.log(result);
    

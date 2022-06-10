@@ -12,6 +12,9 @@ import { Bars } from 'react-loading-icons'
 
 import axios from "axios";
 
+import { route } from "../../data/routeBack";
+
+
 export const Cargas_1 = () => {
 
   const navigate = useNavigate();
@@ -35,7 +38,7 @@ export const Cargas_1 = () => {
         "fecha": fecha
       }))
 
-      const result = await axios.post("http://localhost:4000/uploadFile", formData, {
+      const result = await axios.post(`${route}uploadFile`, formData, {
           headers: {
             "Content-Type": 'multipart/form-data',
           },

@@ -11,6 +11,8 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { useParams, useNavigate } from "react-router-dom";
 import { Bars } from 'react-loading-icons'
 
+import { route } from "../../data/routeBack";
+
 
 export const NuevoModeloScreen = () => {
 
@@ -41,7 +43,7 @@ export const NuevoModeloScreen = () => {
 
     const getReporte = async() => {
         const result = await axios.get(
-            "http://localhost:4000/getReporteById", {params: {id: reporteId}}, 
+            `${route}getReporteById`, {params: {id: reporteId}}, 
         );
         resultRequest.current = result["data"]["data"];
         setDataCsv(resultRequest.current.map((item) => item));
@@ -59,7 +61,7 @@ export const NuevoModeloScreen = () => {
         if(inputValue != "" && selectedVars.length >= 2){
             setLoading(true);
             const result = await axios.post(
-                "http://localhost:4000/addModelo", {
+                `${route}addModelo`, {
                     reporteId: params.reporteId,
                     name: inputValue,
                     variables: atributos,
