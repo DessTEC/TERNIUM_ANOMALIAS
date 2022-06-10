@@ -128,7 +128,7 @@ export const ModelosCorrida = () => {
                         <div>
                             <button className="btn btn-primary bg-[#F25C29] border-0 hover:bg-[#D15226]" onClick={handleClick}>
                                 <FontAwesomeIcon icon={faCalendarDays} className="buttonIcon"/>
-                                Filtros
+                                Filtrar
                             </button>
                             {isMenuOpen && ( 
                             <div className='absolute m-auto text-center z-10' ref={ref}>
