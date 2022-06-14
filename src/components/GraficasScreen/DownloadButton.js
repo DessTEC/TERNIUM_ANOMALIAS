@@ -4,7 +4,12 @@ export default function DownloadButton(props) {
 
     const handleDownload = () => {
         if(props.selectCharts.length > 0){
-            props.exportMultipleChartsToPdf(props.selectCharts)
+            const today = new Date();
+            const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            const dateTime = date+' '+time;
+            const PDFFileName = props.nombreModelo === "" ? "unnamed_" + dateTime : props.nombreModelo + "_" + dateTime;
+            props.exportMultipleChartsToPdf(props.selectCharts, PDFFileName)
         }
     }
 

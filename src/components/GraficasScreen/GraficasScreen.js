@@ -41,6 +41,7 @@ export const GraficasScreen = () => {
         <DownloadButton 
           selectCharts={selectCharts}
           exportMultipleChartsToPdf={exportMultipleChartsToPdf}
+          nombreModelo = {nombreModelo}
         />
         <AddGraph 
           text="Agregar gráfica"

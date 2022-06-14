@@ -1,7 +1,7 @@
 import jsPDF from "jspdf";
 import * as htmlToImage from "html-to-image";
 
-export async function exportMultipleChartsToPdf(chartsIdArray) {
+export async function exportMultipleChartsToPdf(chartsIdArray, nameModelo) {
     const doc = new jsPDF("p", "px");
 
     let elements = [];
@@ -13,12 +13,7 @@ export async function exportMultipleChartsToPdf(chartsIdArray) {
     console.log(elementCharts)
 
     await creatPdf( doc, elementCharts );
-
-    const today = new Date();
-    const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-    const dateTime = date+' '+time;
-    doc.save(`reporte-${dateTime}.pdf`);
+    doc.save(`${nameModelo}.pdf`);
 }
 
 async function creatPdf(doc,elements) {
